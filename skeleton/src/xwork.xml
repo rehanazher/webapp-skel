@@ -1,0 +1,35 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="default" extends="webwork-default">
+	
+<!--		<interceptors>-->
+<!--			<interceptor-stack name="defaultStack">-->
+<!--				<interceptor-ref name="component" />-->
+<!--				<interceptor-ref name="static-params" />-->
+<!--				<interceptor-ref name="params" />-->
+<!--			</interceptor-stack>-->
+<!--		</interceptors>-->
+
+<!--		<default-interceptor-ref name="defaultStack" />-->
+		<global-results>
+			<result name="login">/404.htm</result>
+		</global-results>
+
+	</package>
+	<package name="api" namespace="/api" extends="default">
+		<interceptors>
+			<interceptor name="logRequestInterceptor" class="com.trans24.ach.intercepor.LogRequestInterceptor" />
+			
+			<interceptor-stack name="logRequestStack">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="logRequestInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="logRequestStack" />
+
+		<action name="achdirectv5" class="com.trans24.ach.api.AchDirectAction" />
+	</package>
+<!--	<include file="./xwork_ccp_act_fee.xml"></include>-->
+</xwork>
