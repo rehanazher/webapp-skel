@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          
+<struts-config>
+	<form-beans>
+	</form-beans>
+
+	<global-exceptions>
+		<exception key="errors.critical"
+                  type="com.manentia.commons.CriticalException"
+                  handler="org.manentia.kasai.ui.exceptions.handlers.DefaultExceptionHandler"
+                  path="/error.jsp"/>
+
+        <exception key="errors.noncritical" 
+                  type="com.manentia.commons.NonCriticalException"
+                  handler="org.manentia.kasai.ui.exceptions.handlers.DefaultExceptionHandler"
+                  path="/error.jsp"/>
+
+       <exception key="errors.critical"        
+              type="java.lang.Exception"
+              handler="org.manentia.kasai.ui.exceptions.handlers.DefaultExceptionHandler"
+              path="/error.jsp"/>
+
+       <exception key="errors.sessionExpired"                         
+              type="org.manentia.kasai.ui.exceptions.SessionExpiredException"
+              handler="org.manentia.kasai.ui.exceptions.handlers.DefaultExceptionHandler"
+              path="/login.action"/>
+    </global-exceptions>
+    
+	<global-forwards />
+
+	<action-mappings>
+		<action path="/login"
+			forward="/login.jsp"/>
+
+		<action path="/loadParams"
+			type="org.manentia.kasai.ui.actions.LoadParams">
+		
+			<forward name="success" redirect="true" path="/users/list.action" />
+		</action>
+		
+		<action path="/logout"
+			type="org.manentia.kasai.ui.actions.Logout">
+		
+			<forward name="success" redirect="true" path="/login.action" />
+		</action>
+		
+		<action path="/changePassword"
+			forward="/changePassword.jsp"/>
+				
+		<action path="/users/list"
+			forward="/users/list.jsp"/>
+			
+		<action path="/groups/list"
+			forward="/groups/list.jsp"/>
+			
+		<action path="/roles/list"
+			forward="/roles/list.jsp"/>
+			
+		<action path="/audit/list"
+			forward="/audit/list.jsp"/>
+		
+	</action-mappings>
+
+	<controller contentType="text/html; charset=ISO-8859-1"
+		nocache="false" />
+
+	<message-resources parameter="org.manentia.kasai.Messages" />
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,
+                            /WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>

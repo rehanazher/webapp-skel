@@ -1,0 +1,120 @@
+a#buttonAdd {
+	background-image: url(../images/buttonAddUser.gif);
+	text-indent: 23px;
+}
+
+a#buttonSearch {
+	background-image: url(../images/buttonSearch.gif);
+	text-indent: 18px;
+}
+
+a.buttonEditPassword {
+background-image: url(../images/buttonEditPassword.gif);
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+a.buttonBlock {
+background-image: url(../images/buttonLock.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonUnBlock {
+background-image: url(../images/buttonUnLock.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonEditPermissions {
+background-image: url(../images/buttonEditPermissions.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonEdit {
+background-image: url(../images/buttonModify.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonDelete {
+background-image: url(../images/buttonDelete.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonView {
+background-image: url(../images/buttonView.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+#messageBox {
+	font-size: 1.2em;
+	vertical-align: middle;
+	margin: 5px 0px 5px 0px;
+	padding: 10px;
+	text-align: center;
+}
+
+#modifyPermissionsCell {
+	padding: 10px;
+}
+
+#fromHours {
+	margin-left: 5px;
+	width: 20px;
+}
+
+#fromMinutes {
+	width: 20px;
+}
+
+#dateFrom {
+	width: 90px;
+}
+
+#toHours {
+	margin-left: 5px;
+	width: 20px;
+}
+
+#toMinutes {
+	width: 20px;
+}
+
+#dateTo {
+	width: 90px;
+}
+
+.authorizeLabel {
+	width: 250px;
+	text-align: right;
+	display: block;
+	float: left;
+	margin-bottom: 3px;
+}
+
+select.authorizeSelect {
+	width: 150px;
+}
+
+.authorizeParagraph {
+	display: block;
+	margin-bottom: 3px;
+}
+
+#roleModifyForm label {
+	width: 7em;
+}
+
+.roleOperativesLinks {
+	float: left;
+	display: block;
+	padding: 3px 5px 0px 5px;
+}
+
+#newGroup-members {
+	width: 200px;
+}
