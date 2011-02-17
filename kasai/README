@@ -1,0 +1,6 @@
+kasai v2.0.0
+
+(c) 2004-2007 Manentia Software
+
+---------
+Kasai is a 100% Java based authentication and authorization framework. It allows you to integrate into your application a granular, complete and manageable permission scheme. The goal of the framework is to provide a simple-to-use-yet-powerful security environment for multi-user applications. Unlike JAAS, Kasai provides a much higher security abstraction, it's targeted at the specific security requirements that arise in real-life applications such as Intranets, ERPs, CRMs, document managers, accounting systems, etc.

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="kasai">
+    
+    <!-- variables globales -->
+    <property name="dir.classes" value="src/WEB-INF/classes"/>
+    <property name="dir.lib" value="src/WEB-INF/lib"/>
+    <property name="dir.release" value="release"/>
+    <property name="dir.distros" value="distros"/>
+    <property name="dir.webinf" value="src/WEB-INF"/>
+    <property name="dir.ws" value="src/org/manentia/kasai"/>
+    <property name="release.version" value="2.0.0"/>
+    
+    <path id="project.classpath">
+        <pathelement path="${dir.classes}"/>
+        <pathelement path="${classpath}"/>
+        <pathelement path="${env.CLASSPATH}"/>
+        <pathelement path="properties"/>
+        <fileset dir="${dir.lib}"/>
+    </path>
+    
+    <target name="init">
+        <mkdir dir="${dir.release}"/>
+    </target>
+    
+    <target name="cleanup" description="Borra el release">
+        <delete includeEmptyDirs="true" quiet="true">
+            <fileset dir="${dir.release}"/>
+            <fileset dir="${dir.distros}"/>
+	    <fileset dir="${dir.classes}" includes="**/*.class"/>
+        </delete>        
+    </target>
+    
+    <!-- Compilar clases del sistema -->
+    <target depends="init" name="compile">
+        <javac classpathref="project.classpath" 
+            destdir="${dir.classes}" excludes="**/CVS/**" includes="org/manentia/**" srcdir="${dir.classes}" debug="true"/>
+    </target>
+    
+    <!-- Creacion del JAR del sistema -->
+    <target depends="compile" name="createJAR" description="Crea JAR del sistema">
+        <jar basedir="${dir.classes}" excludes="**/*.nbattrs,**/*.java,**/test/**" jarfile="${dir.release}/${ant.project.name}-${release.version}.jar"/>
+    </target>
+    
+    <target name="createWS">
+        <delete file="${dir.ws}/KasaiWSFacade.jws"/>
+        <delete file="${dir.ws}/KasaiWSFacade.class"/>
+        <copy file="${dir.ws}/KasaiWSFacade.java" tofile="${dir.ws}/KasaiWSFacade.jws"/>
+    </target>
+    
+    <!-- Creacion del WAR del sistema -->
+    <target depends="compile,createWS" name="createWAR" description="Crear la distribucion WAR del sistema">
+        <war warfile="${dir.release}/${ant.project.name}.war" webxml="${dir.webinf}/web.xml" basedir="src" excludes="**/*.nbattrs,**/servlet.jar,**/*.java,**/web.xml,**/test/**"/>
+    </target>
+    
+    <!-- Generacion de javadoc en HTML -->        
+    <target depends="init" description="Crea api en html" name="javadoc">
+    	<mkdir dir="${dir.release}/api/html"/>
+    	
+        <javadoc author="true" destdir="${dir.release}/api/html" packagenames="org.manentia.*" use="true" version="true">
+           <sourcepath>
+                <pathelement location="${dir.classes}"/>
+            </sourcepath>
+         </javadoc>
+     </target>
+     
+     <!-- DISTRIBUCION -->     
+     <target depends="createJAR,javadoc,createWAR" name="distros" description="Generar las distribuciones">
+        <delete includeEmptyDirs="true" quiet="true">
+            <fileset dir="distros"/>
+        </delete>
+        
+        <!-- Creamos los directorios requeridos para las distribuciones -->
+        <mkdir dir="${dir.distros}"/>
+
+        <!-- distribucion fuente -->
+        <zip destfile="${dir.distros}/${ant.project.name}-${release.version}-src.zip">
+            <fileset dir="." excludes="**/CVS/**,**/*.class,**/*.nbattrs,**/*.war,**/test/**"
+                includes="src/**,properties/**,samples/**,scripts/**,sysauth/**,build.xml,CHANGELOG,INSTALL,LICENSE,README"/>
+        </zip>
+
+        <!-- distribucion binaria -->
+        <mkdir dir="${dir.distros}/bin"/>
+        <mkdir dir="${dir.distros}/bin/config"/>
+        <mkdir dir="${dir.distros}/bin/database"/>
+        <mkdir dir="${dir.distros}/bin/web"/>
+        <mkdir dir="${dir.distros}/bin/sysauth"/>
+        <mkdir dir="${dir.distros}/bin/samples"/>
+        <mkdir dir="${dir.distros}/bin/lib"/>
+
+        <copy todir="${dir.distros}/bin">
+            <fileset dir="${dir.release}" excludes="**/.*" includes="${ant.project.name}-${release.version}.jar"/>
+        </copy>
+
+        <copy todir="${dir.distros}/bin">
+            <fileset dir="."
+                includes="CHANGELOG,INSTALL,LICENSE,README"/>
+        </copy>
+
+        <copy todir="${dir.distros}/bin/config">
+            <fileset dir="properties" excludes="**/.*,**/CVS/**" includes="**/*.properties"/>
+        </copy>
+        
+        <copy todir="${dir.distros}/bin/database">
+            <fileset dir="scripts" excludes="**/.*,**/CVS/**" includes="**/*.sql"/>
+        </copy>        
+        
+        <copy todir="${dir.distros}/bin/web">
+            <fileset file="${dir.release}/${ant.project.name}.war"/>
+        </copy>
+        
+        <copy todir="${dir.distros}/bin/sysauth">
+            <fileset dir="sysauth" excludes="**/.*,**/CVS/**"/>
+        </copy>
+        
+        <copy todir="${dir.distros}/bin/samples">
+            <fileset dir="samples" excludes="**/.*,**/CVS/**,**/*.class"/>
+        </copy>
+        
+        <copy todir="${dir.distros}/bin/lib">
+            <fileset dir="src/WEB-INF/lib" excludes="**/.*,**/CVS/**,**/*.class"/>
+        </copy>
+        
+        <zip destfile="${dir.distros}/${ant.project.name}-${release.version}-bin.zip">
+            <fileset dir="${dir.distros}/bin"/>
+        </zip>
+        
+        <zip destfile="${dir.distros}/${ant.project.name}-${release.version}-api.zip">
+            <fileset dir="${dir.release}"
+                includes="api/**"/>
+        </zip>
+    </target>
+    <!-- FIN DE DISTRIBUCION -->
+    
+    <target depends="compile" name="test" description="Run JUnit tests">
+        <java classpathref="project.classpath" classname="org.manentia.kasai.test.KasaiFacadeTest"/>
+    </target>
+     
+     <target depends="createJAR" name="all" description="Tarea por defecto, genera la distribucion"/>
+</project>

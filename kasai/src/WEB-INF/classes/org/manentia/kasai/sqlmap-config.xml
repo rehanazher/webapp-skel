@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+	<properties resource="org/manentia/kasai/Config.properties" />
+
+	<!-- These settings control SqlMap configuration details, primarily to do with transaction management. They are all optional (see the Developer Guide for more). -->
+	<settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true"
+		maxRequests="32"
+		maxSessions="10"
+		maxTransactions="5"
+		useStatementNamespaces="true"/>
+
+    <!-- Configure a datasource to use with this SQL Map using SimpleDataSource. Notice the use of the properties from the above resource -->
+    <!-- Uso DBCP -->
+    <transactionManager type="JDBC">
+        <dataSource type="DBCP">
+            <property name="JDBC.Driver" value="${db.kasai.driver}"/>
+            <property name="JDBC.ConnectionURL" value="${db.kasai.url}"/>
+            <property name="JDBC.Username" value="${db.kasai.user}"/>
+            <property name="JDBC.Password" value="${db.kasai.password}"/>
+
+            <!-- OPTIONAL PROPERTIES BELOW -->
+            <property name="Pool.MaximumActiveConnections" value="${db.kasai.maxActiveConnections}"/>
+            <property name="Pool.MaximumIdleConnections" value="${db.kasai.maxIdleConnections}"/>
+            <property name="Pool.MaximumWait" value="${db.kasai.maxWait}"/>
+
+            <!-- <property name="Pool.ValidationQuery" value="select * from kasai_users"/> -->
+
+            <property name="Pool.LogAbandoned" value="false"/>
+            <property name="Pool.RemoveAbandoned" value="false"/>
+            <property name="Pool.RemoveAbandonedTimeout" value="50000"/>
+        </dataSource>
+    </transactionManager>
+
+    <sqlMap resource="org/manentia/kasai/xxx-sqlmap.xml" />
+</sqlMapConfig>

@@ -1,0 +1,446 @@
+/*-------------------------------------------------
+
+KASAI: Authentication and authorization Framework
+Main Stylesheet
+
+by: Javier Odriozola (jodriozola@sourceforge.org)
+Comments and suggestions are welcome
+
+-------------------------------------------------*/
+
+/* GENERAL STYLES */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+	font-size:62.5%;
+	color: #44412e;
+	background-color:#cbc495;
+}
+
+a:link, a:visited {
+	color:#b21900;
+	background-color:inherit;
+	text-decoration: none;	
+}
+
+h1, h2 {
+	font-size:62.5%;
+	font-weight:normal;
+}	
+
+h3 {
+	font-size: 1.8em;
+	letter-spacing:-0.08em;
+	font-weight: normal;
+	}
+	
+.horizontalSeparator {
+	clear:both;
+	background-image: url(images/dottedLine.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	height:1px;
+	line-height:1px;
+	font-size:1px;
+}
+
+.vMargins {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.hMargins {
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.normalText {
+		font-size:1.2em;	
+	}
+	
+.invisible {
+	display:none;
+}
+
+.visible {
+	display:block;
+}
+
+.clearing {
+	clear: both;
+}
+
+div#working {
+	position: absolute;
+	padding: 2px;
+	bottom: 1px;
+	right: 1px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+}
+/* END GENERAL STYLES */
+
+/* MESSAGE BOX */
+
+div.messageBox-info{
+	border: 1px solid #0e9921;
+	background-color: #b1dab7;
+}
+div.messageBox-warning{
+	border: 1px solid #efff00;
+	background-color: #f8ff91;
+}
+div.messageBox-error{
+	border: 1px solid #aa3a21;
+	background-color: #e9c9c2;
+}
+
+div.fade-1{
+filter: alpha(opacity=99); opacity: .99;
+}
+div.fade-2{
+filter: alpha(opacity=90); opacity: .9;
+}
+div.fade-3{
+filter: alpha(opacity=80); opacity: .8;
+}
+div.fade-4{
+filter: alpha(opacity=70); opacity: .7;
+}
+div.fade-5{
+filter: alpha(opacity=60); opacity: .6;
+}
+div.fade-6{
+filter: alpha(opacity=50); opacity: .5;
+}
+div.fade-7{
+filter: alpha(opacity=40); opacity: .4;
+}
+div.fade-8{
+filter: alpha(opacity=30); opacity: .3;
+}
+div.fade-9{
+filter: alpha(opacity=20); opacity: .2;
+}
+div.fade-10{
+filter: alpha(opacity=10); opacity: .1;
+}
+div.fade-11{
+display:none;
+}
+/* END MESSAGE BOX */
+
+/* HEADER */
+
+div#header {
+	height:75px;
+	background-image: url(images/headerBackground.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	position:relative;
+}
+
+	#header h1 {
+	padding:15px;
+	}
+	
+		#header h1 a {
+			background-image: url(images/logoKasai.gif);
+			background-repeat: no-repeat;
+			height: 43px;
+			width: 145px;
+			text-indent:-600em;		
+			display:block;
+		}
+	
+	#tabNavigation {
+		position:absolute;
+		right: 15px;
+		bottom: 0px;
+	}
+	
+	*html #tabNavigation { 
+		bottom: -1px; /* Puts the navigation bar 1px lower on IE only */
+	}
+	
+	#headerLinks{
+		position: absolute;
+		right: 15px;
+		top: 5px;
+		font-size: 1.2em;
+	}
+	
+		#header ul {
+		list-style:none;
+			
+		}
+		
+			#header li {
+				float:left;
+				background-image:url(images/unselectedTabRight.gif);
+				background-repeat:no-repeat;
+				background-position:right top;
+				margin:0px 1px;
+
+			}
+		
+				#header li a {
+					z-index:10;
+					font-size:1.4em;
+					display:block;
+					background-image:url(images/unselectedTabLeft.gif);
+					background-repeat:no-repeat;
+					background-position:left top;
+					padding:4px 10px 3px 10px;
+				}
+			
+				#header li a:hover {	
+					background-color:inherit;
+					color:white;
+				}
+	
+		#header #selectedTab {
+			background-image:url(images/selectedTabRight.gif);
+		}
+	
+			#header #selectedTab a {
+				background-color:inherit;
+				background-image:url(images/selectedTabLeft.gif);
+				color:#44412e;
+				padding-bottom:4px;
+			}
+			
+/* END HEADER */			
+/* CONTENT */	
+				
+div#content {
+	color:inherit;
+	background-color: white;
+	line-height: 1.2;
+	padding:15px;
+}	
+	
+	div#content h2 {
+		font-size: 2.2em;
+		letter-spacing:-0.08em;
+		padding-bottom:10px;
+	
+	}
+	
+	/* =BUTTONS */
+	
+	div#buttonEnclosing {
+		margin:0;
+	}
+	
+		#buttonEnclosing a {
+			float:left;
+			display:block;
+			background-repeat: no-repeat;
+			background-position: 5px center;
+			font-size: 1.2em;
+			padding: 5px;
+		}
+		
+		#buttonEnclosing a:hover {
+			background-color:#FFFF99;
+		}
+		
+		#buttonEnclosing a:active {
+			background-color:#dcd7ab;
+		}	
+				
+		
+		
+	/* =defaultForm */	
+	div.formWrapper {
+		background-color:#dcd7ab;
+		/*padding:10px;*/
+		margin-bottom:1px;
+		clear:left;
+	}
+	
+	.formHeading {
+		float:left;
+		padding:10px 10px 3px;
+	}
+	
+	.buttonFormClose {
+	margin-top:10px;
+	margin-right:10px;
+	float:right;
+	font-size:1.2em;
+	letter-spacing:normal;
+	padding-right:15px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-image: url(images/buttonClose.gif);
+	}
+	
+	.buttonFormClose:hover {	
+		color:white;
+		background-color:inherit;
+	}
+
+form.defaultForm {
+	padding:10px;
+	clear:both;
+}
+
+	form.defaultForm label {
+		display:block;
+		width:5.5em;
+		float:left;
+		text-align:right;
+		margin-right:10px;
+		white-space: nowrap;
+	}
+	
+	form.defaultForm input, form.defaultForm textarea, form.defaultForm select, form.defaultForm span {
+		margin-bottom:5px;
+		font-family:Arial, Helvetica, sans-serif;
+		float: left;
+	}
+		
+	form.defaultForm textarea {
+		font-family:Arial, Helvetica, sans-serif;
+		font-size:1.0em;
+	}
+	
+	form.defaultForm label.hourSeparator {
+		display:block;
+		width:0.6em;
+		float:left;
+		margin-right:3px;
+		margin-left:3px;
+	}
+	
+/* END CONTENT */
+/* LIST TABLE */
+
+table.list {
+	clear:left;
+	width:100%;
+	border:none;
+	border-collapse:collapse;
+}
+	
+	table.list th {
+		font-size:1.4em;
+		font-weight:normal;
+		text-align:left;
+		color:white;
+		background-color:#c1b872;		
+		padding:2px 5px;	
+		white-space: nowrap;	
+	}
+	
+	a.listTitle {
+		color: white;
+	}
+
+	table.list td {
+		font-size:1.2em;
+		padding:5px;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: #c1b872;	
+		white-space: nowrap;
+	}
+	
+	table.inner {
+		font-size: 0.8em;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	table.inner td {
+		border: none;
+		padding: 0px 0px 3px 0px;
+		margin: 0px;
+	}
+	
+	h3.inner  {
+		font-size: 1.5em;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	td.actionsWrapper {
+		width:100px;
+	}	
+		
+	ul.listActions {
+		letter-spacing : -1000em;
+		list-style-type:none;
+	}
+	
+	ul.listActions li {
+		display:inline;
+	}
+	
+	ul.listActions li a {
+		float:left;
+		display:block;
+		width:20px;
+		height:20px;
+	}
+	
+	ul.listActions li a:hover {
+		background-color:#FFFF99;
+	}
+		
+	tr.listEdit{
+		font-weight:bold;
+		background-color:#dcd7ab;
+	}
+	
+	tr.listMouseOver {
+		background-color:#dcd7ab;
+	}
+	
+	tr.listEdit ul{
+		display:none;
+	}
+	
+	tr.listEditForm {
+	background-color:#dcd7ab;
+	}			
+	
+p.pagination {
+	margin:10px 15px 0px;
+	font-size:1.2em;
+	text-align:center;
+}
+
+p.pagination a:hover {
+	background-color:#FFFF99;
+}
+
+.blocked {
+	text-decoration: line-through;
+}
+/* END LIST TABLE */
+		
+/* FOOTER */
+
+div#footer {
+	clear:both;
+}
+
+div#footer p {
+	font-size:1.2em;
+	margin:10px;
+	text-align:center;
+}
+
+div#footer p a:hover {
+	color:white;
+}
+/* END FOOTER */
