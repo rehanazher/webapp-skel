@@ -1,0 +1,8 @@
+# java_auth - PAM configuration for the gs.scribblin.sysauth package
+# save this file in /etc/pam.d with the name "java_auth"
+
+# SysAuth only uses the authentication part of PAM, so we have no need
+# for account and session entries here. This authentication entry uses
+# standard unix-style authentication; the "nullok" option means that we allow
+# users to have null passwords.
+auth    required  pam_unix.so nullok

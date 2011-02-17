@@ -1,0 +1,48 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+  <allow>
+    <create creator="new" javascript="UserFacade" scope="session">
+      <param name="class" value="org.manentia.kasai.ui.users.UserFacade"/>
+    </create>
+    
+    <create creator="new" javascript="GroupFacade" scope="session">
+      <param name="class" value="org.manentia.kasai.ui.groups.GroupFacade"/>
+    </create>
+    
+    <create creator="new" javascript="AuditFacade" scope="session">
+      <param name="class" value="org.manentia.kasai.ui.audit.AuditFacade"/>
+    </create>
+    
+    <create creator="new" javascript="RoleFacade" scope="session">
+      <param name="class" value="org.manentia.kasai.ui.roles.RoleFacade"/>
+    </create>
+    
+    <create creator="new" javascript="BaseFacade" scope="session">
+      <param name="class" value="org.manentia.kasai.ui.BaseFacade"/>
+    </create>
+    
+    <create creator="new" javascript="User">
+    	<param name="class" value="org.manentia.kasai.User"/>
+    </create>
+    
+    <convert converter="exception" match="java.lang.Exception">
+    	<param name='include' value='message,lineNumber,javaClassName'/>
+    </convert>
+    
+    <convert converter="bean" match="org.manentia.kasai.User"/>
+	<convert converter="bean" match="org.manentia.kasai.Group"/>
+	<convert converter="bean" match="org.manentia.kasai.Role"/>
+	<convert converter="bean" match="org.manentia.kasai.Operative"/>
+    <convert converter="bean" match="org.manentia.kasai.ObjectUserRole"/>
+    <convert converter="bean" match="org.manentia.kasai.ObjectGroupRole"/>
+    <convert converter="bean" match="com.manentia.commons.audit.AuditBean"/>
+    
+    
+    <!-- convert match="java.lang.StackTraceElement" converter="bean"/-->
+    <convert converter="collection" match="java.util.Collection"/>
+    <convert converter="map" match="java.util.Map"/>
+  </allow>
+</dwr>

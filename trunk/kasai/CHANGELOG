@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+v2.0.0
+--------------------------------------------------------------------------------
+* Added overwritepasswords.sql script to ease migration from 1.x to 2.0
+* Fixed bug: Blocked superusers were allowed for all operatives, now they work
+	just as normal blocked users (denied all operatives)
+* Removed iBatis JARs, no longer needed
+
+--------------------------------------------------------------------------------
+v2.0.0 alpha 2
+--------------------------------------------------------------------------------
+* Added Jasypt for RDBMSAuthService password hashing, updated Config.properties
+	parameters related to this. Now we support "strong", "basic", and "cleartext" password hashing.
+* NOTE: This implies that existing password tables are no longer supported, you need to re-issue passwords for all your users, blank them, or migrate them. An automated procedure will be included in v2.0.0 final.
+* Added customizable password validators
+* Implemented LengthPasswordValidator, DifferentCharactersPasswordValidator
+* Fixed mysql database creation script to use TinyInt instead of Bit
+
+--------------------------------------------------------------------------------
+v2.0.0 alpha 1
+--------------------------------------------------------------------------------
+* Complete support for user and group custom attributes
+* SQL Server support
+* PostgreSQL support
+* Web based administrative interface, including user, group and role management, and audit queries
+
+--------------------------------------------------------------------------------
+v1.2.0
+--------------------------------------------------------------------------------
+* Updated koala-commons to manentia-commons-2.0.0
+
+--------------------------------------------------------------------------------
+v1.1.0
+--------------------------------------------------------------------------------
+* Minor bug fixes
+
+--------------------------------------------------------------------------------
+v1.1.0 beta 3
+--------------------------------------------------------------------------------
+* Recompiled with Java 2 1.4 support
+
+--------------------------------------------------------------------------------
+v1.1.0 beta 2
+--------------------------------------------------------------------------------
+* Added cleartext passwords support to RDBMSAuthService
+* Added methods to create new users specifying an initial password
+* Fixed bug that prevented random passwords from being assigned to new users
+* Fixed bug when validating and changing a null password
+* Added email configuration properties to Config.properties
+
+--------------------------------------------------------------------------------
+v1.1.0 beta 1
+--------------------------------------------------------------------------------
+* Major code refactoring using the DAO pattern
+* Changed KasaiFacade so the "real" exceptions are thrown in every method (ie.
+	DoesntExistException instead of CriticalException or NonCriticalException)
+* Added Win32 authentication service
+* Added AS/400 authentication service
+* Added SOAP access facade using AXIS
+
+--------------------------------------------------------------------------------
+v1.0.0
+--------------------------------------------------------------------------------
+* First release
+* PAM (Unix) authentication
+* Database (JDBC) authentication
+* Auditing creation and querying
+* Authorization based on groups, permissions, roles and users

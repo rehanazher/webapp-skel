@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+Kasai v2.0.0 *very* short installation guide
+--------------------------------------------------------------------------------
+
+To use Kasai within your application:
+-------------------------------------
+
+1) Create the database structure:
+
+$ mysql -p -u <username> <database name> < kasai.sql
+
+2) Add kasai-2.0.x.jar to your CLASSPATH
+
+3) Add the org.manentia.kasai.Config properties file to your CLASSPATH (org/manentia/kasai/Config.properties).
+
+4) Edit the Config.properties file to match your environment
+
+See the QuickStart Guide for detailed instructions and examples. 
+Get it at http://kasai.manentiasoftware.com
+
+To install Kasai bundled web administrative tool:
+-------------------------------------------------
+
+1) Create the database structure (if you didn't already):
+
+$ mysql -p -u <username> <database name> < kasai.sql
+
+2) Add the Config.properties and Messages.properties files to your Servlet container CLASSPATH, within the org.manentia.kasai package. 
+For example to do this in Tomcat 5.x you can copy both files to <tomcat>/shared/classes/org/manentia/kasai/.
+
+3) Edit the Config.properties file to match your environment
+
+4) Deploy the web application (kasai.war). In most servlet containers you can do this by copying the WAR file to some pre-defined location (ie <tomcat>/webapps) or by defining a new context that points to it.
+
+5) If needed restart your servlet container

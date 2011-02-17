@@ -1,0 +1,74 @@
+a#buttonAddUser {
+	background-image: url(../images/buttonAddUser.gif);
+	text-indent: 23px;
+}
+
+a#buttonSearchUser {
+	background-image: url(../images/buttonSearch.gif);
+	text-indent: 18px;
+}
+
+a.buttonEditPassword {
+background-image: url(../images/buttonEditPassword.gif);
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+a.buttonBlock {
+background-image: url(../images/buttonLock.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonUnBlock {
+background-image: url(../images/buttonUnLock.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonEditPermissions {
+background-image: url(../images/buttonEditPermissions.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonEdit {
+background-image: url(../images/buttonModify.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+a.buttonDelete {
+background-image: url(../images/buttonDelete.gif);
+background-repeat: no-repeat;
+background-position: center center;	
+}
+
+#messageBox {
+	font-size: 1.2em;
+	vertical-align: middle;
+	margin: 5px 0px 5px 0px;
+	padding: 10px;
+	text-align: center;
+}
+
+#modifyPermissionsCell {
+	padding: 10px;
+}
+
+.authorizeLabel {
+	width: 250px;
+	text-align: right;
+	display: block;
+	float: left;
+	margin-bottom: 3px;
+}
+
+select.authorizeSelect {
+	width: 150px;
+}
+
+.authorizeParagraph {
+	display: block;
+	margin-bottom: 3px;
+}
