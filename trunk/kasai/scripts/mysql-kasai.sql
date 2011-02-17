@@ -1,8 +1,6 @@
 -- KASAI database creation script
 -- for MySQL 4.x and above
 
-CREATE 
-
 CREATE TABLE kasai_users
 (
 id                                  VARCHAR(50) NOT NULL,
