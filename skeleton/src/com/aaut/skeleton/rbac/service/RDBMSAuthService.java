@@ -250,7 +250,7 @@ public class RDBMSAuthService implements AuthService {
     public String resetPassword(String userName) throws ServiceException {
             
         Connection con = null;
-        Statement stmt = null;   
+        Statement stmt = null;
         String password = null;
         String sql = null;
         
