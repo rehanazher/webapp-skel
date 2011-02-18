@@ -6,12 +6,12 @@ package com.aaut.skeleton.commons.util.dao;
 
 public interface BasicDao<PO> {
 
-	public abstract PO findById(String id);
+	PO findById(String id);
 
-	public abstract String deleteById(String id);
+	String deleteById(String id);
 
-	public abstract String add(PO ele);
+	String add(PO ele);
 
-	public abstract int update(PO ele);
+	int update(PO ele);
 
 }
