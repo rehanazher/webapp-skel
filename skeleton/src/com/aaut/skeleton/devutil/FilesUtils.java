@@ -20,11 +20,11 @@ public class FilesUtils {
 		boolean filter(File file);
 	}
 
-	public List<File> getFiles(String dir) {
+	public static List<File> getFiles(String dir) {
 		return getFiles(dir, false);
 	}
 
-	public List<File> getFiles(String dir, boolean includeSubFiles) {
+	public static List<File> getFiles(String dir, boolean includeSubFiles) {
 		return getFiles(dir, new FileFilter() {
 			@Override
 			public boolean filter(File arg0) {
@@ -33,11 +33,11 @@ public class FilesUtils {
 		}, false);
 	}
 
-	public List<File> getFiles(String dir, FileFilter filter) {
+	public static List<File> getFiles(String dir, FileFilter filter) {
 		return getFiles(dir, filter, false);
 	}
 
-	public List<File> getFiles(String dir, FileFilter filter,
+	public static List<File> getFiles(String dir, FileFilter filter,
 			boolean includeSubFiles) {
 		List<File> result = new ArrayList<File>();
 
@@ -59,5 +59,9 @@ public class FilesUtils {
 			}
 		}
 		return result;
+	}
+	
+	public static void main(String[] args) {
+		getFiles("/src/config/");
 	}
 }
