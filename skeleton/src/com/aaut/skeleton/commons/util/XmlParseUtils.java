@@ -69,7 +69,7 @@ public class XmlParseUtils {
 		return result;
 	}
 
-	public static String serializeMapToXML(Map map)
+	public static String serializeMapToXML(Map<String, String> map)
 			throws ParserConfigurationException, FactoryConfigurationError {
 		String result = "";
 
@@ -89,9 +89,9 @@ public class XmlParseUtils {
 			String keyStr = null;
 			String valueStr = null;
 
-			for (Iterator iter = map.keySet().iterator(); iter.hasNext();) {
-				keyStr = (String) iter.next();
-				valueStr = (String) map.get(keyStr);
+			for (Iterator<String> iter = map.keySet().iterator(); iter.hasNext();) {
+				keyStr = iter.next();
+				valueStr = map.get(keyStr);
 
 				attribute = doc.createElement("Attribute");
 				root.appendChild(attribute);
