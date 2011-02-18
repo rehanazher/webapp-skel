@@ -60,10 +60,17 @@ public class FilesUtils {
 		}
 		return result;
 	}
-	
+
 	public static void main(String[] args) {
-		List<File> fileList = getFiles("./src/config/", true);
-		for (File f: fileList){
+		List<File> fileList = getFiles("./src/config/", new FileFilter() {
+
+			@Override
+			public boolean filter(File file) {
+				return file.getName().endsWith(".xml");
+			}
+
+		}, true);
+		for (File f : fileList) {
 			System.out.println(f.getAbsolutePath());
 		}
 	}
