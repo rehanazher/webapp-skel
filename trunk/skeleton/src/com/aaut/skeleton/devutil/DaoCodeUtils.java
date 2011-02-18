@@ -640,8 +640,6 @@ public class DaoCodeUtils {
 		System.out.println(getFindByIdsMethod());
 	}
 	
-	private File
-
 	public static void main(String[] args) {
 		DaoCodeUtils builder = new DaoCodeUtils("CCP_COUNTRIES", "Country");
 		builder.printCode();
