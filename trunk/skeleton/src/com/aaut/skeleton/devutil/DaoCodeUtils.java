@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.aaut.skeleton.commons.util.Validators;
+import com.aaut.skeleton.devutil.FilesUtils.FileFilter;
 
 /**
  * @author James
@@ -25,7 +26,7 @@ public class DaoCodeUtils {
 	private static final String NEWLINE = "\"\n\t + \"";
 	private static final String SQL_HEAD = "private static final String SQL_";
 
-	private static final String ID = "Id";
+	private static final String ID = "id";
 	private static final String CREATIONTIME = "creationTime";
 
 	private String tableName;
@@ -43,23 +44,23 @@ public class DaoCodeUtils {
 
 		List<String> configFileNames = new ArrayList<String>();
 		// configuration directory or file
-		File file = new File("/src/config/");
-		if (file.isDirectory()) {
-			if (file.getName().endsWith(".xml"));
+		List<File> fileList = FilesUtils.getFiles("./src/config/",
+				new FileFilter() {
+
+					@Override
+					public boolean filter(File file) {
+						return file.getName().endsWith(".xml");
+					}
+				}, true);
+		
+		for (File file: fileList){
 			configFileNames.add(file.getAbsolutePath());
-		} else {
-			File[] subFiles = file.listFiles();
-			for (File sub : subFiles) {
-				if (sub.isFile() && sub.getName().endsWith(".xml")) {
-					configFileNames.add(file.getAbsolutePath());
-				}
-			}
 		}
 
 		FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext(
 				configFileNames.toArray(new String[configFileNames.size()]));
 
-		DataSource dataSource = (DataSource) ctx.getBean("c3p0DS");
+		DataSource dataSource = (DataSource) ctx.getBean("rbacDS");
 
 		try {
 			Connection conn = dataSource.getConnection();
@@ -455,7 +456,7 @@ public class DaoCodeUtils {
 	}
 
 	/**
-	 * ���delete�ķ�������
+	 * delete method
 	 * 
 	 * @return
 	 */
@@ -639,9 +640,9 @@ public class DaoCodeUtils {
 		System.out.println(getFindByIdMethod());
 		System.out.println(getFindByIdsMethod());
 	}
-	
+
 	public static void main(String[] args) {
-		DaoCodeUtils builder = new DaoCodeUtils("CCP_COUNTRIES", "Country");
+		DaoCodeUtils builder = new DaoCodeUtils("rbac_users", "User");
 		builder.printCode();
 	}
 

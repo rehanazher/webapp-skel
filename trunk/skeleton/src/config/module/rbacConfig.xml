@@ -70,7 +70,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>com.aaut.rbac.jdbc</value>
+				<value>classpath:../properties/com/aaut/rbac/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
