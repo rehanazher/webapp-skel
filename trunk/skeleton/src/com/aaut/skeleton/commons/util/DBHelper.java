@@ -1,5 +1,7 @@
 package com.aaut.skeleton.commons.util;
 
+
+@Deprecated
 @SuppressWarnings("unused")
 public class DBHelper {
 	private String tableName;
