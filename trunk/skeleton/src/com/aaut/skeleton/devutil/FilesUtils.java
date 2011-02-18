@@ -30,7 +30,7 @@ public class FilesUtils {
 			public boolean filter(File arg0) {
 				return true;
 			}
-		}, false);
+		}, includeSubFiles);
 	}
 
 	public static List<File> getFiles(String dir, FileFilter filter) {
@@ -47,7 +47,7 @@ public class FilesUtils {
 			File[] subFiles = file.listFiles();
 			for (File sub : subFiles) {
 				if (sub.isFile() && filter.filter(sub)) {
-					result.add(file);
+					result.add(sub);
 				} else if (includeSubFiles) {
 					result.addAll(getFiles(sub.getAbsolutePath(), filter,
 							includeSubFiles));
@@ -62,6 +62,9 @@ public class FilesUtils {
 	}
 	
 	public static void main(String[] args) {
-		getFiles("/src/config/");
+		List<File> fileList = getFiles("./src/config/", true);
+		for (File f: fileList){
+			System.out.println(f.getAbsolutePath());
+		}
 	}
 }
