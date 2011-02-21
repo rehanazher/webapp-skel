@@ -5,8 +5,7 @@
 	<context-param>
 	   <param-name>contextConfigLocation</param-name>
 	   <param-value>
-	   classpath*:config/*.xml,
-	   classpath*:config/module/*.xml
+	   classpath*:config/*.xml
 	   </param-value>
 	</context-param>
 	
@@ -21,7 +20,7 @@
 	</filter-mapping>
 	
 	<listener>
-	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	    <listener-class>com.aaut.skeleton.web.ModularityLoaderListener</listener-class>
 	</listener>
 
 
