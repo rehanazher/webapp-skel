@@ -29,8 +29,8 @@ import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.aaut.skeleton.commons.XmlException;
 import com.aaut.skeleton.commons.xml.XmlConvertible;
+import com.aaut.skeleton.commons.xml.XmlException;
 
 
 public class XmlParseUtils {
