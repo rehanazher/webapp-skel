@@ -12,24 +12,28 @@
 <!--		</interceptors>-->
 
 <!--		<default-interceptor-ref name="defaultStack" />-->
+
+
 		<global-results>
 			<result name="login">/404.htm</result>
 		</global-results>
+		
+		<action name="testi18n" class="com.aaut.skeleton.test.TestI18NResourcesAction" />
 
 	</package>
 	<package name="api" namespace="/api" extends="default">
-		<interceptors>
-			<interceptor name="logRequestInterceptor" class="com.trans24.ach.intercepor.LogRequestInterceptor" />
-			
-			<interceptor-stack name="logRequestStack">
-				<interceptor-ref name="params" />
-				<interceptor-ref name="logRequestInterceptor" />
-			</interceptor-stack>
-		</interceptors>
-		
-		<default-interceptor-ref name="logRequestStack" />
-
-		<action name="achdirectv5" class="com.trans24.ach.api.AchDirectAction" />
+<!--		<interceptors>-->
+<!--			<interceptor name="logRequestInterceptor" class="com.trans24.ach.intercepor.LogRequestInterceptor" />-->
+<!--			-->
+<!--			<interceptor-stack name="logRequestStack">-->
+<!--				<interceptor-ref name="params" />-->
+<!--				<interceptor-ref name="logRequestInterceptor" />-->
+<!--			</interceptor-stack>-->
+<!--		</interceptors>-->
+<!--		-->
+<!--		<default-interceptor-ref name="logRequestStack" />-->
+<!---->
+<!--		<action name="achdirectv5" class="com.trans24.ach.api.AchDirectAction" />-->
 	</package>
 <!--	<include file="./xwork_ccp_act_fee.xml"></include>-->
 </xwork>
