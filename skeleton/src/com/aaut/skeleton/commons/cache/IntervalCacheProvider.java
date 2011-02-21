@@ -41,6 +41,8 @@ public class IntervalCacheProvider<E extends Cache> implements CacheProvider<E> 
 	@Override
 	public void refresh() {
 		value.refresh();
+		lastUpdate = System.currentTimeMillis();
+		forceUpdate = false;
 	}
 
 	@Override
