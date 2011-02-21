@@ -31,6 +31,7 @@ public class UserDaoImpl extends BasicDaoSupport<User> implements UserDao<User> 
 			return new UserMultiRowMapper().mapRow(rs, 1);
 		}
 	}
+	
 
 	@Override
 	public String add(User ele) {
