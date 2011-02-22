@@ -8,9 +8,9 @@ public interface BasicDao<PO> {
 
 	PO findById(String id);
 
-	String deleteById(String id);
+	String delete(String id);
 
-	String add(PO ele);
+	String insert(PO ele);
 
 	int update(PO ele);
 
