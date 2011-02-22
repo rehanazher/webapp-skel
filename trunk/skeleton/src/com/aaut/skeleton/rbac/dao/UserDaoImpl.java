@@ -15,32 +15,30 @@ import com.aaut.skeleton.rbac.po.User;
 public class UserDaoImpl extends BasicDaoSupport<User> implements UserDao<User> {
 
 	private static class UserMultiRowMapper implements MultiRowMapper<User> {
-
-		@Override
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
-
+			user.setId(rs.getString("id"));
+			user.setName(rs.getString("name"));
+			user.setLastName(rs.getString("last_name"));
+			user.setFirstName(rs.getString("first_name"));
+			user.setEmail(rs.getString("email"));
+			user.setPassword(rs.getString("password"));
+			user.setBlocked(rs.getInt("blocked"));
+			user.setDescription(rs.getString("description"));
+			user.setSuperUser(rs.getInt("super_user"));
+			user.setCreationTime(rs.getTimestamp("creation_time"));
 			return user;
 		}
 	}
 
 	private static class UserSingleRowMapper implements SingleRowMapper<User> {
-
-		@Override
 		public User mapRow(ResultSet rs) throws SQLException {
 			return new UserMultiRowMapper().mapRow(rs, 1);
 		}
 	}
-	
 
 	@Override
-	public String add(User ele) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String deleteById(String id) {
+	public String delete(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -52,9 +50,14 @@ public class UserDaoImpl extends BasicDaoSupport<User> implements UserDao<User> 
 	}
 
 	@Override
+	public String insert(User ele) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public int update(User ele) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }
