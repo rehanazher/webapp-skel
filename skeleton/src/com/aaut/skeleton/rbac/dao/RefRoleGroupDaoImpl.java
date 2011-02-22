@@ -15,7 +15,6 @@ import com.aaut.skeleton.commons.util.dao.BasicDaoSupport;
 import com.aaut.skeleton.commons.util.dao.MultiRowMapper;
 import com.aaut.skeleton.commons.util.dao.SingleRowMapper;
 import com.aaut.skeleton.rbac.po.RefRoleGroup;
-import com.aaut.skeleton.rbac.po.RefUserGroup;
 
 public class RefRoleGroupDaoImpl extends BasicDaoSupport<RefRoleGroup>
 		implements RefRoleGroupDao {
