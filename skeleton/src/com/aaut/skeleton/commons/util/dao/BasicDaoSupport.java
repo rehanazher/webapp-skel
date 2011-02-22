@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -213,27 +214,27 @@ public abstract class BasicDaoSupport<PO> extends JdbcDaoSupport {
 		}
 	}
 
-	// private class SpecialBatchPreparedStatementSetter implements
-	// BatchPreparedStatementSetter {
-	//
-	// private int[] argTypes = null;
-	// private List listOfArgs = null;
-	//
-	// public SpecialBatchPreparedStatementSetter(List listOfArgs,
-	// int[] argTypes) {
-	// this.listOfArgs = listOfArgs;
-	// this.argTypes = argTypes;
-	// }
-	//
-	// public int getBatchSize() {
-	// return listOfArgs.size();
-	// }
-	//
-	// public void setValues(PreparedStatement ps, int i) throws SQLException {
-	// Object[] args = (Object[]) listOfArgs.get(i);
-	// JdbcUtils.setSuitedParamsToStatement(args, argTypes, ps);
-	// }
-	// }
+	private class SpecialBatchPreparedStatementSetter implements
+			BatchPreparedStatementSetter {
+
+		private int[] argTypes = null;
+		private List listOfArgs = null;
+
+		public SpecialBatchPreparedStatementSetter(List listOfArgs,
+				int[] argTypes) {
+			this.listOfArgs = listOfArgs;
+			this.argTypes = argTypes;
+		}
+
+		public int getBatchSize() {
+			return listOfArgs.size();
+		}
+
+		public void setValues(PreparedStatement ps, int i) throws SQLException {
+			Object[] args = (Object[]) listOfArgs.get(i);
+			JdbcUtils.setSuitedParamsToStatement(args, argTypes, ps);
+		}
+	}
 
 	protected static Logger logger = Logger.getLogger(BasicDaoSupport.class);
 
@@ -250,55 +251,58 @@ public abstract class BasicDaoSupport<PO> extends JdbcDaoSupport {
 	 *            参数类型数组
 	 * @return 更新的记录条数数组
 	 */
-	// protected int[] batchUpdate(String sql, List listOfArgs, int[] argTypes)
-	// {
-	// if (listOfArgs == null || listOfArgs.isEmpty()) {
-	// return new int[0];
-	// }
-	//
-	// if (logger.isDebugEnabled()) {
-	// for (int i = 0; i < listOfArgs.size(); i++) {
-	// Object[] args = (Object[]) listOfArgs.get(i);
-	// logger.debug(JdbcUtils.getSQL(sql, args));
-	// }
-	// }
-	// long startTime = System.currentTimeMillis();
-	//
-	// try {
-	// int destPos = 0;
-	// int size = listOfArgs.size();
-	// int[] totalResults = new int[size];
-	// int batchExecCount = (size % batchSize == 0) ? size / batchSize
-	// : size / batchSize + 1;
-	//
-	// if (logger.isDebugEnabled()) {
-	// logger.debug("Batch executed times: " + batchExecCount);
-	// }
-	//
-	// for (int i = 0; i < batchExecCount; i++) {
-	// int from = batchSize * i;
-	// int to = 0;
-	// if (i == batchExecCount - 1) {
-	// to = size;
-	// } else {
-	// to = batchSize * (i + 1);
-	// }
-	//
-	// List batchListOfArgs = listOfArgs.subList(from, to);
-	// int[] batchResults = getJdbcTemplate().batchUpdate(
-	// sql,
-	// new SpecialBatchPreparedStatementSetter(
-	// batchListOfArgs, argTypes));
-	// System.arraycopy(batchResults, 0, totalResults, destPos,
-	// batchResults.length);
-	// destPos += batchResults.length;
-	// }
-	// return totalResults;
-	// } finally {
-	// // 如果超时只记录第一条sql
-	// processOvertime(startTime, sql, (Object[]) listOfArgs.get(0));
-	// }
-	// }
+	protected int batchUpdate(String sql, List listOfArgs, int[] argTypes) {
+		if (listOfArgs == null || listOfArgs.isEmpty()) {
+			return 0;
+		}
+
+		if (logger.isDebugEnabled()) {
+			for (int i = 0; i < listOfArgs.size(); i++) {
+				Object[] args = (Object[]) listOfArgs.get(i);
+				logger.debug(JdbcUtils.getSQL(sql, args));
+			}
+		}
+		long startTime = System.currentTimeMillis();
+
+		try {
+			int destPos = 0;
+			int size = listOfArgs.size();
+			int totalResults = 0;
+			int batchExecCount = (size % batchSize == 0) ? size / batchSize
+					: size / batchSize + 1;
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("Batch executed times: " + batchExecCount);
+			}
+
+			for (int i = 0; i < batchExecCount; i++) {
+				int from = batchSize * i;
+				int to = 0;
+				if (i == batchExecCount - 1) {
+					to = size;
+				} else {
+					to = batchSize * (i + 1);
+				}
+
+				List batchListOfArgs = listOfArgs.subList(from, to);
+				int[] batchResults = getJdbcTemplate().batchUpdate(
+						sql,
+						new SpecialBatchPreparedStatementSetter(
+								batchListOfArgs, argTypes));
+//				System.arraycopy(batchResults, 0, totalResults, destPos,
+//						batchResults.length);
+				for (int result: batchResults){
+					totalResults += result;
+				}
+				destPos += batchResults.length;
+			}
+			return totalResults;
+		} finally {
+			// 如果超时只记录第一条sql
+			processOvertime(startTime, sql, (Object[]) listOfArgs.get(0));
+		}
+	}
+
 	/**
 	 * 统计记录条数.
 	 * 
@@ -369,7 +373,7 @@ public abstract class BasicDaoSupport<PO> extends JdbcDaoSupport {
 	protected String createId() {
 		return uuid.generateHex();
 	}
-	
+
 	/**
 	 * 获取结果对象列表.
 	 * 
@@ -408,7 +412,7 @@ public abstract class BasicDaoSupport<PO> extends JdbcDaoSupport {
 			Pagination page) {
 		return query(sql, null, null, multiRowMapper, page);
 	}
-	
+
 	/**
 	 * 获取结果对象列表.
 	 * 
@@ -1320,7 +1324,7 @@ public abstract class BasicDaoSupport<PO> extends JdbcDaoSupport {
 			}
 
 			return getJdbcTemplate().update(sql, args, argTypes);
-			
+
 		} finally {
 			processOvertime(startTime, sql, args);
 		}
