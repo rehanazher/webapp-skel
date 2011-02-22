@@ -52,15 +52,15 @@ public class DaoCodeUtils {
 						return file.getName().endsWith(".xml");
 					}
 				}, true);
-		
-		for (File file: fileList){
+
+		for (File file : fileList) {
 			configFileNames.add(file.getAbsolutePath());
 		}
 
 		FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext(
 				configFileNames.toArray(new String[configFileNames.size()]));
 
-		DataSource dataSource = (DataSource) ctx.getBean("rbacDS");
+		DataSource dataSource = (DataSource) ctx.getBean("c3p0DS");
 
 		try {
 			Connection conn = dataSource.getConnection();
@@ -121,12 +121,22 @@ public class DaoCodeUtils {
 	}
 
 	private String getJavaMethod(int dataType) {
-		if (dataType == Types.INTEGER) {
+
+		switch (dataType) {
+		case Types.INTEGER:
+		case Types.BIGINT:
+		case Types.TINYINT:
 			return "getInt";
-		} else if (dataType == Types.TIMESTAMP || dataType == Types.DATE
-				|| dataType == Types.TIME) {
+		case Types.NUMERIC:
+		case Types.DECIMAL:
+		case Types.DOUBLE:
+		case Types.FLOAT:
+			return "getDouble";
+		case Types.TIMESTAMP:
+		case Types.DATE:
+		case Types.TIME:
 			return "getTimestamp";
-		} else {
+		default:
 			return "getString";
 		}
 	}
@@ -245,6 +255,14 @@ public class DaoCodeUtils {
 
 	public String getRowMapping() {
 		StringBuffer sb = new StringBuffer();
+		sb.append("private static class ").append(entityName).append(
+				"MultiRowMapper implements MultiRowMapper<").append(entityName)
+				.append("> {\n");
+		sb.append("	public ").append(entityName).append(
+				" mapRow(ResultSet rs, int rowNum) throws SQLException {\n");
+		sb.append("		").append(entityName).append(" ").append(
+				initialToLowerCase(entityName)).append(" = new ").append(
+				entityName).append("();\n");
 		for (int i = 0; i < names.size(); i++) {
 			String name = names.get(i);
 
@@ -258,7 +276,18 @@ public class DaoCodeUtils {
 			sb.append(name);
 			sb.append("\"));\n");
 		}
+		sb.append("return ").append(initialToLowerCase(entityName)).append(
+				";\n");
+		sb.append("}\n}\n");
 
+		sb.append("private static class ").append(entityName).append(
+				"SingleRowMapper implements SingleRowMapper<").append(
+				entityName).append("> {\n");
+		sb.append("public ").append(entityName).append(
+				" mapRow(ResultSet rs) throws SQLException {\n");
+		sb.append("	return new ").append(entityName).append(
+				"MultiRowMapper().mapRow(rs, 1);\n");
+		sb.append("}\n}\n");
 		return sb.toString();
 	}
 
@@ -490,14 +519,14 @@ public class DaoCodeUtils {
 
 	public String getModifyMethod() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("public String update");
+		sb.append("public int update");
 		sb.append("(");
 		sb.append(entityName);
 		sb.append(" ");
 		sb.append(initialToLowerCase(entityName));
 		sb.append(") {\n\t");
 
-		sb.append("if (");
+		sb.append("return ");
 		sb.append("update(SQL_UPDATE_");
 		sb.append(entityName.toUpperCase());
 		sb.append(", new Object[] {");
@@ -560,16 +589,7 @@ public class DaoCodeUtils {
 		}
 
 		sb.append(", Types.CHAR");
-		sb.append("}) ");
-		sb.append(" > 0){\n");
-		sb.append("return ");
-		sb.append(initialToLowerCase(entityName));
-		sb.append(".getId();\n");
-		sb.append("}");
-		sb.append("else{");
-		sb.append("return null;");
-		sb.append("}");
-		sb.append("}\n");
+		sb.append("}); \n}");
 
 		return sb.toString();
 	}
@@ -626,19 +646,19 @@ public class DaoCodeUtils {
 		System.out.println(getEntityCode());
 		System.out.println(getRowMapping());
 
-		System.out.println(getFindAllSQL());
+		// System.out.println(getFindAllSQL());
 		System.out.println(getAddSQL());
 		System.out.println(getRemoveSQL());
 		System.out.println(getModifySQL());
 		System.out.println(getFindByIdSQL());
-		System.out.println(getFindByIdsSQL());
+		// System.out.println(getFindByIdsSQL());
 
-		System.out.println(getFindAllMethod());
+		// System.out.println(getFindAllMethod());
 		System.out.println(getAddMethod());
 		System.out.println(getRemoveMethod());
 		System.out.println(getModifyMethod());
 		System.out.println(getFindByIdMethod());
-		System.out.println(getFindByIdsMethod());
+		// System.out.println(getFindByIdsMethod());
 	}
 
 	public static void main(String[] args) {
