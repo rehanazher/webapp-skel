@@ -28,6 +28,17 @@ public final class StringUtils {
 		}
 		return str;
 	}
+	
+	public static String fillStringLeft(String str, String addStr, int fixedLength){
+		while (str.length() < fixedLength) {
+			str = addStr + str ;
+		}
+		return str;
+	}
+	
+	public static String fillZeroLeft(String str, int fixedLength){
+		return fillStringLeft(str, "0", fixedLength);
+	}
 
 	/**
 	 * ���ַ�strƴ�ӷָ��regex���ַ�sub
