@@ -526,6 +526,17 @@ public final class Validators {
 		return !(!isNumber(items[0], 0, 23) || !isNumber(items[1], 0, 59) || (items.length == 3 && !isNumber(
 				items[2], 0, 59)));
 	}
+	
+	public static boolean isTimeHhmm(String str){
+		if (isEmpty(str) || str.length() != 4) {
+			return false;
+		}
+		
+		String hour = str.substring(0, 2);
+		String minute = str.substring(2);
+		
+		return isNumber(hour, 0, 23) && isNumber(minute, 0, 59);
+	}
 
 	/**
 	 * 判断某个整数是否在有效范围内：
