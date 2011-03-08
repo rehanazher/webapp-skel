@@ -15,7 +15,6 @@ import com.aaut.skeleton.commons.util.dao.BasicDaoSupport;
 import com.aaut.skeleton.commons.util.dao.MultiRowMapper;
 import com.aaut.skeleton.commons.util.dao.SingleRowMapper;
 import com.aaut.skeleton.rbac.po.RefCatalogOperativeAction;
-import com.aaut.skeleton.rbac.po.RefRoleCatalogOperative;
 
 public class RefCatalogOperativeActionDaoImpl extends
 		BasicDaoSupport<RefCatalogOperativeAction> implements
