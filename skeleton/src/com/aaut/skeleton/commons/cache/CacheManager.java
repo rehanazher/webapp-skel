@@ -9,18 +9,18 @@ import java.util.Map;
 
 public class CacheManager {
 
-	protected static Map<String, CacheProvider<Cache>> providerMap;
+	protected static Map<String, CacheProvider<? extends Cache>> providerMap;
 
-	public static synchronized void putCache(String key,
-			CacheProvider<Cache> provider) {
+	public static synchronized void putCache(Cache c,
+			CacheProvider<? extends Cache> provider) {
 		if (providerMap == null) {
-			providerMap = new HashMap<String, CacheProvider<Cache>>();
+			providerMap = new HashMap<String, CacheProvider<? extends Cache>>();
 		}
-		providerMap.put(key, provider);
+		providerMap.put(c.getKey(), provider);
 	}
 
 	public static Cache getCache(Cache c) {
-		CacheProvider<Cache> provider = null;
+		CacheProvider<? extends Cache> provider = null;
 		Cache cache = null;
 		if (providerMap.containsKey(c.getKey())) {
 			provider = providerMap.get(c.getKey());
