@@ -4,15 +4,29 @@
  */
 package com.aaut.skeleton.rbac.po;
 
-import java.io.Serializable;
+import static com.aaut.skeleton.SkelConstants.RbacConstants.ROOT_ID;
+import static com.aaut.skeleton.SkelConstants.RbacConstants.ROOT_NAME;
 
-import com.aaut.skeleton.SkelConstants;
+import com.aaut.skeleton.commons.util.dao.Entity;
 
-public class Catalog implements Serializable {
+public class Catalog implements Entity {
 
 	private static final long serialVersionUID = 551051807135811120L;
 
-	public static final String ROOT_ID = SkelConstants.RbacConstants.ROOT_ID;
+	private static Catalog root;
+
+	public static Catalog getRoot() {
+		if (root == null) {
+			root = new Catalog();
+			root.setId(ROOT_ID);
+			root.setName(ROOT_NAME);
+			root.setParentId(null);
+			root.setWeight(0);
+			root.setDisabled(0);
+		}
+
+		return root;
+	}
 
 	private String id;
 	private String name;

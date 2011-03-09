@@ -4,15 +4,11 @@
  */
 package com.aaut.skeleton.rbac.po;
 
-import java.io.Serializable;
+import com.aaut.skeleton.commons.util.dao.Entity;
 
-import com.aaut.skeleton.SkelConstants;
-
-public class Operative implements Serializable {
+public class Operative implements Entity {
 
 	private static final long serialVersionUID = 65192408569556988L;
-
-	public static final String ROOT_ID = SkelConstants.RbacConstants.ROOT_ID;
 
 	private String id;
 	private String name;

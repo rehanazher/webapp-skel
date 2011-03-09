@@ -11,5 +11,6 @@ public class SkelConstants {
 	
 	public static class RbacConstants{
 		public static final String ROOT_ID = "00000000000000000000000000000000";
+		public static final String ROOT_NAME = "ROOT";
 	}
 }

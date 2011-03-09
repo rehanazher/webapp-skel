@@ -15,7 +15,7 @@ public class CatalogFacade {
 	private Catalog catalog;
 	private CatalogFacade parent;
 	private List<CatalogFacade> children = new ArrayList<CatalogFacade>();
-	private List<OperativeFacade> operatives;
+	private List<OperativeFacade> operatives = new ArrayList<OperativeFacade>();
 
 	public CatalogFacade(Catalog catalog) {
 		this.catalog = catalog;
@@ -25,13 +25,9 @@ public class CatalogFacade {
 		return operatives;
 	}
 
-
-
 	public void setOperatives(List<OperativeFacade> operatives) {
 		this.operatives = operatives;
 	}
-
-
 
 	public CatalogFacade getParent() {
 		return parent;

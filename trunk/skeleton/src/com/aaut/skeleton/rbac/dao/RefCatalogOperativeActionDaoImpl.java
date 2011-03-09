@@ -50,6 +50,7 @@ public class RefCatalogOperativeActionDaoImpl extends
 	private static final String SQL_FIND_BY_CATALOG_ID = "SELECT * FROM rbac_catalog_operative_action WHERE catalog_id=?";
 	private static final String SQL_FIND_BY_CATALOG_ID_OPERATIVE_ID = "SELECT * FROM rbac_catalog_operative_action WHERE catalog_id=? AND operative_id=?";
 	private static final String SQL_FIND_BY_REF_ID = "SELECT * FROM rbac_catalog_operative_action WHERE catalog_id=? AND operative_id=? AND action_id=?";
+	private static final String SQL_FIND_ALL = "SELECT * FROM rbac_catalog_operative_action";
 
 	private static final String SQL_INSERT = "INSERT INTO rbac_catalog_operative_action(catalog_id, operative_id, action_id) VALUES(?,?,?)";
 
@@ -120,4 +121,9 @@ public class RefCatalogOperativeActionDaoImpl extends
 		return batchUpdate(SQL_INSERT, argsList, argTypes);
 	}
 
+	@Override
+	public List<RefCatalogOperativeAction> findAll() {
+		return query(SQL_FIND_ALL,
+				new RefCatalogOperativeActionMultiRowMapper());
+	}
 }

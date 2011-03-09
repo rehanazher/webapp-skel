@@ -7,6 +7,7 @@ package com.aaut.skeleton.rbac.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import com.aaut.skeleton.commons.util.dao.BasicDaoSupport;
 import com.aaut.skeleton.commons.util.dao.MultiRowMapper;
@@ -46,6 +47,8 @@ public class OperativeDaoImpl extends BasicDaoSupport<Operative> implements
 
 	private static final String SQL_FIND_OPERATIVE_BY_ID = "SELECT * FROM rbac_operatives WHERE id=?";
 
+	private static final String SQL_FIND_ALL = "SELECT * FROM rbac_operatives";
+
 	public String insert(Operative operative) {
 		operative.setId(createId());
 		if (update(SQL_INSERT_OPERATIVE, new Object[] { operative.getId(),
@@ -76,8 +79,12 @@ public class OperativeDaoImpl extends BasicDaoSupport<Operative> implements
 	}
 
 	public Operative findById(String operativeId) {
-		return (Operative) query(SQL_FIND_OPERATIVE_BY_ID, operativeId,
+		return query(SQL_FIND_OPERATIVE_BY_ID, operativeId,
 				new OperativeSingleRowMapper());
 	}
 
+	@Override
+	public List<Operative> findAll() {
+		return query(SQL_FIND_ALL, new OperativeMultiRowMapper());
+	}
 }

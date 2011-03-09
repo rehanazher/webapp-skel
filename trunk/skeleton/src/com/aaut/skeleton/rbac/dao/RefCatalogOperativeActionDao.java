@@ -29,4 +29,6 @@ public interface RefCatalogOperativeActionDao {
 	int deleteByRefId(String catalogId, String operativeId, String actionId);
 
 	int insert(RefCatalogOperativeAction... refs);
+	
+	List<RefCatalogOperativeAction> findAll();
 }
