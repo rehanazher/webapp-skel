@@ -25,6 +25,7 @@ import com.aaut.skeleton.rbac.po.Action;
 import com.aaut.skeleton.rbac.po.Catalog;
 import com.aaut.skeleton.rbac.po.Group;
 import com.aaut.skeleton.rbac.po.Operative;
+import com.aaut.skeleton.rbac.po.RefCatalogOperativeAction;
 import com.aaut.skeleton.rbac.po.RefRoleGroup;
 import com.aaut.skeleton.rbac.po.RefUserGroup;
 import com.aaut.skeleton.rbac.po.Role;
@@ -62,6 +63,10 @@ public class RbacServiceImpl implements RbacService {
 
 	protected List<Action> getAllActionOrigin() {
 		return actionDao.findAll();
+	}
+
+	protected List<RefCatalogOperativeAction> getAllCoaOrigin() {
+		return refCoaDao.findAll();
 	}
 
 	public void setActionDao(ActionDao<Action> actionDao) {
@@ -123,13 +128,24 @@ public class RbacServiceImpl implements RbacService {
 
 		@Override
 		public void refresh() {
+			catalogs.add(CatalogFacade.getRoot());
+			
 			List<Catalog> cList = outter.getAllCatalogOrigin();
 			List<Operative> oList = outter.getAllOperativeOrigin();
 			List<Action> aList = outter.getAllActionOrigin();
 
+			List<RefCatalogOperativeAction> coaList = outter.getAllCoaOrigin();
+
 			Map<String, Catalog> cMap = EntityUtils.list2Map(cList);
 			Map<String, Operative> oMap = EntityUtils.list2Map(oList);
 			Map<String, Action> aMap = EntityUtils.list2Map(aList);
+
+			for (Catalog c : cList) {
+				CatalogFacade cf = new CatalogFacade(c);
+				if (CatalogFacade.getRoot().getId().equals(cf.getParentId())){
+					cf.setParent(CatalogFacade.getRoot());
+				}
+			}
 		}
 	}
 

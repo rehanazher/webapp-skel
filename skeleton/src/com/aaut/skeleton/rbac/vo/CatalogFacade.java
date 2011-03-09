@@ -4,8 +4,8 @@
  */
 package com.aaut.skeleton.rbac.vo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import com.aaut.skeleton.commons.util.Validators;
 import com.aaut.skeleton.rbac.po.Catalog;
@@ -14,18 +14,48 @@ public class CatalogFacade {
 
 	private Catalog catalog;
 	private CatalogFacade parent;
-	private List<CatalogFacade> children = new ArrayList<CatalogFacade>();
-	private List<OperativeFacade> operatives = new ArrayList<OperativeFacade>();
+	private Set<CatalogFacade> children = new LinkedHashSet<CatalogFacade>();
+	private Set<OperativeFacade> operatives = new LinkedHashSet<OperativeFacade>();
+
+	private static CatalogFacade root;
+
+	public static CatalogFacade getRoot() {
+		if (root == null) {
+			root = new CatalogFacade(Catalog.getRoot());
+		}
+
+		return root;
+	}
 
 	public CatalogFacade(Catalog catalog) {
 		this.catalog = catalog;
 	}
 
-	public List<OperativeFacade> getOperatives() {
+	public Set<CatalogFacade> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<CatalogFacade> children) {
+		if (!Validators.isEmpty(children)) {
+			this.children = children;
+		} else {
+			this.children = new LinkedHashSet<CatalogFacade>();
+		}
+	}
+
+	public void addChild(CatalogFacade child) {
+		child.parent = this;
+		if (this.children == null) {
+			children = new LinkedHashSet<CatalogFacade>();
+		}
+		this.children.add(child);
+	}
+
+	public Set<OperativeFacade> getOperatives() {
 		return operatives;
 	}
 
-	public void setOperatives(List<OperativeFacade> operatives) {
+	public void setOperatives(Set<OperativeFacade> operatives) {
 		this.operatives = operatives;
 	}
 
@@ -41,16 +71,9 @@ public class CatalogFacade {
 		return Validators.isEmpty(children);
 	}
 
-	public List<CatalogFacade> getChildren() {
-		return this.children;
-	}
-
 	public void setParent(CatalogFacade parent) {
 		this.parent = parent;
-	}
-
-	public void setChildren(List<CatalogFacade> children) {
-		this.children = children;
+		this.parent.children.add(this);
 	}
 
 	public String getId() {
