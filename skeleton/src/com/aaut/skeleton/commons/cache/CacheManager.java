@@ -19,15 +19,15 @@ public class CacheManager {
 		providerMap.put(key, provider);
 	}
 
-	public static Cache getCachedValue(String key) {
+	public static Cache getCache(Cache c) {
 		CacheProvider<Cache> provider = null;
 		Cache cache = null;
-		if (providerMap.containsKey(key)) {
-			provider = providerMap.get(key);
+		if (providerMap.containsKey(c.getKey())) {
+			provider = providerMap.get(c.getKey());
 			if (provider.needRefresh()) {
 				provider.refresh();
 			}
-			cache = provider.getValue();
+			cache = provider.getCache();
 		}
 
 		return cache;
