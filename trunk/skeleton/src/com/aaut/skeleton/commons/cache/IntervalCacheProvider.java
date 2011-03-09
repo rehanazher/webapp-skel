@@ -9,7 +9,7 @@ public class IntervalCacheProvider<E extends Cache> implements CacheProvider<E> 
 	// interval refresh time(s)
 	private long interval = 3600L;
 	private E cache;
-	private long lastUpdate;
+	private long lastUpdate = 0L;
 	private boolean forceUpdate = false;
 
 	public IntervalCacheProvider() {
