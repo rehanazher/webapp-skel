@@ -11,19 +11,20 @@ public class CacheManager {
 
 	protected static Map<String, CacheProvider<? extends Cache>> providerMap;
 
-	public static synchronized void putCache(Cache c,
-			CacheProvider<? extends Cache> provider) {
+	public static synchronized <E extends Cache> void putCache(Cache c,
+			CacheProvider<E> provider) {
 		if (providerMap == null) {
 			providerMap = new HashMap<String, CacheProvider<? extends Cache>>();
 		}
 		providerMap.put(c.getKey(), provider);
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <E extends Cache> E getCache(E c) {
 		CacheProvider<E> provider = null;
 		E cache = null;
 		if (providerMap.containsKey(c.getKey())) {
-			provider = providerMap.get(c.getKey());
+			provider = (CacheProvider<E>) providerMap.get(c.getKey());
 			if (provider.needRefresh()) {
 				provider.refresh();
 			}
