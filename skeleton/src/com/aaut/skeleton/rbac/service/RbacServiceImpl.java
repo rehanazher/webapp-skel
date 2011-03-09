@@ -11,10 +11,8 @@ import java.util.Map;
 
 import com.aaut.skeleton.commons.cache.Cache;
 import com.aaut.skeleton.commons.cache.CacheManager;
-import com.aaut.skeleton.commons.cache.CacheProvider;
 import com.aaut.skeleton.commons.cache.IntervalCacheProvider;
 import com.aaut.skeleton.commons.util.EntityUtils;
-import com.aaut.skeleton.rbac.cache.RbacCache;
 import com.aaut.skeleton.rbac.dao.ActionDao;
 import com.aaut.skeleton.rbac.dao.CatalogDao;
 import com.aaut.skeleton.rbac.dao.GroupDao;
@@ -139,7 +137,7 @@ public class RbacServiceImpl implements RbacService {
 
 		public static RbacCache getRbacCache() {
 
-			RbacCache cache = (RbacCache) CacheManager.getCache(RbacCache
+			RbacCache cache = CacheManager.getCache(RbacCache
 					.getDefaultInstance());
 
 			if (cache == null) {
@@ -148,7 +146,7 @@ public class RbacServiceImpl implements RbacService {
 						new IntervalCacheProvider<RbacCache>(new RbacCache(),
 								3600));
 
-				cache = (RbacCache) CacheManager.getCache(cache);
+				cache = CacheManager.getCache(cache);
 			}
 
 			return cache;
