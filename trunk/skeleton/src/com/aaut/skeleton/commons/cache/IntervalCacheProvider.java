@@ -8,19 +8,19 @@ public class IntervalCacheProvider<E extends Cache> implements CacheProvider<E> 
 
 	// interval refresh time(s)
 	private long interval = 3600L;
-	private E value;
+	private E cache;
 	private long lastUpdate;
 	private boolean forceUpdate = false;
 
 	public IntervalCacheProvider() {
 	}
 
-	public IntervalCacheProvider(E value) {
-		this.value = value;
+	public IntervalCacheProvider(E cache) {
+		this.cache = cache;
 	}
 
-	public IntervalCacheProvider(E value, long interval) {
-		this.value = value;
+	public IntervalCacheProvider(E cache, long interval) {
+		this.cache = cache;
 		this.interval = interval;
 	}
 
@@ -35,29 +35,29 @@ public class IntervalCacheProvider<E extends Cache> implements CacheProvider<E> 
 	@Override
 	public boolean needRefresh() {
 		return forceUpdate
-				|| lastUpdate < (System.currentTimeMillis() - 3600 * 1000);
+				|| lastUpdate < (System.currentTimeMillis() - interval * 1000);
 	}
 
 	@Override
 	public void refresh() {
-		value.refresh();
+		cache.refresh();
 		lastUpdate = System.currentTimeMillis();
 		forceUpdate = false;
 	}
 
 	@Override
 	public void destroy() {
-		value = null;
+		cache = null;
 	}
 
 	@Override
-	public E getValue() {
-		return this.value;
+	public E getCache() {
+		return this.cache;
 	}
 
 	@Override
-	public void setValue(E value) {
-		this.value = value;
+	public void setCache(E cache) {
+		this.cache = cache;
 	}
 
 	public long getLastUpdate() {

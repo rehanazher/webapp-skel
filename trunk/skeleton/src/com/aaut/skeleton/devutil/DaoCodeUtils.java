@@ -662,7 +662,7 @@ public class DaoCodeUtils {
 	}
 
 	public static void main(String[] args) {
-		DaoCodeUtils builder = new DaoCodeUtils("rbac_users", "User");
+		DaoCodeUtils builder = new DaoCodeUtils("rbac_catalog_operative_action", "RefCatalogOperativeAction");
 		builder.printCode();
 	}
 
