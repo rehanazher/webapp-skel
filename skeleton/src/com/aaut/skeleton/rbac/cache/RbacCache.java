@@ -14,6 +14,12 @@ import com.aaut.skeleton.rbac.vo.CatalogFacade;
 
 public class RbacCache implements Cache {
 
+	private static RbacCache defaultInstance = new RbacCache();
+
+	public static RbacCache getDefaultInstance() {
+		return defaultInstance;
+	}
+	
 	List<CatalogFacade> catalogs = new ArrayList<CatalogFacade>();
 	Map<String, CatalogFacade> catalogMap = new HashMap<String, CatalogFacade>();
 
@@ -27,5 +33,4 @@ public class RbacCache implements Cache {
 		// TODO Auto-generated method stub
 
 	}
-
 }

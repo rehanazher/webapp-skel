@@ -4,10 +4,11 @@
  */
 package com.aaut.skeleton.rbac.po;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+import com.aaut.skeleton.commons.util.dao.Entity;
+
+public class User implements Entity {
 
 	private static final long serialVersionUID = -6053262726165404600L;
 

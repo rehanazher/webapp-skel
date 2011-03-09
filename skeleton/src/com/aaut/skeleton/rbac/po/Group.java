@@ -4,9 +4,9 @@
  */
 package com.aaut.skeleton.rbac.po;
 
-import java.io.Serializable;
+import com.aaut.skeleton.commons.util.dao.Entity;
 
-public class Group implements Serializable {
+public class Group implements Entity {
 
 	private static final long serialVersionUID = 6611735327036792514L;
 

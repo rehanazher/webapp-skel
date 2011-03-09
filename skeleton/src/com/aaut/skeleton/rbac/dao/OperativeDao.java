@@ -4,8 +4,10 @@
  */
 package com.aaut.skeleton.rbac.dao;
 
+import java.util.List;
+
 import com.aaut.skeleton.commons.util.dao.BasicDao;
 
 public interface OperativeDao<PO> extends BasicDao<PO> {
-
+	List<PO> findAll();
 }
