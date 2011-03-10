@@ -4,18 +4,24 @@
  */
 package com.aaut.skeleton.rbac.vo;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.aaut.skeleton.commons.util.Validators;
+import com.aaut.skeleton.commons.util.dao.Entity;
 import com.aaut.skeleton.rbac.po.Catalog;
 
-public class CatalogFacade {
+public class CatalogFacade implements Entity {
+
+	private static final long serialVersionUID = -3132107626449248877L;
 
 	private Catalog catalog;
 	private CatalogFacade parent;
-	private Set<CatalogFacade> children = new LinkedHashSet<CatalogFacade>();
-	private Set<OperativeFacade> operatives = new LinkedHashSet<OperativeFacade>();
+
+	private List<CatalogFacade> children = new ArrayList<CatalogFacade>();
+	private List<OperativeFacade> operatives = new ArrayList<OperativeFacade>();
 
 	private static CatalogFacade root;
 
@@ -31,32 +37,41 @@ public class CatalogFacade {
 		this.catalog = catalog;
 	}
 
-	public Set<CatalogFacade> getChildren() {
+	public List<CatalogFacade> getChildren() {
 		return children;
 	}
 
-	public void setChildren(Set<CatalogFacade> children) {
+	public void setChildren(List<CatalogFacade> children) {
 		if (!Validators.isEmpty(children)) {
 			this.children = children;
 		} else {
-			this.children = new LinkedHashSet<CatalogFacade>();
+			this.children = new ArrayList<CatalogFacade>();
 		}
 	}
 
 	public void addChild(CatalogFacade child) {
-		child.parent = this;
-		if (this.children == null) {
-			children = new LinkedHashSet<CatalogFacade>();
+		if (!children.contains(child)) {
+			children.add(child);
+			child.parent = this;
 		}
-		this.children.add(child);
 	}
 
-	public Set<OperativeFacade> getOperatives() {
+	public List<OperativeFacade> getOperatives() {
 		return operatives;
 	}
 
-	public void setOperatives(Set<OperativeFacade> operatives) {
-		this.operatives = operatives;
+	public void setOperatives(List<OperativeFacade> operatives) {
+		if (!Validators.isEmpty(operatives)) {
+			this.operatives = operatives;
+		} else {
+			this.operatives = new ArrayList<OperativeFacade>();
+		}
+	}
+
+	public void addOperative(OperativeFacade operative) {
+		if (!operatives.contains(operative)) {
+			operatives.add(operative);
+		}
 	}
 
 	public CatalogFacade getParent() {
@@ -68,7 +83,11 @@ public class CatalogFacade {
 	}
 
 	public boolean hasChildren() {
-		return Validators.isEmpty(children);
+		return !Validators.isEmpty(children);
+	}
+
+	public boolean hasOperatives() {
+		return !Validators.isEmpty(operatives);
 	}
 
 	public void setParent(CatalogFacade parent) {

@@ -4,10 +4,13 @@
  */
 package com.aaut.skeleton.rbac.vo;
 
+import com.aaut.skeleton.commons.util.dao.Entity;
 import com.aaut.skeleton.rbac.po.Action;
 
-public class ActionFacade {
-
+public class ActionFacade implements Entity {
+	
+	private static final long serialVersionUID = 4467025456427377198L;
+	
 	private Action action;
 
 	public ActionFacade(Action action) {
