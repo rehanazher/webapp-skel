@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.collections.map.MultiKeyMap;
+import org.apache.log4j.Logger;
 
 import com.aaut.skeleton.commons.cache.Cache;
 import com.aaut.skeleton.commons.cache.CacheManager;
@@ -30,9 +34,13 @@ import com.aaut.skeleton.rbac.po.RefRoleGroup;
 import com.aaut.skeleton.rbac.po.RefUserGroup;
 import com.aaut.skeleton.rbac.po.Role;
 import com.aaut.skeleton.rbac.po.User;
+import com.aaut.skeleton.rbac.vo.ActionFacade;
 import com.aaut.skeleton.rbac.vo.CatalogFacade;
+import com.aaut.skeleton.rbac.vo.OperativeFacade;
 
 public class RbacServiceImpl implements RbacService {
+
+	private static Logger logger = Logger.getLogger(RbacServiceImpl.class);
 
 	private ActionDao<Action> actionDao;
 	private CatalogDao<Catalog> catalogDao;
@@ -47,10 +55,7 @@ public class RbacServiceImpl implements RbacService {
 	private RefUserGroup refUserGroupDao;
 
 	public List<CatalogFacade> getAllCatalog() {
-
-		RbacCache rbac = RbacCacheHandler.getRbacCache();
-
-		return null;
+		return RbacCacheHandler.getRbacCache().getCatalogs();
 	}
 
 	protected List<Catalog> getAllCatalogOrigin() {
@@ -118,34 +123,126 @@ public class RbacServiceImpl implements RbacService {
 			return defaultInstance;
 		}
 
-		List<CatalogFacade> catalogs = new ArrayList<CatalogFacade>();
-		Map<String, CatalogFacade> catalogMap = new HashMap<String, CatalogFacade>();
+		private List<CatalogFacade> catalogs = new ArrayList<CatalogFacade>();
+
+		private Map<String, CatalogFacade> catalogMap = new HashMap<String, CatalogFacade>();
 
 		@Override
 		public String getKey() {
 			return "com.aaut.skeleton.rbac.cache.RbacCache";
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void refresh() {
+			catalogs = new ArrayList<CatalogFacade>();
 			catalogs.add(CatalogFacade.getRoot());
-			
+
+			// prepare data;
 			List<Catalog> cList = outter.getAllCatalogOrigin();
 			List<Operative> oList = outter.getAllOperativeOrigin();
 			List<Action> aList = outter.getAllActionOrigin();
 
 			List<RefCatalogOperativeAction> coaList = outter.getAllCoaOrigin();
 
-			Map<String, Catalog> cMap = EntityUtils.list2Map(cList);
-			Map<String, Operative> oMap = EntityUtils.list2Map(oList);
-			Map<String, Action> aMap = EntityUtils.list2Map(aList);
+			MultiKeyMap coaMap = new MultiKeyMap();
+			Map<String, List<String>> coMap = new HashMap<String, List<String>>();
 
-			for (Catalog c : cList) {
-				CatalogFacade cf = new CatalogFacade(c);
-				if (CatalogFacade.getRoot().getId().equals(cf.getParentId())){
-					cf.setParent(CatalogFacade.getRoot());
+			for (RefCatalogOperativeAction coa : coaList) {
+				if (coaMap
+						.containsKey(coa.getCatalogId(), coa.getOperativeId())) {
+					List<String> actionIdList = (List<String>) coaMap.get(coa
+							.getCatalogId(), coa.getOperativeId());
+					actionIdList.add(coa.getActionId());
+				} else {
+					List<String> actionIdList = new ArrayList<String>();
+					actionIdList.add(coa.getActionId());
+					coaMap.put(coa.getCatalogId(), coa.getOperativeId(),
+							actionIdList);
+				}
+
+				if (coMap.containsKey(coa.getCatalogId())) {
+					List<String> optIdList = coMap.get(coa.getCatalogId());
+					optIdList.add(coa.getOperativeId());
+				} else {
+					List<String> optIdList = new ArrayList<String>();
+					optIdList.add(coa.getOperativeId());
+					coMap.put(coa.getCatalogId(), optIdList);
 				}
 			}
+
+			List<CatalogFacade> cfList = new ArrayList<CatalogFacade>();
+			List<OperativeFacade> ofList = new ArrayList<OperativeFacade>();
+			List<ActionFacade> afList = new ArrayList<ActionFacade>();
+
+			// transform to facade mode
+			cfList.add(CatalogFacade.getRoot());
+			for (Catalog c : cList) {
+				cfList.add(new CatalogFacade(c));
+			}
+
+			for (Operative o : oList) {
+				ofList.add(new OperativeFacade(o));
+			}
+
+			for (Action a : aList) {
+				afList.add(new ActionFacade(a));
+			}
+
+			Map<String, CatalogFacade> cfMap = EntityUtils.list2Map(cfList);
+			Map<String, OperativeFacade> ofMap = EntityUtils.list2Map(ofList);
+			Map<String, ActionFacade> afMap = EntityUtils.list2Map(afList);
+
+			// set relationship
+			// set operative cascade relationship
+			for (OperativeFacade of : ofList) {
+				if (ofMap.containsKey(of.getParentId())) {
+					of.setParent(ofMap.get(of.getParentId()));
+				}
+			}
+			// set catalog cascade relationship
+			for (CatalogFacade cf : cfList) {
+				if (cfMap.containsKey(cf.getParentId())) {
+					cf.setParent(cfMap.get(cf.getParentId()));
+				}
+			}
+
+			// set catalog - operative relationship
+			for (Entry<String, List<String>> entry : coMap.entrySet()) {
+				String catalogId = entry.getKey();
+				List<String> operativeIdList = entry.getValue();
+
+				if (cfMap.containsKey(catalogId)) {
+					CatalogFacade cf = cfMap.get(catalogId);
+
+					for (String optId : operativeIdList) {
+						if (ofMap.containsKey(optId)) {
+							cf.addOperative(ofMap.get(optId));
+						}
+					}
+				}
+			}
+
+			// set catalog - operative - action relationship
+			for (CatalogFacade cf : cfList) {
+				for (OperativeFacade of : cf.getOperatives()) {
+					if (coaMap.containsKey(cf.getId(), of.getId())) {
+						List<String> actionIdList = (List<String>) coaMap.get(
+								cf.getId(), of.getId());
+
+						for (String actionId : actionIdList) {
+							of.addAction(afMap.get(actionId));
+						}
+					}
+				}
+
+				catalogs.add(cf);
+			}
+
+		}
+
+		public List<CatalogFacade> getCatalogs() {
+			return catalogs;
 		}
 	}
 
@@ -168,4 +265,5 @@ public class RbacServiceImpl implements RbacService {
 			return cache;
 		}
 	}
+
 }

@@ -4,17 +4,58 @@
  */
 package com.aaut.skeleton.rbac.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.aaut.skeleton.commons.util.Validators;
+import com.aaut.skeleton.commons.util.dao.Entity;
 import com.aaut.skeleton.rbac.po.Operative;
 
-public class OperativeFacade {
+public class OperativeFacade implements Entity {
+
+	private static final long serialVersionUID = 5432054772425496297L;
 
 	private Operative operative;
 	private OperativeFacade parent;
-	private List<OperativeFacade> children;
-	private List<ActionFacade> actions;
+	private List<OperativeFacade> children = new ArrayList<OperativeFacade>();
+	private List<ActionFacade> actions = new ArrayList<ActionFacade>();
+
+	public List<OperativeFacade> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<OperativeFacade> children) {
+		if (!Validators.isEmpty(children)) {
+			this.children = children;
+		} else {
+			this.children = new ArrayList<OperativeFacade>();
+		}
+	}
+
+	public void addChild(OperativeFacade child) {
+		if (!children.contains(child)) {
+			children.add(child);
+			child.parent = this;
+		}
+	}
+
+	public List<ActionFacade> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<ActionFacade> actions) {
+		if (!Validators.isEmpty(actions)) {
+			this.actions = actions;
+		} else {
+			this.actions = new ArrayList<ActionFacade>();
+		}
+	}
+
+	public void addAction(ActionFacade action) {
+		if (!actions.contains(action)) {
+			actions.add(action);
+		}
+	}
 
 	public OperativeFacade(Operative operative) {
 		this.operative = operative;
@@ -25,19 +66,11 @@ public class OperativeFacade {
 	}
 
 	public boolean hasChildren() {
-		return Validators.isEmpty(children);
+		return !Validators.isEmpty(children);
 	}
 
 	public boolean hasActions() {
-		return Validators.isEmpty(actions);
-	}
-
-	public List<ActionFacade> getActions() {
-		return actions;
-	}
-
-	public void setActions(List<ActionFacade> actions) {
-		this.actions = actions;
+		return !Validators.isEmpty(actions);
 	}
 
 	public OperativeFacade getParent() {
@@ -46,14 +79,7 @@ public class OperativeFacade {
 
 	public void setParent(OperativeFacade parent) {
 		this.parent = parent;
-	}
-
-	public List<OperativeFacade> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<OperativeFacade> children) {
-		this.children = children;
+		this.parent.children.add(this);
 	}
 
 	public String getId() {
