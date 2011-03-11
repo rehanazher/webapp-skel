@@ -21,13 +21,12 @@ public class MailUtil {
 	protected static Logger log = Logger.getLogger(MailUtil.class);
 
 	public MailUtil() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void sendMail(String smtpHost, final String smtpUser,
 			final String smtpPassword, String smtpPort, String subject,
 			String mailFrom, String message, String recipient, String _cc,
-			boolean htmlMode) {
+			boolean htmlMode) throws MessagingException {
 
 		Session session = null;
 		Properties props = new Properties();
@@ -47,44 +46,39 @@ public class MailUtil {
 			session = Session.getInstance(props, auth);
 		}
 		Message msg = new MimeMessage(session);
-		try {
-			msg.setSubject(subject);
+		msg.setSubject(subject);
 
+		msg.setText(message);
+		msg.setFrom(new InternetAddress(mailFrom));
+		msg.setSentDate(new Date());
+		if (htmlMode) {
+			msg.setContent(message, "text/html");
+		} else {
 			msg.setText(message);
-			msg.setFrom(new InternetAddress(mailFrom));
-			msg.setSentDate(new Date());
-			if (htmlMode) {
-				msg.setContent(message, "text/html");
-			} else {
-				msg.setText(message);
-			}
-
-			// recipient
-			String[] toAdds = recipient.split(";");
-			InternetAddress[] toAddress = new InternetAddress[toAdds.length];
-			for (int i = 0; i < toAdds.length; i++) {
-
-				toAddress[i] = new InternetAddress(toAdds[i]);
-			}
-			msg.setRecipients(Message.RecipientType.TO, toAddress);
-
-			// CC
-			String[] ccAdds = _cc.split(";");
-			InternetAddress[] ccAddress = new InternetAddress[ccAdds.length];
-			for (int i = 0; i < ccAdds.length; i++) {
-
-				ccAddress[i] = new InternetAddress(ccAdds[i]);
-			}
-			msg.setRecipients(Message.RecipientType.CC, ccAddress);
-
-			Transport.send(msg);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+
+		// recipient
+		String[] toAdds = recipient.split(";");
+		InternetAddress[] toAddress = new InternetAddress[toAdds.length];
+		for (int i = 0; i < toAdds.length; i++) {
+
+			toAddress[i] = new InternetAddress(toAdds[i]);
+		}
+		msg.setRecipients(Message.RecipientType.TO, toAddress);
+
+		// CC
+		String[] ccAdds = _cc.split(";");
+		InternetAddress[] ccAddress = new InternetAddress[ccAdds.length];
+		for (int i = 0; i < ccAdds.length; i++) {
+
+			ccAddress[i] = new InternetAddress(ccAdds[i]);
+		}
+		msg.setRecipients(Message.RecipientType.CC, ccAddress);
+
+		Transport.send(msg);
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		MailUtil m = new MailUtil();
 		String mailFrom = "test@test.com";
 
@@ -105,8 +99,13 @@ public class MailUtil {
 		String smtpPort = "25";
 		// String ReplyTo ="";
 		boolean htmlMode = true;
-		m.sendMail(smtpHost, smtpUser, smtpPassword, smtpPort, subject,
-				mailFrom, message, recipient, _cc, htmlMode);
+		try {
+			m.sendMail(smtpHost, smtpUser, smtpPassword, smtpPort, subject,
+					mailFrom, message, recipient, _cc, htmlMode);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
