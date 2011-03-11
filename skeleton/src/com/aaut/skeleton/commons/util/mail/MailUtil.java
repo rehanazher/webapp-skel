@@ -25,7 +25,7 @@ public class MailUtil {
 
 	public void sendMail(String smtpHost, final String smtpUser,
 			final String smtpPassword, String smtpPort, String subject,
-			String mailFrom, String message, String recipient, String _cc,
+			String mailFrom, String message, String recipient, String _cc,Date sendDate,
 			boolean htmlMode) throws MessagingException {
 
 		Session session = null;
@@ -50,7 +50,7 @@ public class MailUtil {
 
 		msg.setText(message);
 		msg.setFrom(new InternetAddress(mailFrom));
-		msg.setSentDate(new Date());
+		msg.setSentDate(sendDate);
 		if (htmlMode) {
 			msg.setContent(message, "text/html");
 		} else {
@@ -97,9 +97,10 @@ public class MailUtil {
 		String smtpPort = "25";
 		// String ReplyTo ="";
 		boolean htmlMode = true;
+		Date date =new Date();
 		try {
 			m.sendMail(smtpHost, smtpUser, smtpPassword, smtpPort, subject,
-					mailFrom, message, recipient, _cc, htmlMode);
+					mailFrom, message, recipient, _cc,date, htmlMode);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
