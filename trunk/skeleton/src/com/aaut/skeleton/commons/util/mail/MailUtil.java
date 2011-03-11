@@ -86,8 +86,6 @@ public class MailUtil {
 		String _cc = "goffee.ko@transact24.com";
 		String subject = "test";
 
-		String textContent = " ";
-
 		String message = "<td align='left' >" + "<div><pre>content</pre>"
 
 		+ "<img src=\"cid:IMG1\" width=\"595\" height=\"765\" border=\"0\">"
