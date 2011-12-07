@@ -3,6 +3,7 @@ package jp.co.fcctvweb.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Date;
 import java.util.List;
 
 import jp.co.fcctvweb.po.User;
@@ -19,6 +20,7 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 			user.setPassword(rs.getString("password"));
 			user.setEncryped(rs.getString("encryped"));
 			user.setRemoteIp(rs.getString("remote_ip"));
+			user.setLastLogin(rs.getTimestamp("last_login"));
 			return user;
 		}
 	}
@@ -44,6 +46,8 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	private static final String SQL_FIND_BY_REMOTE_ID = "SELECT * FROM user_tbl WHERE remote_ip=?";
 
 	private static final String SQL_FIND_BY_USERNAME_AND_PWD = "SELECT * FROM user_tbl WHERE username=? AND password=?";
+
+	private static final String SQL_UPDATE_LAST_LOGIN_BY_ID = "UPDATE user_tbl SET last_login=? WHERE id=?";
 
 	public List<User> findAll() {
 		return query(SQL_FIND_ALL, new UserMultiRowMapper());
@@ -96,5 +100,10 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	public User findByUsernameAndPassword(String username, String password) {
 		return query(SQL_FIND_BY_USERNAME_AND_PWD, new Object[] { username,
 				password }, new UserSingleRowMapper());
+	}
+
+	public boolean updateLastLoginById(Date loginTime, String userId) {
+		return update(SQL_UPDATE_LAST_LOGIN_BY_ID, new Object[] { loginTime,
+				userId }, new int[] { Types.TIMESTAMP, Types.CHAR }) > 0;
 	}
 }
