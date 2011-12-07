@@ -29,10 +29,17 @@
             <result name="login">login.jsp</result>
         </global-results>
 
-        <action name="index" class="jp.co.fcctvweb.TestAction">
+        <action name="index" class="jp.co.fcctvweb.actions.BasicJsonAction">
             <result>index.jsp</result>
         </action>
+        
+        <action name="touch" class="jp.co.fcctvweb.actions.BasicJsonAction">
+            <result type="redirect">/touch/</result>
+        </action>
+        
+        <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login"><result name="ajax"></result></action>
 
     </package>
 
+    <include file="./struts_touch.xml"></include>
 </struts>
