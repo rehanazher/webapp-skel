@@ -1,0 +1,6 @@
+.x-list-item-body span.x-list-item-parent{
+	display:block;
+	text-align:left;
+	width:100%;
+	background:url(../images/arrows.png) 100% 50% no-repeat ;
+}

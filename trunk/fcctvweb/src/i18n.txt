@@ -1,0 +1,27 @@
+
+# common
+common.mask.loading=请稍后...
+
+common.dialog.title=系统提示
+common.dialog.ok=确 定
+common.dialog.cancel=取 消
+
+common.button.ok=确 定
+common.button.cancel=取 消
+common.button.submit=提 交
+common.button.reset=重 置
+common.button.back=后 退
+common.button.forward=前 进
+
+# app
+app.name=FCC TV WEB
+app.name.mobile=FCC
+ 
+# index - login
+app.login.title=登 录
+app.login.instructions=请在以上表格中输入信息
+app.login.username=用户名
+app.login.password=密 码
+app.login.msg.invalid=用户名/密码不匹配
+
+#
