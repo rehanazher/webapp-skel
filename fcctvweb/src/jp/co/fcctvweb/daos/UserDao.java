@@ -1,5 +1,6 @@
 package jp.co.fcctvweb.daos;
 
+import java.util.Date;
 import java.util.List;
 
 import jp.co.fcctvweb.po.User;
@@ -17,5 +18,7 @@ public interface UserDao {
 	User findByRemoteIp(String remoteIp);
 
 	User findByUsernameAndPassword(String username, String password);
+
+	boolean updateLastLoginById(Date loginTime, String userId);
 
 }

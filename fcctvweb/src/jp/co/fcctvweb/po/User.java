@@ -1,11 +1,14 @@
 package jp.co.fcctvweb.po;
 
+import java.util.Date;
+
 public class User {
 	private String id;
 	private String username;
 	private String password;
 	private String encryped;
 	private String remoteIp;
+	private Date lastLogin;
 
 	public String getId() {
 		return id;
@@ -45,5 +48,13 @@ public class User {
 
 	public void setRemoteIp(String remoteIp) {
 		this.remoteIp = remoteIp;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 }

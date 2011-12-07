@@ -8,6 +8,11 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	public User userLogin(String username, String password, String remoteIp) {
+		User user = userDao.findByRemoteIp(remoteIp);
+		if (user != null){
+			
+		}
+		
 		return userDao.findByUsernameAndPassword(username, password);
 	}
 
