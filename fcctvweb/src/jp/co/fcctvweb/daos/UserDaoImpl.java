@@ -32,22 +32,16 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	}
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM user_tbl";
-
 	private static final String SQL_INSERT_USER = "INSERT INTO user_tbl(id,username,password,"
 			+ "encryped,remote_ip) " + "VALUES(?,?,?,?,?)";
-
 	private static final String SQL_DELETE_USER = "DELETE FROM user_tbl WHERE id=?";
-
 	private static final String SQL_UPDATE_USER = "UPDATE user_tbl SET username=?,password=?,"
 			+ "encryped=?,remote_ip=? WHERE id=?";
-
 	private static final String SQL_FIND_USER_BY_ID = "SELECT * FROM user_tbl WHERE id=?";
-
 	private static final String SQL_FIND_BY_REMOTE_ID = "SELECT * FROM user_tbl WHERE remote_ip=?";
-
 	private static final String SQL_FIND_BY_USERNAME_AND_PWD = "SELECT * FROM user_tbl WHERE username=? AND password=?";
-
 	private static final String SQL_UPDATE_LAST_LOGIN_BY_ID = "UPDATE user_tbl SET last_login=? WHERE id=?";
+	private static final String SQL_UPDATE_REMOTE_IP_BY_ID = "UPDATE user_tbl SET remote_ip=? WHERE id=?";
 
 	public List<User> findAll() {
 		return query(SQL_FIND_ALL, new UserMultiRowMapper());
@@ -105,5 +99,11 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	public boolean updateLastLoginById(Date loginTime, String userId) {
 		return update(SQL_UPDATE_LAST_LOGIN_BY_ID, new Object[] { loginTime,
 				userId }, new int[] { Types.TIMESTAMP, Types.CHAR }) > 0;
+	}
+
+	@Override
+	public boolean updateRemoteIpById(String ip, String userId) {
+		return update(SQL_UPDATE_REMOTE_IP_BY_ID, new Object[] { ip, userId },
+				new int[] { Types.VARCHAR, Types.CHAR }) > 0;
 	}
 }

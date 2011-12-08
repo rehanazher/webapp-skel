@@ -7,11 +7,15 @@ FccTVApp = new Ext.Application({
 	glossOnIcon : false,
 	launch : function() {
 		document.getElementById("loading_mask").style.display = "none";
-		this.views.viewport = new this.views.LoginView({title: 'FCC TV Web'});
-		// this.views.viewport = new FccTVApp.views.PhoneViewport({
-			// title : 'FCC TV Web'
-		// });
-		// this.views.viewport.show();
+		
+		if (loginFlag){
+			 this.views.viewport = new FccTVApp.views.PhoneViewport({
+				 title : 'FCC TV'
+			 });
+			 this.views.viewport.show();
+		}else{
+			this.views.viewport = new this.views.LoginView({title: 'FCC TV'});
+		}
 	}
 });
 

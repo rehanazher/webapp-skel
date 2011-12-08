@@ -2,6 +2,7 @@ package jp.co.fcctvweb.config;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import jp.co.fcctvweb.vo.MenuItem;
 import net.sf.json.JsonConfig;
@@ -11,10 +12,16 @@ public class Config {
 
 	public static MenuItem TREE_STORE;
 	public static JsonConfig JSON_CONFIG;
+	private static ResourceBundle configuration = ResourceBundle
+			.getBundle("config");
 
 	static {
 		TREE_STORE = retriveMenuItemStore();
 		JSON_CONFIG = defaultJsonConfig();
+	}
+
+	public static String getUserCookieTime() {
+		return configuration.getString("user.cookie.remain");
 	}
 
 	private static JsonConfig defaultJsonConfig() {
