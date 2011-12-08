@@ -14,6 +14,17 @@ public class UserAction extends BasicJsonAction {
 	private String username;
 	private String password;
 
+	private boolean loginFlag;
+
+	public String retrieveLogin() {
+		String remoteIp = ServletActionContext.getRequest().getRemoteAddr();
+		User user = userService.userLogin("", "", remoteIp);
+		if (user != null) {
+			loginFlag = true;
+		}
+		return SUCCESS;
+	}
+
 	public String login() {
 		String remoteIp = ServletActionContext.getRequest().getRemoteAddr();
 		User user = userService.userLogin(username, password, remoteIp);
@@ -42,5 +53,13 @@ public class UserAction extends BasicJsonAction {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isLoginFlag() {
+		return loginFlag;
+	}
+
+	public void setLoginFlag(boolean loginFlag) {
+		this.loginFlag = loginFlag;
 	}
 }

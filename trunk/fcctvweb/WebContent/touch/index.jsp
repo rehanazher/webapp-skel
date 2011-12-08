@@ -56,6 +56,8 @@ bundle = (function(){
 bundle.getText = function(key){
     return bundle[key] || key;
 };
+
+var loginFlag = <%= pageContext.findAttribute("loginFlag") %>;
         </script>
     </head>
     <body>
