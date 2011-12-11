@@ -6,7 +6,7 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 	hidden: true,
 	items : [{
 		iconCls : 'bookmarks',
-		title : 'Main',
+		title : bundle.getText('tab.1'),
 		layout : 'card',
 		items : [new Ext.NestedList({
 			id : 'navigatorPanel',
@@ -26,6 +26,7 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 					// var parentNode = recordNode ? recordNode.parentNode : null
 
 					var backButton = Ext.getCmp("backButton");
+					console.log(record);
 					if(!record.get("leaf")) {
 						if(recordNode.isRoot) {
 							backButton.setText("FCC");
@@ -33,7 +34,7 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 						} else {
 
 							if(recordNode.attributes.record) {
-								backButton.setText(recordNode.attributes.record.get("text"));
+								backButton.setText(record.get("text"));
 							}
 							backButton.show();
 						}
@@ -41,7 +42,7 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 						var card = record.get("card");
 						if(card) {
 							this.up('tabpanel').getActiveItem().setActiveItem(card, 'slide');
-							backButton.setText("Back");
+							backButton.setText(record.get("text"));
 							backButton.show();
 						}
 					}
@@ -65,16 +66,20 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 		})]
 	}, {
 		iconCls : 'time',
-		title : 'Today List',
+		title : bundle.getText('tab.2'),
 		html : '<a href="test.pdf" target="_blank">pdf</a><br /> <a href="test.doc" target="_blank">doc</a>'
 	}, {
 		iconCls : 'favorites',
-		title : 'Favorites',
+		title : bundle.getText('tab.3'),
 		html : 'Pressed Favorites'
 	}, {
 		iconCls : 'settings',
-		title : 'Settings',
+		title : bundle.getText('tab.4'),
 		html : 'Pressed Settings'
+	}, {
+		iconCls : 'search',
+		title : bundle.getText('tab.5'),
+		html : 'Pressed Play'
 	}],
 	dockedItems : [{
 		xtype : 'toolbar',
@@ -112,6 +117,9 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 				} else {
 					backButton.hide();
 				}
+				
+				var selModel = activeItem.getSelectionModel();
+                Ext.defer(selModel.deselectAll, 500, selModel);
 			},
 			hidden : true,
 		}, {
