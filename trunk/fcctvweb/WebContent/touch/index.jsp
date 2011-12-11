@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <% I18N i18n = (I18N)pageContext.findAttribute("i18n"); %>
 <% Calendar serverTime = (Calendar)pageContext.findAttribute("serverTime"); %>
-<% Config configurations = (Calendar)pageContext.findAttribute("configurations"); %>
+<% Config configurations = (Config)pageContext.findAttribute("configurations"); %>
 
 
 <!DOCTYPE html>
