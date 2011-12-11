@@ -1,5 +1,8 @@
 package jp.co.fcctvweb.actions;
 
+import java.util.Calendar;
+
+import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.po.User;
 import jp.co.fcctvweb.services.UserService;
 
@@ -15,7 +18,9 @@ public class UserAction extends BasicJsonAction {
 	private String password;
 
 	private boolean loginFlag;
-
+	private Calendar serverTime = Calendar.getInstance();
+	private Config configurations;
+	
 	public String retrieveLogin() {
 		String remoteIp = ServletActionContext.getRequest().getRemoteAddr();
 		User user = userService.userLogin("", "", remoteIp);
@@ -61,5 +66,13 @@ public class UserAction extends BasicJsonAction {
 
 	public void setLoginFlag(boolean loginFlag) {
 		this.loginFlag = loginFlag;
+	}
+
+	public Calendar getServerTime() {
+		return serverTime;
+	}
+
+	public Config getConfigurations() {
+		return configurations;
 	}
 }

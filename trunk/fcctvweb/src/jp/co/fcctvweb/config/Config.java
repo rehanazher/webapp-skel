@@ -4,24 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import jp.co.fcctvweb.vo.MenuItem;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
 public class Config {
 
-	public static MenuItem TREE_STORE;
 	public static JsonConfig JSON_CONFIG;
 	private static ResourceBundle configuration = ResourceBundle
 			.getBundle("config");
 
 	static {
-		TREE_STORE = retriveMenuItemStore();
 		JSON_CONFIG = defaultJsonConfig();
 	}
 
 	public static String getUserCookieTime() {
 		return configuration.getString("user.cookie.remain");
+	}
+	
+	public static int getPageSize(){
+		return Integer.parseInt(configuration.getString("page.size"));
 	}
 
 	private static JsonConfig defaultJsonConfig() {
@@ -50,25 +51,4 @@ public class Config {
 		return cfg;
 	}
 
-	private static MenuItem retriveMenuItemStore() {
-		MenuItem root = new MenuItem();
-		root.setRoot(true);
-		root.setId("root");
-
-		MenuItem node1 = new MenuItem("menu.accounting", "accounting/home",
-				"/app/test.action");
-		node1.setExpanded(true);
-		node1.addChild(new MenuItem("menu.accounting.input",
-				"accounting/input", "app/test.action"));
-		node1.addChild(new MenuItem("menu.accounting.query",
-				"accounting/query", "app/test.action"));
-		node1.addChild(new MenuItem("menu.accounting.report.realtime",
-				"accounting/realtimereport", "app/test.action"));
-		node1.addChild(new MenuItem("menu.accounting.report.history",
-				"accounting/historyreport", "app/test.action"));
-
-		root.addChild(node1);
-
-		return root;
-	}
 }

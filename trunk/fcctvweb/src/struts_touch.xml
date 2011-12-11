@@ -7,5 +7,6 @@
         <action name="touch" class="jp.co.fcctvweb.actions.BasicJsonAction">
             <result>index.jsp</result>
         </action>
+        <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action>
     </package>
 </struts>
