@@ -658,7 +658,7 @@ public class DaoCodeUtils {
 	}
 
 	public static void main(String[] args) {
-		DaoCodeUtils builder = new DaoCodeUtils("gtvid_tbl", "GtvId");
+		DaoCodeUtils builder = new DaoCodeUtils("ch_tbl", "Channel");
 		builder.printCode();
 	}
 

@@ -2,9 +2,9 @@ package jp.co.fcctvweb.actions.condition;
 
 public class Pagination {
 
-	private int page;
+	private int page = 1;
 	private int start;
-	private int limit;
+	private int limit = 20;
 
 	public int getPage() {
 		return page;

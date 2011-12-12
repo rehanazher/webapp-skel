@@ -15,7 +15,7 @@ public class GtvId {
 	private int etime;
 	private String bdate;
 	private String btime;
-	private Date duration;
+	private String duration;
 	private String contentname;
 	private String contentdesc;
 	private String genre;
@@ -117,11 +117,11 @@ public class GtvId {
 		this.btime = btime;
 	}
 
-	public Date getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Date duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 

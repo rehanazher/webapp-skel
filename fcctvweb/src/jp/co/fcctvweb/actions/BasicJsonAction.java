@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.List;
 import java.util.PropertyResourceBundle;
 
@@ -35,6 +36,11 @@ public class BasicJsonAction extends ActionSupport {
 
 	public String execute() {
 		return SUCCESS;
+	}
+	
+	public String emptyJson(){
+		jsonObj = Collections.emptyList(); 
+		return jsonReturn();
 	}
 
 	public String ajaxReturn() {
@@ -185,30 +191,28 @@ public class BasicJsonAction extends ActionSupport {
 	private I18N i18n = new I18N();
 
 	public static void main(String[] args) {
-		 Runtime run = Runtime.getRuntime();
-		 try {
-		 Process p = run.exec("ping www.baidu.com");
-		 BufferedInputStream in = new BufferedInputStream(p.getInputStream());
-		 BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
-		 String lineStr;
-		 while ((lineStr = inBr.readLine()) != null)
-		 //获得命令执行后在控制台的输出信息
-		 System.out.println(lineStr);// 打印输出信息
-		 //检查命令是否执行失败。
-		 if (p.waitFor() != 0) {
-		 if (p.exitValue() == 1)//p.exitValue()==0表示正常结束，1：非正常结束
-		 System.err.println("命令执行失败!");
+		Runtime run = Runtime.getRuntime();
+		try {
+			Process p = run.exec("ping www.baidu.com");
+			BufferedInputStream in = new BufferedInputStream(p.getInputStream());
+			BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
+			String lineStr;
+			while ((lineStr = inBr.readLine()) != null)
+				System.out.println(lineStr);// ���杈��淇℃�
+			if (p.waitFor() != 0) {
+				if (p.exitValue() == 1)// p.exitValue()==0琛ㄧず姝ｅ父缁��锛�锛��姝ｅ父缁��
+					System.err.println("�戒护�ц�澶辫触!");
 			}
 			inBr.close();
-		 in.close();
-		
-		 } catch (IOException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 } catch (InterruptedException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
+			in.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }
