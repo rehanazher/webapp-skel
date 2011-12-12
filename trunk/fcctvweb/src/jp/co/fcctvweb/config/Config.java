@@ -24,6 +24,14 @@ public class Config {
 	public static int getPageSize(){
 		return Integer.parseInt(configuration.getString("page.size"));
 	}
+	
+	public static String getHddMp4Dir(){
+		return configuration.getString("hdd.mp4.dir");
+	}
+	
+	public static String getHddThumbsDir(){
+		return configuration.getString("hdd.thumbs.dir");
+	}
 
 	private static JsonConfig defaultJsonConfig() {
 		JsonConfig cfg = new JsonConfig();

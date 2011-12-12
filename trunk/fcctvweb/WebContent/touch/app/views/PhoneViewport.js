@@ -79,7 +79,24 @@ FccTVApp.views.PhoneViewport = Ext.extend(Ext.TabPanel, {
 	}, {
 		iconCls : 'search',
 		title : bundle.getText('tab.5'),
-		html : 'Pressed Play'
+		scroll : 'vertical',
+		layout : 'vbox',
+		items : [{
+			id : 'video-player',
+			xtype : 'video',
+			url : '',
+			loop : false,
+			width : 300,
+			height : 250,
+			posterUrl : ''
+		}, {
+			xtype: 'fieldset',
+			title: bundle.getText('player.title.unselect'),
+			layout: 'vbox',
+			items:[{
+				html: '<div style="width: 300px; height: 300px;"></div>'
+			}]
+		}]
 	}],
 	dockedItems : [{
 		xtype : 'toolbar',

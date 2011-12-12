@@ -1,6 +1,46 @@
-.x-list-item-body{
-	display:block;
-	text-align:left;
-	width:100%;
-	background:url(../images/arrows.png) 100% 50% no-repeat ;
+.x-list-item-body {
+	display: block;
+	text-align: left;
+	width: 100%;
+	background: url(../images/arrows.png) 100% 50% no-repeat;
+}
+
+
+
+.querylist-img {
+	padding: 2px;
+	width: 60px;
+	height: 40px;
+	background-color: white;
+	float: left;
+}
+
+.querylist-anchor {
+	width: 14px;
+	height: 14px;
+	background-color: #EEE;
+	top: 20px;
+	left: -100px;
+	position: absolute;
+	-webkit-transform: rotate(45deg);
+}
+
+.querylist-desc {
+	font-size: 80%;
+	font-weight: normal;
+	position: relative;
+	min-height: 100px;
+	margin-left: 15px;
+	overflow: hidden;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background: #EEE;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	line-height: 20px;
+}
+.querylist-desc h2{
+	font-size: 108%;
+	font-weight: bold;
+	line-height: 24px;
 }

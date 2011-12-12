@@ -15,6 +15,7 @@ common.button.back=后 退
 common.button.forward=前 进
 
 common.paging.load.more=读取下20条
+common.paging.not.record=<p class='no-search'>未找到匹配记录</p>
 
 # app
 app.name=FCC TV WEB

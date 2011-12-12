@@ -1,6 +1,6 @@
 <%@page import="jp.co.fcctvweb.config.Config"%>
-<%@page import="java.util.Calendar"%>
 <%@page import="jp.co.fcctvweb.actions.BasicJsonAction.I18N"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.PropertyResourceBundle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -78,9 +78,13 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/utils/lang-zh_CN.js"></script>
         <script type="text/javascript" src="app/utils/AppUtils.js"></script>
         
+        <!-- models -->
+        <script type="text/javascript" src="app/models/QueryListModel.js"></script>
+        
         <!-- stores -->
         <script type="text/javascript" src="app/stores/DailyListStore.js"></script>
         <script type="text/javascript" src="app/stores/QueryListStore.js"></script>
+        <script type="text/javascript" src="app/stores/DailyStore.js"></script>
         
         <!-- frames -->
         <script type="text/javascript" src="app/frames/DailyList.js"></script>
