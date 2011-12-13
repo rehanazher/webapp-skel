@@ -29,8 +29,6 @@
             #loading_mask .title {
                 position: absolute;
                 display: block;
-                top: 0;
-                left: 0px;
                 width: 180px;
                 height: 27px;
             }
@@ -38,8 +36,6 @@
                 background: url(images/loading.gif) no-repeat;
                 position: absolute;
                 display: block;
-                top: 25px;
-                left: 22px;
                 width: 120px;
                 height: 120px;
             }
@@ -68,7 +64,7 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
     </head>
     <body>
         <div id="loading_mask">
-            <span class="title">Loading...</span><span class="logo"></span>
+            <span class="title"></span><span class="logo"></span>
         </div>
         <script type="text/javascript" src="jslib/sencha-touch.js"></script>
         
@@ -94,6 +90,7 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/stores/NavigationStore.js"></script>
         
         <!-- views -->
+        <script type="text/javascript" src="app/views/MainView.js"></script>
         <script type="text/javascript" src="app/views/LoginView.js"></script>
         <script type="text/javascript" src="app/views/PhoneViewport.js"></script>
         

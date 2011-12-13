@@ -9,9 +9,10 @@ FccTVApp = new Ext.Application({
 		document.getElementById("loading_mask").style.display = "none";
 		
 		if (loginFlag){
-			 this.views.viewport = new FccTVApp.views.PhoneViewport({
-				 title : 'FCC TV'
-			 });
+			this.views.viewport = new FccTVApp.views.MainView({title : 'FCC TV'});
+//			 this.views.viewport = new FccTVApp.views.PhoneViewport({
+//				 title : 'FCC TV'
+//			 });
 			 this.views.viewport.show();
 		}else{
 			this.views.viewport = new this.views.LoginView({title: 'FCC TV'});

@@ -5,8 +5,6 @@
 	background: url(../images/arrows.png) 100% 50% no-repeat;
 }
 
-
-
 .querylist-img {
 	padding: 2px;
 	width: 60px;
@@ -39,8 +37,76 @@
 	box-flex: 1;
 	line-height: 20px;
 }
-.querylist-desc h2{
+
+.querylist-desc h2 {
 	font-size: 108%;
 	font-weight: bold;
 	line-height: 24px;
+}
+
+ol#grid {
+	list-style: none;
+	overflow: auto;
+	padding: 45px 45px 0;
+}
+
+ol#grid li {
+	float: left;
+	position: relative;
+}
+
+ol#grid li a {
+	background: transparent;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.153);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.153);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.153);
+	color: #0464BB;
+	display: block;
+	height: 72px;
+	margin: 0 121px 0 0;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.333);
+	vertical-align: middle;
+	width: 72px;
+}
+
+ol#grid li a img {
+	border: none;
+	-webkit-transition: opacity 0.23s ease-in-out;
+	-moz-transition: opacity 0.23s ease-in-out;
+	transition: opacity 0.23s ease-in-out;
+}
+
+ol#grid li a:hover,ol#grid li a:focus,ol#grid li a:active {
+	background: #000;
+}
+
+ol#grid li a:hover img,ol#grid li a:focus img,ol#grid li a:active img {
+	opacity: 0.65;
+}
+
+ol#grid li a, ol#grid li:nth-child(3n) a, ol#grid li:nth-child(2n) a,ol#grid li:nth-child(4n) a {
+	margin: 0 20px 50px 20px;
+}
+
+/*
+ol#grid li:nth-child(2n) a {
+	margin-right: 30px;
+}
+
+ol#grid li:nth-child(4n) a {
+	margin-right: 50px;
+}*/
+
+ol#grid li a span {
+	color: #314E64;
+	font-weight: bold;
+	letter-spacing: -0.01em;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	white-space: nowrap;
 }
