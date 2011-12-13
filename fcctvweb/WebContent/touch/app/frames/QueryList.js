@@ -24,24 +24,30 @@ FccTVApp.frames.QueryList = new Ext.List({
     			iconCls : 'search',
     			title : bundle.getText('tab.5'),
     			scroll : 'vertical',
-    			layout : 'vbox',
-    			scroll : 'vertical',
-    			layout : 'vbox',
+    			layout : 'auto',
     			items : [{
     				xtype : 'video',
     				url : record.get("videoUrl"),
     				loop : false,
-    				width : 300,
+    				width : 330,
     				height : 250,
     				posterUrl : record.get('posterUrl')
     			}, {
     				xtype: 'fieldset',
-    				title: bundle.getText('player.title.unselect'),
-    				layout: 'vbox',
+    				title: record.get('contentname'),
+    				instructions: 'GTAG:' + record.get('gtvid'),
     				items:[{
-    					html: '<div style="width: 300px; height: 300px;">Test</div>'
+    					html: '<div>' +
+    							record.get('contentdesc') +
+    							'<p>' + record.get('bstartTime') + ' ' + 
+    							record.get('playTime') + '(' + record.get('duration') + ')</p>' +
+    							'<p>' + record.get('chName') + '</p>' +
+    						  '</div>'
     				}]
-    			}]
+    			},{
+					xtype: 'button',
+					text: 'Add Favorate'
+				}]
     		});
 //    		Ext.getCmp("app-tab5").getActiveItem().setActiveItem(vPanel,'fade');
 //    		var video = Ext.getCmp("video-player");
