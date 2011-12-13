@@ -68,7 +68,7 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 			 success : function(form, action) {
 				 loadMask.destroy();
 				 this.hide();
-			 	 FccTVApp.views.viewport = new FccTVApp.views.PhoneViewport();
+			 	 FccTVApp.views.viewport = new FccTVApp.views.MainView();
 				 FccTVApp.views.viewport.show();
 			 },
 			 failure : function(form, action) {
