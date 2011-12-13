@@ -59,7 +59,7 @@ public class GtvVo {
 		this.setGenre(po.getGenre());
 		this.setFavorite(po.getFavorite());
 		this.setPosterUrl(Config.getHddThumbsDir() + po.getGtvid());
-		this.setVideoUrl(Config.getHddMp4Dir() + po.getGtvid() + ".mp4");
+		this.setVideoUrl(Config.getHddMp4Dir() + po.getGtvid());
 		this.setPlayTime(DateUtils.date2String(po.getBstartTime(), "hh:MM:ss"));
 	}
 	
