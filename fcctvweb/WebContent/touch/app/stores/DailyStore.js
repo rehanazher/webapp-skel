@@ -1,5 +1,3 @@
-
-
 FccTVApp.stores.DailyStore = new Ext.data.JsonStore({
     model : 'QueryListModel',
     pageSize: configuredPageSize,
@@ -9,5 +7,5 @@ FccTVApp.stores.DailyStore = new Ext.data.JsonStore({
     proxy : {
     	type : 'ajax',
     	url : './queryEmpty.action'
-    },
+    }
 });

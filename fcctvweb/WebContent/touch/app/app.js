@@ -20,4 +20,8 @@ FccTVApp = new Ext.Application({
 	}
 });
 
+FccTVApp.loadMask = new Ext.LoadMask(Ext.getBody(), {
+	msg : bundle.getText('common.mask.loading')
+});
+
 Ext.ns('FccTVApp.frames', 'FccTVApp.utils');

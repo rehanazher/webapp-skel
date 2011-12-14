@@ -16,19 +16,20 @@ public class GtvServiceImpl implements GtvService {
 
 	private GtvIdDao gtvIdDao;
 	private ChannelDao channelDao;
-	
-	public List<GtvVo> getGtvIdByCondition(GtvCondition condition){
+
+	@Override
+	public List<GtvVo> getGtvIdByCondition(GtvCondition condition) {
 		List<GtvVo> resultList = new ArrayList<GtvVo>();
-		
+
 		List<GtvId> gtvIdList = gtvIdDao.findByCondition(condition);
-		if (!gtvIdList.isEmpty()){
+		if (!gtvIdList.isEmpty()) {
 			List<Channel> chList = channelDao.findAll();
 			Map<Integer, Channel> chMap = new HashMap<Integer, Channel>();
-			for (Channel ch : chList){
+			for (Channel ch : chList) {
 				chMap.put(ch.getCh(), ch);
 			}
-			
-			for(GtvId po : gtvIdList){
+
+			for (GtvId po : gtvIdList) {
 				GtvVo vo = new GtvVo();
 				vo.setGtvIdPo(po);
 				vo.setChannelPo(chMap.get(po.getCh()));
@@ -36,6 +37,16 @@ public class GtvServiceImpl implements GtvService {
 			}
 		}
 		return resultList;
+	}
+
+	@Override
+	public boolean addFavorite(String gtvid) {
+		return gtvIdDao.updateFavoriteByGtvid(gtvid, 1);
+	}
+
+	@Override
+	public boolean removeFavorite(String gtvid) {
+		return gtvIdDao.updateFavoriteByGtvid(gtvid, 0);
 	}
 
 	public void setGtvIdDao(GtvIdDao gtvIdDao) {

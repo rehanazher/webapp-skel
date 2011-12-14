@@ -18,6 +18,8 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM gtvid_tbl";
 
+	private static final String SQL_UPDATE_FAVORITE_BY_GTVID = "UPDATE gtvid_tbl SET favorite=? WHERE gtvid=?";
+
 	private static class GtvIdMultiRowMapper implements MultiRowMapper<GtvId> {
 		public GtvId mapRow(ResultSet rs, int rowNum) throws SQLException {
 			GtvId gtvId = new GtvId();
@@ -60,12 +62,22 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 		handler.and("bstart_time < ?", DateUtils.getNextDay(DateUtils
 				.string2Date(condition.getDate())), !Validators
 				.isEmpty(condition.getDate()));
+		handler.and("favorite = ?", condition.getFavorite(),
+				condition.getFavorite() != -1);
+
 		String pagingSql = "";
-		if (condition instanceof Pagination){
-			pagingSql = " LIMIT " + condition.getStart() + "," + condition.getLimit();
+		if (condition instanceof Pagination) {
+			pagingSql = " LIMIT " + condition.getStart() + ","
+					+ condition.getLimit();
 		}
-		
-		return query(handler.getSQL() + " ORDER BY stime DESC " + pagingSql , handler.getArgs(),
-				new GtvIdMultiRowMapper());
+
+		return query(handler.getSQL() + " ORDER BY stime DESC " + pagingSql,
+				handler.getArgs(), new GtvIdMultiRowMapper());
+	}
+
+	@Override
+	public boolean updateFavoriteByGtvid(String gtvid, int favoriteFlag) {
+		return update(SQL_UPDATE_FAVORITE_BY_GTVID, new Object[] {
+				favoriteFlag, gtvid }) > 0;
 	}
 }
