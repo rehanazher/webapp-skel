@@ -17,7 +17,9 @@ FccTVApp.frames.DailyList = new Ext.List({
 			});
 			FccTVApp.stores.DailyStore.load();
 			FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
-			FccTVApp.prevCard = this.up('tabpanel').getActiveItem().getActiveItem();
+			FccTVApp.prevCard = this;
+			var backBtn = Ext.getCmp("backButton");
+			backBtn.setText(record.get('value'));
 			this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
 			
 		}

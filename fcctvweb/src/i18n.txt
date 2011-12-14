@@ -24,6 +24,7 @@ app.name.mobile=FCC
 
 
 # main desc
+main.title=Main
 main.desc.tv=FCC TV
 main.desc.video=My Video
 main.desc.photo=My Photo

@@ -95,7 +95,7 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <!-- views -->
         <script type="text/javascript" src="app/views/MainView.js"></script>
         <script type="text/javascript" src="app/views/LoginView.js"></script>
-        <script type="text/javascript" src="app/views/PhoneViewport.js"></script>
+        <script type="text/javascript" src="app/views/TvView.js"></script>
         
     </body>
 </html>

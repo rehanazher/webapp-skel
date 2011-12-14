@@ -5,6 +5,7 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 	autoRender : true,
 	floating : false,
 	centered : true,
+	hidden: true,
 	scroll : false,
 	showAnimation : 'fade',
 	hideOnMaskTap : false,
@@ -67,7 +68,7 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 			 success : function(form, action) {
 				 FccTVApp.loadMask.hide();
 				 this.hide();
-			 	 FccTVApp.views.viewport = new FccTVApp.views.MainView();
+			 	 FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
 				 FccTVApp.views.viewport.show();
 			 },
 			 failure : function(form, action) {
@@ -80,6 +81,5 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 	},
 	initComponent : function() {
 		FccTVApp.views.LoginView.superclass.initComponent.call(this, arguments);
-		this.show();
 	}
 });
