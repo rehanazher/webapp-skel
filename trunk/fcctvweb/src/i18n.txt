@@ -21,14 +21,24 @@ common.paging.not.record=<p class='no-search'>未找到匹配记录</p>
 app.name=FCC TV WEB
 app.name.mobile=FCC
 
-# tab
+
+
+# main desc
+main.desc.tv=FCC TV
+main.desc.video=My Video
+main.desc.photo=My Photo
+main.desc.doc=My Docs
+main.desc.music=My Music
+main.desc.upload=Upload
+
+# tv tab
 tab.1=列表
 tab.2=当日节目
 tab.3=我的收藏
 tab.4=设置
 tab.5=正在播放
 
-# menu
+# tv menu
 menu.1=按日期浏览
 menu.2=按类别浏览
 menu.2.1=ニュース／報道
@@ -182,12 +192,16 @@ dailylist.item.week.fri=金
 dailylist.item.week.sat=<font style='color: blue;'>土</font>
 dailylist.item.week.sun=<font style='color: red;'>日</font>
 
- 
+# pages ------------------------------------------------------------------------
 # index - login
 app.login.title=登 录
 app.login.instructions=请在以上表格中输入信息
 app.login.username=用户名
 app.login.password=密 码
 app.login.msg.invalid=用户名/密码不匹配
+
+# player
+app.player.favorite.add=添加收藏
+app.player.favorite.remove=删除收藏
 
 #

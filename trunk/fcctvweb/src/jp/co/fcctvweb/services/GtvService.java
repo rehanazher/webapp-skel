@@ -9,4 +9,7 @@ public interface GtvService {
 
 	List<GtvVo> getGtvIdByCondition(GtvCondition condition);
 
+	boolean addFavorite(String gtvid);
+	
+	boolean removeFavorite(String gtvid);
 }

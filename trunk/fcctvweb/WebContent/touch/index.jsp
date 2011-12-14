@@ -83,6 +83,9 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/stores/DailyStore.js"></script>
         
         <!-- frames -->
+        <script type="text/javascript" src="app/frames/Player.js"></script>
+        <script type="text/javascript" src="app/frames/TodayList.js"></script>
+        <script type="text/javascript" src="app/frames/FavoriteList.js"></script>
         <script type="text/javascript" src="app/frames/DailyList.js"></script>
         <script type="text/javascript" src="app/frames/QueryList.js"></script>
         

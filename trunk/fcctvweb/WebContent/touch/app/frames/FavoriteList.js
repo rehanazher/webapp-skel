@@ -1,6 +1,19 @@
-FccTVApp.frames.QueryList = new Ext.List({
+FccTVApp.frames.Favorite = new Ext.List({
 	emptyText: bundle.getText('common.paging.not.record'),
-    store: FccTVApp.stores.QueryListStore,
+    store: new Ext.data.JsonStore({
+        model : 'QueryListModel',
+        pageSize: configuredPageSize,
+    	clearOnPageLoad: false,
+    	currentPage: 1,
+    	autoLoad: true,
+        proxy : {
+        	type: 'ajax',
+			url: './queryVideo.action',
+			extraParams: {
+				favorite: 1
+			}
+        }
+    }),
     plugins: [{
         ptype: 'listpaging',
         autoPaging: false,
@@ -22,8 +35,7 @@ FccTVApp.frames.QueryList = new Ext.List({
     		var record = list.getStore().getAt(index);
     		var tab = this.up("tabpanel");
     		tab.setActiveItem(4);
-    		tab.query("> ")[4].setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
-    		// tab.getActiveItem().setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
+    		tab.getActiveItem().setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
     	}
     }
 });

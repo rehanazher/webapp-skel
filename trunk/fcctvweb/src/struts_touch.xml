@@ -9,6 +9,8 @@
         </action>
         <action name="queryEmpty" class="jp.co.fcctvweb.actions.BasicJsonAction" method="emptyJson"><result name="json"/></action>
         <action name="queryVideo" class="jp.co.fcctvweb.actions.QueryVideoAction" method="query"><result name="json"></result></action>
+        <action name="addFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addFavorite"><result name="ajax"></result></action>
+        <action name="removeFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeFavorite"><result name="ajax"></result></action>
 <!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->
     </package>
 </struts>
