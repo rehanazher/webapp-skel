@@ -1,8 +1,9 @@
 FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	fullscreen: true,
+	hidden: true,
 	layout: 'fit',
 	html: '<ol id="grid">'+
-		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = new FccTVApp.views.PhoneViewport(); FccTVApp.views.viewport.show();">' +
+		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.TvView; FccTVApp.views.viewport.show();">' +
 	    '<img src="./images/tv.png" alt="Video" height="72" width="72">' +
 	    '<span>' + bundle.getText('main.desc.tv') +'</span>' +
 	    '</a></li>' +
@@ -29,23 +30,6 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '</a></li>') 
 	    : '') +
 	    '</ol>',
-//	items:[{
-//		xtype: 'panel',
-//		layout: 'hbox',
-//		items:[{
-//			html: '<a href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = new FccTVApp.views.PhoneViewport(); FccTVApp.views.viewport.show();">icon1</a>'
-//		},{
-//			html: 'icon2'
-//		}]
-//	},{
-//		xtype: 'panel',
-//		layout: 'hbox',
-//		items:[{
-//			html: 'icon3'
-//		},{
-//			html: 'icon4'
-//		}]
-//	}],
 	initComponent : function() {
 		FccTVApp.views.MainView.superclass.initComponent.call(this, arguments);
 	}

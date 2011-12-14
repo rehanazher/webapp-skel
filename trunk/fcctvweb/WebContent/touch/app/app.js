@@ -8,14 +8,16 @@ FccTVApp = new Ext.Application({
 	launch : function() {
 		document.getElementById("loading_mask").style.display = "none";
 		
+		this.viewcache.MainView = new FccTVApp.views.MainView({title : 'FCC TV'});
+		this.viewcache.LoginView = new this.views.LoginView({title: 'FCC TV'});
+		this.viewcache.TvView = new this.views.TvView({title: 'FCC TV'});
+
 		if (loginFlag){
-			this.views.viewport = new FccTVApp.views.MainView({title : 'FCC TV'});
-//			 this.views.viewport = new FccTVApp.views.PhoneViewport({
-//				 title : 'FCC TV'
-//			 });
-			 this.views.viewport.show();
+			this.views.viewport = this.viewcache.MainView;
+			this.views.viewport.show();
 		}else{
-			this.views.viewport = new this.views.LoginView({title: 'FCC TV'});
+			this.views.viewport = this.viewcache.LoginView;
+			this.views.viewport.show();
 		}
 	}
 });
@@ -24,4 +26,4 @@ FccTVApp.loadMask = new Ext.LoadMask(Ext.getBody(), {
 	msg : bundle.getText('common.mask.loading')
 });
 
-Ext.ns('FccTVApp.frames', 'FccTVApp.utils');
+Ext.ns('FccTVApp.frames', 'FccTVApp.utils', 'FccTVApp.viewcache');

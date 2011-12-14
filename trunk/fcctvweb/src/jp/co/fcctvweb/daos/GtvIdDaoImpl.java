@@ -2,6 +2,7 @@ package jp.co.fcctvweb.daos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import jp.co.fcctvweb.actions.condition.GtvCondition;
@@ -56,12 +57,12 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 
 	public List<GtvId> findByCondition(GtvCondition condition) {
 		SqlHandler handler = new SqlHandler(SQL_FIND_ALL, false);
-		handler.and("bstart_time >= ? ",
-				DateUtils.string2Date(condition.getDate()),
-				!Validators.isEmpty(condition.getDate()));
-		handler.and("bstart_time < ?", DateUtils.getNextDay(DateUtils
-				.string2Date(condition.getDate())), !Validators
-				.isEmpty(condition.getDate()));
+		if (!Validators.isEmpty(condition.getDate())){
+		handler.and("stime >= ? ",
+				DateUtils.string2Date(condition.getDate()).getTime() / 1000,true);
+		handler.and("stime < ?", DateUtils.getNextDay(DateUtils
+				.string2Date(condition.getDate())).getTime() / 1000, true);
+		}
 		handler.and("favorite = ?", condition.getFavorite(),
 				condition.getFavorite() != -1);
 
