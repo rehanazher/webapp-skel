@@ -228,7 +228,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 			}
 			
 			var activeItem = newCard.getActiveItem();
-			if (activeItem.getSelectionModel){
+			if (activeItem && activeItem.getSelectionModel){
 				var selModel = activeItem.getSelectionModel();
 				Ext.defer(selModel.deselectAll, 500, selModel);
 			}
