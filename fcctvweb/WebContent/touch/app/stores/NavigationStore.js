@@ -16,55 +16,81 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.1.1'),
         		url: 'type-query',
-        		key: '0,0'
+        		key: '0,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.2'),
         		url: 'type-query',
-        		key: '0,1'
+        		key: '0,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.3'),
         		url: 'type-query',
-        		key: '0,2'
+        		key: '0,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.4'),
         		url: 'type-query',
-        		key: '0,3'
+        		key: '0,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.5'),
         		url: 'type-query',
-        		key: '0,4'
+        		key: '0,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.6'),
         		url: 'type-query',
-        		key: '0,5'
+        		key: '0,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.7'),
         		url: 'type-query',
-        		key: '0,6'
+        		key: '0,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.8'),
         		url: 'type-query',
-        		key: '0,7'
+        		key: '0,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.9'),
         		url: 'type-query',
-        		key: '0,8'
+        		key: '0,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.10'),
         		url: 'type-query',
-        		key: '0,9'
+        		key: '0,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.11'),
         		url: 'type-query',
-        		key: '0,10'
+        		key: '0,10',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.12'),
         		url: 'type-query',
-        		key: '0,11'
+        		key: '0,11',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.1.13'),
         		url: 'type-query',
-        		key: '0,12'
+        		key: '0,12',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.2'),
@@ -73,55 +99,81 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.2.1'),
         		url: 'type-query',
-        		key: '1,0'
+        		key: '1,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.2'),
         		url: 'type-query',
-        		key: '1,1'
+        		key: '1,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.3'),
         		url: 'type-query',
-        		key: '1,2'
+        		key: '1,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.4'),
         		url: 'type-query',
-        		key: '1,3'
+        		key: '1,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.5'),
         		url: 'type-query',
-        		key: '1,4'
+        		key: '1,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.6'),
         		url: 'type-query',
-        		key: '1,5'
+        		key: '1,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.7'),
         		url: 'type-query',
-        		key: '1,6'
+        		key: '1,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.8'),
         		url: 'type-query',
-        		key: '1,7'
+        		key: '1,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.9'),
         		url: 'type-query',
-        		key: '1,8'
+        		key: '1,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.10'),
         		url: 'type-query',
-        		key: '1,9'
+        		key: '1,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.11'),
         		url: 'type-query',
-        		key: '1,10'
+        		key: '1,10',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.12'),
         		url: 'type-query',
-        		key: '1,11'
+        		key: '1,11',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.2.13'),
         		url: 'type-query',
-        		key: '1,12'
+        		key: '1,12',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.3'),
@@ -130,43 +182,63 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.3.1'),
         		url: 'type-query',
-        		key: '2,0'
+        		key: '2,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.2'),
         		url: 'type-query',
-        		key: '2,1'
+        		key: '2,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.3'),
         		url: 'type-query',
-        		key: '2,2'
+        		key: '2,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.4'),
         		url: 'type-query',
-        		key: '2,3'
+        		key: '2,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.5'),
         		url: 'type-query',
-        		key: '2,4'
+        		key: '2,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.6'),
         		url: 'type-query',
-        		key: '2,5'
+        		key: '2,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.7'),
         		url: 'type-query',
-        		key: '2,6'
+        		key: '2,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.8'),
         		url: 'type-query',
-        		key: '2,7'
+        		key: '2,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.9'),
         		url: 'type-query',
-        		key: '2,8'
+        		key: '2,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.3.10'),
         		url: 'type-query',
-        		key: '2,9'
+        		key: '2,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.4'),
@@ -175,23 +247,33 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.4.1'),
         		url: 'type-query',
-        		key: '3,0'
+        		key: '3,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.4.2'),
         		url: 'type-query',
-        		key: '3,1'
+        		key: '3,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.4.3'),
         		url: 'type-query',
-        		key: '3,2'
+        		key: '3,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.4.4'),
         		url: 'type-query',
-        		key: '3,3'
+        		key: '3,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.4.5'),
         		url: 'type-query',
-        		key: '3,4'
+        		key: '3,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.5'),
@@ -200,15 +282,21 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.5.1'),
         		url: 'type-query',
-        		key: '4,0'
+        		key: '4,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.2'),
         		url: 'type-query',
-        		key: '4,1'
+        		key: '4,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.3'),
         		url: 'type-query',
-        		key: '4,2'
+        		key: '4,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.4'),
         		url: 'type-query',
@@ -216,15 +304,21 @@ FccTVApp.stores.Structure = [{
     		},{
     			text: bundle.getText('menu.2.5.5'),
         		url: 'type-query',
-        		key: '4,4'
+        		key: '4,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.6'),
         		url: 'type-query',
-        		key: '4,5'
+        		key: '4,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.7'),
         		url: 'type-query',
-        		key: '4,6'
+        		key: '4,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.8'),
         		url: 'type-query',
@@ -232,23 +326,33 @@ FccTVApp.stores.Structure = [{
     		},{
     			text: bundle.getText('menu.2.5.9'),
         		url: 'type-query',
-        		key: '4,8'
+        		key: '4,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.10'),
         		url: 'type-query',
-        		key: '4,9'
+        		key: '4,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.11'),
         		url: 'type-query',
-        		key: '4,10'
+        		key: '4,10',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.12'),
         		url: 'type-query',
-        		key: '4,11'
+        		key: '4,11',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.5.13'),
         		url: 'type-query',
-        		key: '4,12'
+        		key: '4,12',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.6'),
@@ -257,39 +361,57 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.6.1'),
         		url: 'type-query',
-        		key: '5,0'
+        		key: '5,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.2'),
         		url: 'type-query',
-        		key: '5,1'
+        		key: '5,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.3'),
         		url: 'type-query',
-        		key: '5,2'
+        		key: '5,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.4'),
         		url: 'type-query',
-        		key: '5,3'
+        		key: '5,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.5'),
         		url: 'type-query',
-        		key: '5,4'
+        		key: '5,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.6'),
         		url: 'type-query',
-        		key: '5,5'
+        		key: '5,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.7'),
         		url: 'type-query',
-        		key: '5,6'
+        		key: '5,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.8'),
         		url: 'type-query',
-        		key: '5,7'
+        		key: '5,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.6.9'),
         		url: 'type-query',
-        		key: '5,8'
+        		key: '5,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.7'),
@@ -298,23 +420,33 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.7.1'),
         		url: 'type-query',
-        		key: '6,0'
+        		key: '6,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.7.2'),
         		url: 'type-query',
-        		key: '6,1'
+        		key: '6,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.7.3'),
         		url: 'type-query',
-        		key: '6,2'
+        		key: '6,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.7.4'),
         		url: 'type-query',
-        		key: '6,3'
+        		key: '6,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.7.5'),
         		url: 'type-query',
-        		key: '6,4'
+        		key: '6,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.8'),
@@ -323,23 +455,33 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.8.1'),
         		url: 'type-query',
-        		key: '7,0'
+        		key: '7,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.8.2'),
         		url: 'type-query',
-        		key: '7,1'
+        		key: '7,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.8.3'),
         		url: 'type-query',
-        		key: '7,2'
+        		key: '7,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.8.4'),
         		url: 'type-query',
-        		key: '7,3'
+        		key: '7,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.8.5'),
         		url: 'type-query',
-        		key: '7,4'
+        		key: '7,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.9'),
@@ -348,47 +490,69 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.9.1'),
         		url: 'type-query',
-        		key: '8,0'
+        		key: '8,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.2'),
         		url: 'type-query',
-        		key: '8,1'
+        		key: '8,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.3'),
         		url: 'type-query',
-        		key: '8,2'
+        		key: '8,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.4'),
         		url: 'type-query',
-        		key: '8,3'
+        		key: '8,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.5'),
         		url: 'type-query',
-        		key: '8,4'
+        		key: '8,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.6'),
         		url: 'type-query',
-        		key: '8,5'
+        		key: '8,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.7'),
         		url: 'type-query',
-        		key: '8,6'
+        		key: '8,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.8'),
         		url: 'type-query',
-        		key: '8,7'
+        		key: '8,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.9'),
         		url: 'type-query',
-        		key: '8,8'
+        		key: '8,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.10'),
         		url: 'type-query',
-        		key: '8,9'
+        		key: '8,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.9.11'),
         		url: 'type-query',
-        		key: '8,10'
+        		key: '8,10',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.10'),
@@ -397,31 +561,45 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.10.1'),
         		url: 'type-query',
-        		key: '9,0'
+        		key: '9,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.2'),
         		url: 'type-query',
-        		key: '9,1'
+        		key: '9,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.3'),
         		url: 'type-query',
-        		key: '9,2'
+        		key: '9,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.4'),
         		url: 'type-query',
-        		key: '9,3'
+        		key: '9,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.5'),
         		url: 'type-query',
-        		key: '9,4'
+        		key: '9,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.6'),
         		url: 'type-query',
-        		key: '9,5'
+        		key: '9,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.10.7'),
         		url: 'type-query',
-        		key: '9,6'
+        		key: '9,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.11'),
@@ -430,63 +608,93 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.11.1'),
         		url: 'type-query',
-        		key: '10,0'
+        		key: '10,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.2'),
         		url: 'type-query',
-        		key: '10,1'
+        		key: '10,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.3'),
         		url: 'type-query',
-        		key: '10,2'
+        		key: '10,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.4'),
         		url: 'type-query',
-        		key: '10,3'
+        		key: '10,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.5'),
         		url: 'type-query',
-        		key: '10,4'
+        		key: '10,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.6'),
         		url: 'type-query',
-        		key: '10,5'
+        		key: '10,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.7'),
         		url: 'type-query',
-        		key: '10,6'
+        		key: '10,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.8'),
         		url: 'type-query',
-        		key: '10,7'
+        		key: '10,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.9'),
         		url: 'type-query',
-        		key: '10,8'
+        		key: '10,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.10'),
         		url: 'type-query',
-        		key: '10,9'
+        		key: '10,9',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.11'),
         		url: 'type-query',
-        		key: '10,10'
+        		key: '10,10',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.12'),
         		url: 'type-query',
-        		key: '10,11'
+        		key: '10,11',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.13'),
         		url: 'type-query',
-        		key: '10,12'
+        		key: '10,12',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.14'),
         		url: 'type-query',
-        		key: '10,13'
+        		key: '10,13',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.11.15'),
         		url: 'type-query',
-        		key: '10,14'
+        		key: '10,14',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.12'),
@@ -495,39 +703,57 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.12.1'),
         		url: 'type-query',
-        		key: '11,0'
+        		key: '11,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.2'),
         		url: 'type-query',
-        		key: '11,1'
+        		key: '11,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.3'),
         		url: 'type-query',
-        		key: '11,2'
+        		key: '11,2',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.4'),
         		url: 'type-query',
-        		key: '11,3'
+        		key: '11,3',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.5'),
         		url: 'type-query',
-        		key: '11,4'
+        		key: '11,4',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.6'),
         		url: 'type-query',
-        		key: '11,5'
+        		key: '11,5',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.7'),
         		url: 'type-query',
-        		key: '11,6'
+        		key: '11,6',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.8'),
         		url: 'type-query',
-        		key: '11,7'
+        		key: '11,7',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.12.9'),
         		url: 'type-query',
-        		key: '11,8'
+        		key: '11,8',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	},{
     		text: bundle.getText('menu.2.13'),
@@ -536,29 +762,27 @@ FccTVApp.stores.Structure = [{
     		items: [{
     			text: bundle.getText('menu.2.13.1'),
         		url: 'type-query',
-        		key: '12,0'
+        		key: '12,0',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		},{
     			text: bundle.getText('menu.2.13.2'),
         		url: 'type-query',
-        		key: '12,1'
+        		key: '12,1',
+        		leaf: true,
+        		card: FccTVApp.frames.QueryList
     		}]
     	}]
     },{
     	text: bundle.getText('menu.3'),
     	url: 'url 3',
     	key: '3',
-    	items: [{
-    		text: 'Text 3-1',
-    		url: 'url 3-1',
-    		key: '3-1',
-    		leaf: true
-    	}]
+    	leaf: true,
+    	card: FccTVApp.frames.QueryList
     },{
     	text: bundle.getText('menu.4'),
     	url: 'url 3',
-    	key: '3',
-    	leaf: true,
-    	card: FccTVApp.frames.QueryList
+    	key: '3'
     },{
     	text: bundle.getText('menu.5'),
     	url: 'url 3',
@@ -573,10 +797,6 @@ FccTVApp.stores.Structure = [{
     	key: '3'
     },{
     	text: bundle.getText('menu.8'),
-    	url: 'url 3',
-    	key: '3'
-    },{
-    	text: bundle.getText('menu.9'),
     	url: 'url 3',
     	key: '3'
     }];

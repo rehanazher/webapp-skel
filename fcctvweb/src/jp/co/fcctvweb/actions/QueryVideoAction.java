@@ -12,6 +12,7 @@ public class QueryVideoAction extends BasicJsonAction {
 	private String date;
 	private String type;
 	private int favorite = -1;
+	private String ch;
 	
 	private int start;
 	private int page;
@@ -78,6 +79,14 @@ public class QueryVideoAction extends BasicJsonAction {
 
 	public void setFavorite(int favorite) {
 		this.favorite = favorite;
+	}
+
+	public String getCh() {
+		return ch;
+	}
+
+	public void setCh(String ch) {
+		this.ch = ch;
 	}
 	
 }

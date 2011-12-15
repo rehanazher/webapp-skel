@@ -3,6 +3,7 @@ package jp.co.fcctvweb.actions.condition;
 public class GtvCondition extends Pagination {
 	private String date;
 	private String type;
+	private int ch;
 	private int favorite;
 
 	public String getDate() {
@@ -27,5 +28,13 @@ public class GtvCondition extends Pagination {
 
 	public void setFavorite(int favorite) {
 		this.favorite = favorite;
+	}
+
+	public int getCh() {
+		return ch;
+	}
+
+	public void setCh(int ch) {
+		this.ch = ch;
 	}
 }
