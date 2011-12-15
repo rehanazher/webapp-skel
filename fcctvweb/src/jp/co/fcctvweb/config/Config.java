@@ -32,6 +32,10 @@ public class Config {
 	public static String getHddThumbsDir(){
 		return configuration.getString("hdd.thumbs.dir");
 	}
+	
+	public static String getHddThumbsDefault(){
+		return configuration.getString("hdd.thumbs.default");
+	}
 
 	private static JsonConfig defaultJsonConfig() {
 		JsonConfig cfg = new JsonConfig();
