@@ -11,538 +11,538 @@ FccTVApp.stores.Structure = [{
     	key: '2',
     	items: [{
     		text: bundle.getText('menu.2.1'),
-    		url: 'url 2-1',
-    		key: '2-1',
+    		url: 'type-query',
+    		key: '0',
     		items: [{
     			text: bundle.getText('menu.2.1.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,0'
     		},{
     			text: bundle.getText('menu.2.1.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,1'
     		},{
     			text: bundle.getText('menu.2.1.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,2'
     		},{
     			text: bundle.getText('menu.2.1.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,3'
     		},{
     			text: bundle.getText('menu.2.1.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,4'
     		},{
     			text: bundle.getText('menu.2.1.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,5'
     		},{
     			text: bundle.getText('menu.2.1.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,6'
     		},{
     			text: bundle.getText('menu.2.1.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,7'
     		},{
     			text: bundle.getText('menu.2.1.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,8'
     		},{
     			text: bundle.getText('menu.2.1.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,9'
     		},{
     			text: bundle.getText('menu.2.1.11'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,10'
     		},{
     			text: bundle.getText('menu.2.1.12'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,11'
     		},{
     			text: bundle.getText('menu.2.1.13'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '0,12'
     		}]
     	},{
     		text: bundle.getText('menu.2.2'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '1',
     		items: [{
     			text: bundle.getText('menu.2.2.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,0'
     		},{
     			text: bundle.getText('menu.2.2.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,1'
     		},{
     			text: bundle.getText('menu.2.2.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,2'
     		},{
     			text: bundle.getText('menu.2.2.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,3'
     		},{
     			text: bundle.getText('menu.2.2.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,4'
     		},{
     			text: bundle.getText('menu.2.2.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,5'
     		},{
     			text: bundle.getText('menu.2.2.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,6'
     		},{
     			text: bundle.getText('menu.2.2.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,7'
     		},{
     			text: bundle.getText('menu.2.2.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,8'
     		},{
     			text: bundle.getText('menu.2.2.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,9'
     		},{
     			text: bundle.getText('menu.2.2.11'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,10'
     		},{
     			text: bundle.getText('menu.2.2.12'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,11'
     		},{
     			text: bundle.getText('menu.2.2.13'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '1,12'
     		}]
     	},{
     		text: bundle.getText('menu.2.3'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '2',
     		items: [{
     			text: bundle.getText('menu.2.3.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,0'
     		},{
     			text: bundle.getText('menu.2.3.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,1'
     		},{
     			text: bundle.getText('menu.2.3.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,2'
     		},{
     			text: bundle.getText('menu.2.3.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,3'
     		},{
     			text: bundle.getText('menu.2.3.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,4'
     		},{
     			text: bundle.getText('menu.2.3.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,5'
     		},{
     			text: bundle.getText('menu.2.3.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,6'
     		},{
     			text: bundle.getText('menu.2.3.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,7'
     		},{
     			text: bundle.getText('menu.2.3.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,8'
     		},{
     			text: bundle.getText('menu.2.3.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '2,9'
     		}]
     	},{
     		text: bundle.getText('menu.2.4'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '3',
     		items: [{
     			text: bundle.getText('menu.2.4.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '3,0'
     		},{
     			text: bundle.getText('menu.2.4.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '3,1'
     		},{
     			text: bundle.getText('menu.2.4.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '3,2'
     		},{
     			text: bundle.getText('menu.2.4.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '3,3'
     		},{
     			text: bundle.getText('menu.2.4.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '3,4'
     		}]
     	},{
     		text: bundle.getText('menu.2.5'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '4',
     		items: [{
     			text: bundle.getText('menu.2.5.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,0'
     		},{
     			text: bundle.getText('menu.2.5.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,1'
     		},{
     			text: bundle.getText('menu.2.5.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,2'
     		},{
     			text: bundle.getText('menu.2.5.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,3'
     		},{
     			text: bundle.getText('menu.2.5.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,4'
     		},{
     			text: bundle.getText('menu.2.5.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,5'
     		},{
     			text: bundle.getText('menu.2.5.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,6'
     		},{
     			text: bundle.getText('menu.2.5.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,7'
     		},{
     			text: bundle.getText('menu.2.5.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,8'
     		},{
     			text: bundle.getText('menu.2.5.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,9'
     		},{
     			text: bundle.getText('menu.2.5.11'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,10'
     		},{
     			text: bundle.getText('menu.2.5.12'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,11'
     		},{
     			text: bundle.getText('menu.2.5.13'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '4,12'
     		}]
     	},{
     		text: bundle.getText('menu.2.6'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '5',
     		items: [{
     			text: bundle.getText('menu.2.6.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,0'
     		},{
     			text: bundle.getText('menu.2.6.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,1'
     		},{
     			text: bundle.getText('menu.2.6.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,2'
     		},{
     			text: bundle.getText('menu.2.6.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,3'
     		},{
     			text: bundle.getText('menu.2.6.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,4'
     		},{
     			text: bundle.getText('menu.2.6.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,5'
     		},{
     			text: bundle.getText('menu.2.6.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,6'
     		},{
     			text: bundle.getText('menu.2.6.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,7'
     		},{
     			text: bundle.getText('menu.2.6.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '5,8'
     		}]
     	},{
     		text: bundle.getText('menu.2.7'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '6',
     		items: [{
     			text: bundle.getText('menu.2.7.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '6,0'
     		},{
     			text: bundle.getText('menu.2.7.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '6,1'
     		},{
     			text: bundle.getText('menu.2.7.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '6,2'
     		},{
     			text: bundle.getText('menu.2.7.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '6,3'
     		},{
     			text: bundle.getText('menu.2.7.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '6,4'
     		}]
     	},{
     		text: bundle.getText('menu.2.8'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '7',
     		items: [{
     			text: bundle.getText('menu.2.8.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '7,0'
     		},{
     			text: bundle.getText('menu.2.8.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '7,1'
     		},{
     			text: bundle.getText('menu.2.8.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '7,2'
     		},{
     			text: bundle.getText('menu.2.8.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '7,3'
     		},{
     			text: bundle.getText('menu.2.8.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '7,4'
     		}]
     	},{
     		text: bundle.getText('menu.2.9'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '8',
     		items: [{
     			text: bundle.getText('menu.2.9.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,0'
     		},{
     			text: bundle.getText('menu.2.9.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,1'
     		},{
     			text: bundle.getText('menu.2.9.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,2'
     		},{
     			text: bundle.getText('menu.2.9.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,3'
     		},{
     			text: bundle.getText('menu.2.9.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,4'
     		},{
     			text: bundle.getText('menu.2.9.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,5'
     		},{
     			text: bundle.getText('menu.2.9.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,6'
     		},{
     			text: bundle.getText('menu.2.9.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,7'
     		},{
     			text: bundle.getText('menu.2.9.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,8'
     		},{
     			text: bundle.getText('menu.2.9.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,9'
     		},{
     			text: bundle.getText('menu.2.9.11'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '8,10'
     		}]
     	},{
     		text: bundle.getText('menu.2.10'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '9',
     		items: [{
     			text: bundle.getText('menu.2.10.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,0'
     		},{
     			text: bundle.getText('menu.2.10.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,1'
     		},{
     			text: bundle.getText('menu.2.10.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,2'
     		},{
     			text: bundle.getText('menu.2.10.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,3'
     		},{
     			text: bundle.getText('menu.2.10.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,4'
     		},{
     			text: bundle.getText('menu.2.10.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,5'
     		},{
     			text: bundle.getText('menu.2.10.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '9,6'
     		}]
     	},{
     		text: bundle.getText('menu.2.11'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '10',
     		items: [{
     			text: bundle.getText('menu.2.11.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,0'
     		},{
     			text: bundle.getText('menu.2.11.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,1'
     		},{
     			text: bundle.getText('menu.2.11.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,2'
     		},{
     			text: bundle.getText('menu.2.11.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,3'
     		},{
     			text: bundle.getText('menu.2.11.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,4'
     		},{
     			text: bundle.getText('menu.2.11.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,5'
     		},{
     			text: bundle.getText('menu.2.11.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,6'
     		},{
     			text: bundle.getText('menu.2.11.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,7'
     		},{
     			text: bundle.getText('menu.2.11.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,8'
     		},{
     			text: bundle.getText('menu.2.11.10'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,9'
     		},{
     			text: bundle.getText('menu.2.11.11'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,10'
     		},{
     			text: bundle.getText('menu.2.11.12'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,11'
     		},{
     			text: bundle.getText('menu.2.11.13'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,12'
     		},{
     			text: bundle.getText('menu.2.11.14'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,13'
     		},{
     			text: bundle.getText('menu.2.11.15'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '10,14'
     		}]
     	},{
     		text: bundle.getText('menu.2.12'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '11',
     		items: [{
     			text: bundle.getText('menu.2.12.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,0'
     		},{
     			text: bundle.getText('menu.2.12.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,1'
     		},{
     			text: bundle.getText('menu.2.12.3'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,2'
     		},{
     			text: bundle.getText('menu.2.12.4'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,3'
     		},{
     			text: bundle.getText('menu.2.12.5'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,4'
     		},{
     			text: bundle.getText('menu.2.12.6'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,5'
     		},{
     			text: bundle.getText('menu.2.12.7'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,6'
     		},{
     			text: bundle.getText('menu.2.12.8'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,7'
     		},{
     			text: bundle.getText('menu.2.12.9'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '11,8'
     		}]
     	},{
     		text: bundle.getText('menu.2.13'),
     		url: 'url 2-2',
-    		key: '2-2',
+    		key: '12',
     		items: [{
     			text: bundle.getText('menu.2.13.1'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '12,0'
     		},{
     			text: bundle.getText('menu.2.13.2'),
-        		url: 'url 2-1',
-        		key: '2-1',
+        		url: 'type-query',
+        		key: '12,1'
     		}]
-    	}],
+    	}]
     },{
     	text: bundle.getText('menu.3'),
     	url: 'url 3',
@@ -552,7 +552,7 @@ FccTVApp.stores.Structure = [{
     		url: 'url 3-1',
     		key: '3-1',
     		leaf: true
-    	}],
+    	}]
     },{
     	text: bundle.getText('menu.4'),
     	url: 'url 3',
@@ -562,23 +562,23 @@ FccTVApp.stores.Structure = [{
     },{
     	text: bundle.getText('menu.5'),
     	url: 'url 3',
-    	key: '3',
+    	key: '3'
     },{
     	text: bundle.getText('menu.6'),
     	url: 'url 3',
-    	key: '3',
+    	key: '3'
     },{
     	text: bundle.getText('menu.7'),
     	url: 'url 3',
-    	key: '3',
+    	key: '3'
     },{
     	text: bundle.getText('menu.8'),
     	url: 'url 3',
-    	key: '3',
+    	key: '3'
     },{
     	text: bundle.getText('menu.9'),
     	url: 'url 3',
-    	key: '3',
+    	key: '3'
     }];
 
 
