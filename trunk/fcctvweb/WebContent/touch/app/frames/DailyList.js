@@ -15,7 +15,10 @@ FccTVApp.frames.DailyList = new Ext.List({
 					date: date
 				}
 			});
-			FccTVApp.stores.DailyStore.load();
+			FccTVApp.loadMask.show();
+			FccTVApp.stores.DailyStore.load(function(){
+				FccTVApp.loadMask.hide();
+			});
 			FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
 			FccTVApp.prevCard = this;
 			var backBtn = Ext.getCmp("backButton");

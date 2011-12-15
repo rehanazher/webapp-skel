@@ -172,13 +172,12 @@ menu.2.12.9=全て
 menu.2.13=その他
 menu.2.13.1=その他
 menu.2.13.2=全て
-menu.3=按照类别浏览
-menu.4=按电视台浏览
-menu.5=我的收藏
-menu.6=电子节目信息检索
-menu.7=终端信息
-menu.8=各种设定
-menu.9=注销
+menu.3=按电视台浏览
+menu.4=我的收藏
+menu.5=电子节目信息检索
+menu.6=终端信息
+menu.7=各种设定
+menu.8=注销
 
 # daily list format:
 # wildcard

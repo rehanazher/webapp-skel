@@ -29,7 +29,7 @@ public class IoAction extends ActionSupport {
 	public String execute() {
 
 		HttpServletResponse response = ServletActionContext.getResponse();
-		HttpServletRequest request = ServletActionContext.getRequest();
+		// HttpServletRequest request = ServletActionContext.getRequest();
 		try {
 			FileInputStream is = null;
 			File f = null;
@@ -70,7 +70,7 @@ public class IoAction extends ActionSupport {
 			response.reset();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			 e.printStackTrace();
+//			 e.printStackTrace();
 		}
 		return "ajax";
 	}

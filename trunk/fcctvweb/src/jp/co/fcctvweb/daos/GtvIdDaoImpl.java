@@ -32,7 +32,7 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 			gtvId.setOrgNwId(rs.getInt("org_nw_id"));
 			gtvId.setCh(rs.getInt("ch"));
 			// gtvId.setBstartTime(rs.getTimestamp("bstart_time"));
-			long timestamp = (long)rs.getInt("stime") * 1000;
+			long timestamp = (long) rs.getInt("stime") * 1000;
 			gtvId.setBstartTime(new Date(timestamp));
 			gtvId.setStime(rs.getInt("stime"));
 			gtvId.setEtime(rs.getInt("etime"));
@@ -59,14 +59,22 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 
 	public List<GtvId> findByCondition(GtvCondition condition) {
 		SqlHandler handler = new SqlHandler(SQL_FIND_ALL, false);
-		if (!Validators.isEmpty(condition.getDate())){
-		handler.and("stime >= ? ",
-				DateUtils.string2Date(condition.getDate()).getTime() / 1000,true);
-		handler.and("stime < ?", DateUtils.getNextDay(DateUtils
-				.string2Date(condition.getDate())).getTime() / 1000, true);
+		if (!Validators.isEmpty(condition.getDate())) {
+			handler.and(
+					"stime >= ? ",
+					DateUtils.string2Date(condition.getDate()).getTime() / 1000,
+					true);
+			handler.and(
+					"stime < ?",
+					DateUtils.getNextDay(
+							DateUtils.string2Date(condition.getDate()))
+							.getTime() / 1000, true);
 		}
 		handler.and("favorite = ?", condition.getFavorite(),
 				condition.getFavorite() != -1);
+		handler.and("ch = ?", condition.getCh(), condition.getCh() != 0);
+		handler.and("genre LIKE ?", "%" + condition.getType() + "%",
+				!Validators.isEmpty(condition.getType()));
 
 		String pagingSql = "";
 		if (condition instanceof Pagination) {

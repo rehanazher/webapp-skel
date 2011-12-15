@@ -17,10 +17,11 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 				itemtap : function(list, index, el, e) {
 					var record = list.getStore().getAt(index);
 					var key = record.get('key');
+					var url = record.get('url');
 
 					var recordNode = list.recordNode;
 					// var parentNode = recordNode ? recordNode.parentNode : null
-
+					
 					var backButton = Ext.getCmp("backButton");
 					if(!record.get("leaf")) {
 						if(recordNode.isRoot) {
@@ -36,6 +37,21 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 					} else {
 						var card = record.get("card");
 						if(card) {
+							if (url == 'type-query'){
+								FccTVApp.stores.TypeStore.setProxy({
+									type: 'ajax',
+									url: './queryVideo.action',
+									extraParams: {
+										type: key
+									}
+								});
+								FccTVApp.loadMask.show();
+								FccTVApp.stores.TypeStore.load(function(){
+									FccTVApp.loadMask.hide();
+								});
+								FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.TypeStore);
+							}
+							
 							FccTVApp.prevCard = Ext.getCmp("navigatorPanel");
 							FccTVApp.prevTitle = record.get('text');
 							this.up('tabpanel').getActiveItem().setActiveItem(card, 'slide');
