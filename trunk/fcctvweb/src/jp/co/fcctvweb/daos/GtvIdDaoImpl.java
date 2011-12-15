@@ -31,7 +31,9 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 			gtvId.setServiceId(rs.getInt("service_id"));
 			gtvId.setOrgNwId(rs.getInt("org_nw_id"));
 			gtvId.setCh(rs.getInt("ch"));
-			gtvId.setBstartTime(rs.getTimestamp("bstart_time"));
+			// gtvId.setBstartTime(rs.getTimestamp("bstart_time"));
+			long timestamp = (long)rs.getInt("stime") * 1000;
+			gtvId.setBstartTime(new Date(timestamp));
 			gtvId.setStime(rs.getInt("stime"));
 			gtvId.setEtime(rs.getInt("etime"));
 			gtvId.setBdate(rs.getString("bdate"));

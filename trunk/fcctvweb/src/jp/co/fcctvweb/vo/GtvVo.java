@@ -58,8 +58,8 @@ public class GtvVo {
 		this.setContentdesc(po.getContentdesc());
 		this.setGenre(po.getGenre());
 		this.setFavorite(po.getFavorite());
-		this.setPosterUrl(Config.getHddThumbsDir() + po.getGtvid());
-		this.setVideoUrl(Config.getHddMp4Dir() + po.getGtvid());
+		this.setPosterUrl("./thumbs.action?type=pic&fileId=" + po.getGtvid());
+		this.setVideoUrl("./watch.action?type=tv&fileId=" + po.getGtvid());
 		this.setPlayTime(DateUtils.date2String(po.getBstartTime(), "hh:MM:ss"));
 	}
 	
