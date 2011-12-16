@@ -24,7 +24,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '    <span>' + bundle.getText('main.desc.photo') +'</span>' +
 	    '</a></li>' +
 	    (Ext.is.Desktop ? 
-	    ('<li><a id="upload" href="javascript:void(0)">' +
+	    ('<li><a id="upload" href="../uploader.action">' +
 	    '    <img src="images/upload.png" alt="Photo" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.upload') +'</span>' +
 	    '</a></li>') 
