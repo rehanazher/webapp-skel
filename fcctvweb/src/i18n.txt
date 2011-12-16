@@ -22,7 +22,6 @@ app.name=FCC TV WEB
 app.name.mobile=FCC
 
 
-
 # main desc
 main.title=Main
 main.desc.tv=FCC TV
@@ -32,6 +31,7 @@ main.desc.doc=My Docs
 main.desc.music=My Music
 main.desc.upload=Upload
 
+# ****************** tv function ***********************
 # tv tab
 tab.1=列表
 tab.2=当日节目
@@ -204,4 +204,28 @@ app.login.msg.invalid=用户名/密码不匹配
 app.player.favorite.add=添加收藏
 app.player.favorite.remove=删除收藏
 
-#
+# ****************** my video function ***********************
+video.title=Video
+
+video.tab.1=列表
+video.tab.3=我的收藏
+video.tab.5=正在播放
+
+video.player.no.select=test
+
+
+# ****************** uploader function ***********************
+uploader.label.name=保存名称
+uploader.label.type=类型
+uploader.label.file=文件
+uploader.label.file.empty.tips=请选择文件
+
+uploader.type.video=视频
+uploader.type.photo=图片
+uploader.type.music=音频
+uploader.type.doc=文档
+
+uploader.msg.type.not.support.video=只支持 .mp4 视频上传
+uploader.msg.type.not.support.photo=只支持 .jpg 图片上传
+uploader.msg.type.not.support.video=只支持 .ogg/.mp3 视频上传
+uploader.msg.type.not.support.doc=只支持 .doc/.docx/.pdf 文档上传

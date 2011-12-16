@@ -37,8 +37,20 @@
             <result type="redirect">/touch/</result>
         </action>
         
+        <action name="uploader" class="jp.co.fcctvweb.actions.BasicJsonAction">
+            <result type="redirect">/uploader/</result>
+        </action>
+        
         <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login"><result name="ajax"></result></action>
 
+    </package>
+    
+    <package name="uploader" namespace="/uploader" extends="default">
+        <default-interceptor-ref name="fileUploadStack"/>
+        
+        <action name="uploadFiles" class="jp.co.fcctvweb.actions.upload.UploadAction">
+            <result name="ajax"></result>
+        </action>
     </package>
 
     <include file="./struts_touch.xml"></include>

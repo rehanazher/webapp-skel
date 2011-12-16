@@ -78,18 +78,29 @@ Ext.onReady(function(){
                 buttonConfig: {
                     iconCls: 'upload-icon'
                 }
+            },{
+                xtype: 'hidden',
+                id: 'filePath',
+                name: 'filePath',
+                value: ''
             }],
 
             buttons: [{
                 text: 'Save',
                 handler: function(){
                     var form = this.up('form').getForm();
+                    Ext.getCmp("filePath").setValue(Ext.getCmp("form-file").getValue());
                     if(form.isValid()){
                         form.submit({
                             url: './uploadFiles.action',
                             waitMsg: 'Uploading your photo...',
                             success: function(fp, o) {
+                                console.log(o);
                                 msg('Success', 'Processed file "' + o.result.file + '" on the server');
+                            },
+                            failure: function(fp, o){
+                            	console.log(o);
+                            	msg('Failed', 'Processed file "' + o.result.file + '" on the server');
                             }
                         });
                     }

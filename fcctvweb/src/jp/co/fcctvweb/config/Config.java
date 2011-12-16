@@ -33,6 +33,22 @@ public class Config {
 		return configuration.getString("hdd.thumbs.dir");
 	}
 	
+	public static String getUploadVideoDir(){
+		return configuration.getString("upload.video.dir");
+	}
+	
+	public static String getUploadMusicDir(){
+		return configuration.getString("upload.music.dir");
+	}
+	
+	public static String getUploadDocDir(){
+		return configuration.getString("upload.doc.dir");
+	}
+	
+	public static String getUploadPhotoDir(){
+		return configuration.getString("upload.photo.dir");
+	}
+	
 	public static String getHddThumbsDefault(){
 		return configuration.getString("hdd.thumbs.default");
 	}
