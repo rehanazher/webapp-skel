@@ -8,6 +8,9 @@ import java.io.IOException;
 
 import jp.co.fcctvweb.actions.BasicJsonAction;
 import jp.co.fcctvweb.config.Config;
+import jp.co.fcctvweb.po.UploadInfo;
+import jp.co.fcctvweb.services.UploadInfoService;
+import jp.co.fcctvweb.utils.Validators;
 
 public class UploadAction extends BasicJsonAction {
 
@@ -17,11 +20,13 @@ public class UploadAction extends BasicJsonAction {
 	private String filePath;
 	private int type;
 	private File uploadedFile;
+	
+	private UploadInfoService uploadInfoService;
 
 	public String execute() {
 
 		if (uploadedFile == null) {
-			addActionError("Empty file");
+			setMsg("Empty file");
 		}
 
 		String fileName = "";
@@ -30,37 +35,41 @@ public class UploadAction extends BasicJsonAction {
 		} else {
 			fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
 		}
-		String extName = filePath.substring(filePath.lastIndexOf(".") + 1);
+		
+		String extName = "";
+		if (filePath.lastIndexOf(".") != -1){
+			extName = filePath.substring(filePath.lastIndexOf(".") + 1);
+		}
 
 		switch (type) {
 		case 1: // video
 			if (!"mp4".equalsIgnoreCase(extName)) {
-				addActionError(getText("uploader.msg.type.not.support.video"));
+				setMsg(getText("uploader.msg.type.not.support.video"));
 			}
 			break;
 		case 2: // doc
 			if (!("doc".equalsIgnoreCase(extName)
 					|| "docx".equalsIgnoreCase(extName) || "pdf"
 					.equalsIgnoreCase(extName))) {
-				addActionError(getText("uploader.msg.type.not.support.doc"));
+				setMsg(getText("uploader.msg.type.not.support.doc"));
 			}
 			break;
 		case 3: // music
 			if (!("mp3".equalsIgnoreCase(extName) || "ogg"
 					.equalsIgnoreCase(extName))) {
-				addActionError(getText("uploader.msg.type.not.support.music"));
+				setMsg(getText("uploader.msg.type.not.support.music"));
 			}
 			break;
 		case 4: // photo
 			if (!("jpg".equalsIgnoreCase(extName))) {
-				addActionError(getText("uploader.msg.type.not.support.photo"));
+				setMsg(getText("uploader.msg.type.not.support.photo"));
 			}
 			break;
 		default:
 			break;
 		}
 
-		if (hasActionErrors()) {
+		if (!Validators.isEmpty(getMsg())) {
 			makeFailure();
 			return ajaxReturn();
 		}
@@ -98,12 +107,27 @@ public class UploadAction extends BasicJsonAction {
 			fos.flush();
 			fis.close();
 			fos.close();
+			
+			UploadInfo info = new UploadInfo();
+			info.setName(name);
+			info.setFileName(fileName);
+			info.setExtName(extName);
+			info.setSize(uploadedFile.length());
+			info.setType(type);
+			
+			uploadInfoService.removeIfExists(type, fileName);
+			
+			uploadInfoService.addUploadInfo(info);
+			
+			setMsg(getText("uploader.msg.upload.success", new String[]{fileName}));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			setMsg(getText("uploader.msg.upload.failed"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			setMsg(getText("uploader.msg.upload.failed"));
 		}
 
 		return ajaxReturn();
@@ -139,5 +163,9 @@ public class UploadAction extends BasicJsonAction {
 
 	public void setUploadedFile(File uploadedFile) {
 		this.uploadedFile = uploadedFile;
+	}
+
+	public void setUploadInfoService(UploadInfoService uploadInfoService) {
+		this.uploadInfoService = uploadInfoService;
 	}
 }

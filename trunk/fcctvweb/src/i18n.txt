@@ -13,6 +13,7 @@ common.button.submit=提 交
 common.button.reset=重 置
 common.button.back=后 退
 common.button.forward=前 进
+common.button.upload=上 传
 
 common.paging.load.more=读取下20条
 common.paging.not.record=<p class='no-search'>未找到匹配记录</p>
@@ -192,7 +193,10 @@ dailylist.item.week.fri=金
 dailylist.item.week.sat=<font style='color: blue;'>土</font>
 dailylist.item.week.sun=<font style='color: red;'>日</font>
 
-# pages ------------------------------------------------------------------------
+#------------------------------- pages -------------------------------
+#------------------------------- pages -------------------------------
+#------------------------------- pages -------------------------------
+# ****************** fcc tv function ***********************
 # index - login
 app.login.title=登 录
 app.login.instructions=请在以上表格中输入信息
@@ -201,8 +205,10 @@ app.login.password=密 码
 app.login.msg.invalid=用户名/密码不匹配
 
 # player
+app.player.no.select=<div style='font-size: 48px'>未选中播放视频</div>
 app.player.favorite.add=添加收藏
 app.player.favorite.remove=删除收藏
+
 
 # ****************** my video function ***********************
 video.title=Video
@@ -211,21 +217,30 @@ video.tab.1=列表
 video.tab.3=我的收藏
 video.tab.5=正在播放
 
-video.player.no.select=test
+# video list
+video.item.text.create.at=上传时间:
+
+# video player
+video.player.no.select=<div style='font-size: 48px'>未选中播放视频</div>
 
 
 # ****************** uploader function ***********************
+uploader.title=文件上传器
 uploader.label.name=保存名称
 uploader.label.type=类型
 uploader.label.file=文件
 uploader.label.file.empty.tips=请选择文件
+uploader.upload.tips=支持格式：<br/> 视频: *.mp4 <br/> 文档: *.doc/*.docx/*.pdf <br/> 音频: *.ogg/*.mp3 <br/> 图片: *.jpg 
 
 uploader.type.video=视频
 uploader.type.photo=图片
 uploader.type.music=音频
 uploader.type.doc=文档
 
+uploader.msg.waiting=正在上传文件，请稍后...
+uploader.msg.upload.success=文件{0}上传成功
+uploader.msg.upload.failed=异常 
 uploader.msg.type.not.support.video=只支持 .mp4 视频上传
 uploader.msg.type.not.support.photo=只支持 .jpg 图片上传
-uploader.msg.type.not.support.video=只支持 .ogg/.mp3 视频上传
+uploader.msg.type.not.support.video=只支持 .ogg/.mp3 音频上传
 uploader.msg.type.not.support.doc=只支持 .doc/.docx/.pdf 文档上传

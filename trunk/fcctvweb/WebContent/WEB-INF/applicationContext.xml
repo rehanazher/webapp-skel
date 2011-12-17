@@ -159,6 +159,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="gtvIdDao" ref="gtvIdDao" />
 		<property name="channelDao" ref="channelDao" />
 	</bean>
+	<bean id="uploadInfoService" class="jp.co.fcctvweb.services.UploadInfoServiceImpl" >
+		<property name="uploadInfoDao" ref="uploadInfoDao" />
+	</bean>
     
 
 	<!-- Daos -->
@@ -172,5 +175,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="channelDao" class="jp.co.fcctvweb.daos.ChannelDaoImpl">
 		<property name="dataSource" ref="c3p0DS" />
 	</bean>
+	<bean id="uploadInfoDao" class="jp.co.fcctvweb.daos.UploadInfoDaoImpl">
+		<property name="dataSource" ref="c3p0DS" />
+	</bean>
+	
 </beans>
 

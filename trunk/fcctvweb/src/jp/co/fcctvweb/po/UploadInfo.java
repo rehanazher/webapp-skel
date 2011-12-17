@@ -9,7 +9,7 @@ public class UploadInfo {
 	private int type;
 	private Date creationTime;
 	private int favorite;
-	private int size;
+	private long size;
 	private String extName;
 
 	public String getId() {
@@ -60,11 +60,11 @@ public class UploadInfo {
 		this.favorite = favorite;
 	}
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 

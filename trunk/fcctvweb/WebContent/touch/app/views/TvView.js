@@ -85,7 +85,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		items : [
 		         {
 		        	 xtype: 'panel',
-		        	 html: 'test'
+		        	 html: bundle.getText('app.player.no.select')
 		         }
 		]
 	}],

@@ -1,4 +1,4 @@
-Ext.regModel('QueryListModel', {
+Ext.regModel('MyVideoModel', {
 	fields : [ {
 		name : 'posterUrl',
 		type : 'string'
@@ -18,10 +18,16 @@ Ext.regModel('QueryListModel', {
 		name : 'favorite',
 		type : 'int'
 	},{
-		name : 'size',
+		name : 'length',
 		type : 'int'
 	},{
 		name : 'creationTime',
+		type : 'string'
+	},{
+		name : 'extName',
+		type : 'string'
+	},{
+		name : 'name',
 		type : 'string'
 	}]
 });

@@ -7,7 +7,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '<img src="./images/tv.png" alt="Video" height="72" width="72">' +
 	    '<span>' + bundle.getText('main.desc.tv') +'</span>' +
 	    '</a></li>' +
-        '<li><a id="video" href="javascript:void(0)">' +
+        '<li><a id="video" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyVideoView; FccTVApp.views.viewport.show();">' +
         '<img src="./images/video.png" alt="Video" height="72" width="72">' +
         '<span>' + bundle.getText('main.desc.video') +'</span>' +
 	    '</a></li>' +
@@ -24,7 +24,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '    <span>' + bundle.getText('main.desc.photo') +'</span>' +
 	    '</a></li>' +
 	    (Ext.is.Desktop ? 
-	    ('<li><a id="upload" href="../uploader.action">' +
+	    ('<li><a id="upload" href="../uploader.action" target="_blank">' +
 	    '    <img src="images/upload.png" alt="Photo" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.upload') +'</span>' +
 	    '</a></li>') 

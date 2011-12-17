@@ -76,12 +76,14 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         
         <!-- models -->
         <script type="text/javascript" src="app/models/QueryListModel.js"></script>
+        <script type="text/javascript" src="app/models/MyVideoListModel.js"></script>
         
         <!-- stores -->
         <script type="text/javascript" src="app/stores/DailyListStore.js"></script>
         <script type="text/javascript" src="app/stores/QueryListStore.js"></script>
         <script type="text/javascript" src="app/stores/DailyStore.js"></script>
         <script type="text/javascript" src="app/stores/TypeStore.js"></script>
+        <script type="text/javascript" src="app/stores/MyVideoStore.js"></script>
         
         <!-- frames -->
         <script type="text/javascript" src="app/frames/Player.js"></script>
@@ -97,6 +99,6 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/views/MainView.js"></script>
         <script type="text/javascript" src="app/views/LoginView.js"></script>
         <script type="text/javascript" src="app/views/TvView.js"></script>
-        
+        <script type="text/javascript" src="app/views/MyVideoView.js"></script>
     </body>
 </html>

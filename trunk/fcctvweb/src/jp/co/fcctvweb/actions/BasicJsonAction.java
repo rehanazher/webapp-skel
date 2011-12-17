@@ -49,7 +49,7 @@ public class BasicJsonAction extends ActionSupport {
 		response.setIntHeader("Expires", -1);
 		response.setHeader("Cache-Control", "no-cache, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
-		response.setContentType("application/json; charset=utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		// OutputStream os = response.getOutputStream();
 		PrintWriter outer;
 		try {
@@ -68,7 +68,7 @@ public class BasicJsonAction extends ActionSupport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return AJAX;
+		return JSON;
 	}
 
 	public String jsonReturn() {
@@ -160,6 +160,10 @@ public class BasicJsonAction extends ActionSupport {
 
 	public void setMsg(String msg) {
 		reply.setMsg(msg);
+	}
+	
+	public String getMsg(){
+		return reply.getMsg();
 	}
 
 	public Object getJsonObj() {

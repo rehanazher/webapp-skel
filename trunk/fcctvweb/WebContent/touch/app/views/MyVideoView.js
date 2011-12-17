@@ -1,4 +1,4 @@
-FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
+FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 	showAnimation : 'fade',
 	//html: 'Test Page',
 	title : bundle.getText("video.title"),
@@ -8,7 +8,39 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		iconCls : 'bookmarks',
 		title : bundle.getText('tab.1'),
 		layout : 'card',
-		items : []
+		items : [new Ext.List({
+			emptyText: bundle.getText('common.paging.not.record'),
+		    store: FccTVApp.stores.MyVideoStore,
+		    plugins: [{
+		        ptype: 'listpaging',
+		        autoPaging: false,
+		        loadMoreText: bundle.getText('common.paging.load.more')
+		    },{
+		    	ptype: 'pulltorefresh'
+		    }],
+		    itemTpl: new Ext.XTemplate(
+		    		'<img class="querylist-img" src="{posterUrl}"/>',
+		    		'<div class="querylist-anchor"></div>',
+		    		'<div class="querylist-frame">',
+		    			'<div class="querylist-desc">',
+		    				'<h2>{name}</h2>',
+		    				'{fileName}',
+		    				'<p>',
+		    				bundle.getText('video.item.text.create.at'),
+		    				'{creationTime})</p>',
+		    			'</div>',
+		    		'</div>'
+		    		),
+		    listeners: {
+		    	itemtap: function(list, index, el, e){
+		    		var record = list.getStore().getAt(index);
+		    		var tab = this.up("tabpanel");
+		    		tab.setActiveItem(2);
+		    		tab.query("> ")[2].setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
+		    		// tab.getActiveItem().setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
+		    	}
+		    }
+		})]
 	}, {
 		iconCls : 'favorites',
 		title : bundle.getText('tab.2'),
@@ -28,66 +60,16 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 	}],
 	dockedItems : [{
 		xtype : 'toolbar',
-		title : bundle.getText('app.name.mobile'),
+		title : bundle.getText('main.desc.video'),
 		items : [{
 			xtype : 'button',
 			id : 'backButton',
 			text : bundle.getText("main.title"),
 			ui : 'back',
 			handler : function() {
-				var navPnl = Ext.getCmp("navigatorPanel");
-				var backButton = Ext.getCmp("backButton");
-				var activeItem = navPnl.getActiveItem();
-				var recordNode = activeItem.recordNode;
-				var parentNode = recordNode.parentNode;
-
-				// navigation
-				if(this.up('tabpanel').getActiveItem().getActiveItem() != navPnl) {
-					if (FccTVApp.prevCard != navPnl){
-						this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.prevCard, {
-							type : 'slide',
-							reverse : true
-						});
-						FccTVApp.prevCard = navPnl;
-						backButton.setText(FccTVApp.prevTitle);
-					}else{
-						this.up('tabpanel').getActiveItem().setActiveItem(navPnl, {
-							type : 'slide',
-							reverse : true
-						});
-						
-						if(parentNode) {
-							if(parentNode.isRoot) {
-								backButton.setText(bundle.getText('app.name.mobile'));
-							} else {
-								backButton.setText(parentNode.attributes.record.get("text"));
-							}
-						} else {
-							backButton.setText(bundle.getText("main.title"));
-						}
-					}
-					
-				} else {
-					navPnl.onBackTap();
-					if(parentNode) {
-						if(parentNode.isRoot) {
-							backButton.setText(bundle.getText("main.title"));
-						} else {
-							backButton.setText(parentNode.attributes.record.get("text"));
-						}
-					} else {
-						backButton.setText(bundle.getText("main.title"));
-					}
-					
-					if (recordNode.isRoot) {
-						FccTVApp.views.viewport.hide();
-						FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
-						FccTVApp.views.viewport.show();
-					}
-				}
-				
-				var selModel = activeItem.getSelectionModel();
-                Ext.defer(selModel.deselectAll, 500, selModel);
+				FccTVApp.views.viewport.hide();
+				FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
+				FccTVApp.views.viewport.show();
 			}
 		},{
 			xtype: 'button',
@@ -100,24 +82,6 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 				var children = tabPanel.query('> ');
 				
 				if (children[1] === tabPanel.getActiveItem()){
-					FccTVApp.frames.Today.bindStore(new Ext.data.JsonStore({
-				        model : 'QueryListModel',
-				        pageSize: configuredPageSize,
-				    	clearOnPageLoad: false,
-				    	currentPage: 1,
-				    	autoLoad: true,
-				        proxy : {
-				        	type: 'ajax',
-							url: './queryVideo.action',
-							extraParams: {
-								date: dayList[0].date
-							}
-				        }
-				    }));
-					FccTVApp.frames.Today.store.load(function(){
-						FccTVApp.loadMask.hide();
-					});
-				}else if (children[2] === tabPanel.getActiveItem()){
 					FccTVApp.loadMask.show();
 					FccTVApp.frames.Favorite.bindStore(new Ext.data.JsonStore({
 					        model : 'QueryListModel',

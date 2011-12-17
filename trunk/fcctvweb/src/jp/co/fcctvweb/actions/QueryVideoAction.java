@@ -14,6 +14,7 @@ public class QueryVideoAction extends BasicJsonAction {
 	private int favorite = -1;
 	private String ch;
 	
+	// pagination
 	private int start;
 	private int page;
 	private int limit;
