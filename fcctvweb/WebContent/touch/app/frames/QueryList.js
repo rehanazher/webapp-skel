@@ -25,7 +25,7 @@ FccTVApp.frames.QueryList = new Ext.List({
     		if (tab.query("> ")[4].getActiveItem()){
     			tab.query("> ")[4].getActiveItem().destroy();
     		}
-    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
+    		FccTVApp.player = new FccTVApp.frames.Player({'record': record});
     		tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
     	}
     }
