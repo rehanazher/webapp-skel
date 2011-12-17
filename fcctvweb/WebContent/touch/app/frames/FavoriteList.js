@@ -35,7 +35,11 @@ FccTVApp.frames.Favorite = new Ext.List({
     		var record = list.getStore().getAt(index);
     		var tab = this.up("tabpanel");
     		tab.setActiveItem(4);
-    		tab.getActiveItem().setActiveItem(new FccTVApp.frames.Player({'record': record}), 'fade');
+    		if (tab.query("> ")[4].getActiveItem()){
+    			tab.query("> ")[4].getActiveItem().destroy();
+    		}
+    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
+    		tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
     	}
     }
 });

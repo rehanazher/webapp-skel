@@ -19,4 +19,6 @@ public interface UploadInfoDao {
 
 	List<UploadInfo> findByCondition(MyFileCondition condition);
 
+	boolean updateFavoriteById(String id, int favorite);
+
 }

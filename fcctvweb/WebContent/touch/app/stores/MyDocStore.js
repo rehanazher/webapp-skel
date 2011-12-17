@@ -1,0 +1,14 @@
+FccTVApp.stores.MyDocStore = new Ext.data.Store({
+	model : 'MyVideoModel',
+	autoLoad: true,
+	pageSize: configuredPageSize,
+	clearOnPageLoad: false,
+	currentPage: 1,
+	proxy : {
+		type : 'ajax',
+		url : './queryMyFile.action',
+		extraParams:{
+			type: 2
+		}
+	}
+});

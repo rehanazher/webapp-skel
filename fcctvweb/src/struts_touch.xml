@@ -9,8 +9,10 @@
         </action>
         <action name="queryEmpty" class="jp.co.fcctvweb.actions.BasicJsonAction" method="emptyJson"><result type="json" name="json"/></action>
         <action name="queryVideo" class="jp.co.fcctvweb.actions.QueryVideoAction" method="query" ><result type="json" name="json"></result></action>
-        <action name="addFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addFavorite"><result type="json" name="ajax"></result></action>
-        <action name="removeFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeFavorite"><result type="json" name="ajax"></result></action>
+        <action name="addFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addFavorite"><result type="json" name="json"></result></action>
+        <action name="removeFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeFavorite"><result type="json" name="json"></result></action>
+        <action name="addMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addMyFileFavorite"><result type="json" name="json"></result></action>
+        <action name="removeMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeMyFileFavorite"><result type="json" name="json"></result></action>
         
         <action name="watch" class="jp.co.fcctvweb.actions.IoAction">
         	<result name="video" type="stream">
@@ -23,6 +25,23 @@
         		<param name="contentType">image/jpeg</param>
                 <param name="inputName">inputStream</param>
                 <param name="bufferSize">1024</param> 
+        	</result>
+        	<result name="doc" type="stream">
+        		<param name="contentType">application/msword</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">2048</param>
+                <param name="allowCaching">true</param>
+        	</result>
+            <result name="docx" type="stream">
+        		<param name="contentType">application/vnd.openxmlformats-officedocument.wordprocessingml.document</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">filename="download.docx"</param>
+        	</result>    	
+        	<result name="pdf" type="stream">
+        		<param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">2048</param>
+                <param name="allowCaching">true</param>
         	</result>
         	<interceptor-ref name="defaultStack"/>
        	</action>

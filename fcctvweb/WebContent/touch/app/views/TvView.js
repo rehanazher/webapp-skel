@@ -22,10 +22,11 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 					var recordNode = list.recordNode;
 					// var parentNode = recordNode ? recordNode.parentNode : null
 					
+					console.log(record);
 					var backButton = Ext.getCmp("backButton");
 					if(!record.get("leaf")) {
 						if(recordNode.isRoot) {
-							backButton.setText(bundle.getText('app.name.mobile'));
+							backButton.setText(record.get('text'));
 							backButton.show();
 						} else {
 
@@ -85,7 +86,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		items : [
 		         {
 		        	 xtype: 'panel',
-		        	 html: bundle.getText('app.player.no.select')
+		        	 html: ''
 		         }
 		]
 	}],
@@ -119,11 +120,13 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 							reverse : true
 						});
 						
+						console.log(parentNode);
+
 						if(parentNode) {
 							if(parentNode.isRoot) {
-								backButton.setText(bundle.getText('app.name.mobile'));
-							} else {
 								backButton.setText(parentNode.attributes.record.get("text"));
+							} else {
+								backButton.setText(recordNode.attributes.record.get("text"));
 							}
 						} else {
 							backButton.setText(bundle.getText("main.title"));
@@ -143,6 +146,9 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 					}
 					
 					if (recordNode.isRoot) {
+						if (FccTVApp.player){
+							FccTVApp.player.destroy();
+						}
 						FccTVApp.views.viewport.hide();
 						FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
 						FccTVApp.views.viewport.show();
@@ -231,10 +237,6 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		cardswitch : function( tabPanel, newCard, oldCard, index, animated ){
 			var children = tabPanel.query('> ');
 			if (children[0] === newCard){
-//				var navPnl = Ext.getCmp("navigatorPanel");
-//				var activeItem = navPnl.getActiveItem();
-//				var recordNode = activeItem.recordNode;
-//				var parentNode = recordNode.parentNode;
 				Ext.getCmp("backButton").show();
 				
 			}
@@ -253,13 +255,6 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 			var children = tabPanel.query('> ');
 			if (tabPanel.child('') !== newCard){
 				Ext.getCmp("backButton").hide();
-				// var navPnl = Ext.getCmp("navigatorPanel");
-				// var activeItem = navPnl.getActiveItem();
-				// var recordNode = activeItem.recordNode;
-				// var parentNode = recordNode.parentNode;
-				// if (parentNode){
-					// Ext.getCmp("backButton").show();
-				// }
 			}
 			if (!(children[1] === newCard || children[2] === newCard)){
 				Ext.getCmp('refreshBtn').hide();

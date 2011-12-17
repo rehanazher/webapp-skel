@@ -374,7 +374,7 @@ public final class DateUtils {
 	 * @return 时间字符串
 	 */
 	public static String date2StringBySecond(Date date) {
-		return date2String(date, "MM/dd/yyyy HH:mm:ss");
+		return date2String(date, "yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**

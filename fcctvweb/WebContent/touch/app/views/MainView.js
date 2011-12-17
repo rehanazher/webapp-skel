@@ -11,7 +11,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
         '<img src="./images/video.png" alt="Video" height="72" width="72">' +
         '<span>' + bundle.getText('main.desc.video') +'</span>' +
 	    '</a></li>' +
-	    '<li><a id="file" href="javascript:void(0)"> ' +
+	    '<li><a id="file" href="javascript:void(0)"  onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyDocView; FccTVApp.views.viewport.show();"> ' +
 	    '    <img src="./images/file.png" alt="File" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.doc') +'</span>' +
 	    '</a></li>' +

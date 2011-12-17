@@ -30,6 +30,14 @@ public class UploadInfoServiceImpl implements UploadInfoService {
 		}
 		return resultList;
 	}
+	
+	public boolean addFavorite(String id){
+		return uploadInfoDao.updateFavoriteById(id, 1);
+	}
+	
+	public boolean removeFavorite(String id){
+		return uploadInfoDao.updateFavoriteById(id, 0);
+	}
 
 	public void setUploadInfoDao(UploadInfoDao uploadInfoDao) {
 		this.uploadInfoDao = uploadInfoDao;

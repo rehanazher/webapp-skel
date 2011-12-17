@@ -27,6 +27,8 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 
 	private static final String SQL_FIND_UPLOADINFO_BY_ID = "SELECT * FROM upload_info WHERE id=?";
 
+	private static final String SQL_UPDATE_FAVORITE_BY_ID = "UPDATE upload_info SET favorite=? WHERE id=?";
+
 	private static class UploadInfoMultiRowMapper implements
 			MultiRowMapper<UploadInfo> {
 		public UploadInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -70,8 +72,8 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 					+ condition.getLimit();
 		}
 
-		return query(handler.getSQL() + " ORDER BY creation_time DESC " + pagingSql,
-				handler.getArgs(), new UploadInfoMultiRowMapper());
+		return query(handler.getSQL() + " ORDER BY creation_time DESC "
+				+ pagingSql, handler.getArgs(), new UploadInfoMultiRowMapper());
 	}
 
 	public String insert(UploadInfo uploadInfo) {
@@ -101,8 +103,12 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 	}
 
 	public boolean deleteByTypeAndFileName(int type, String fileName) {
-		return (update(SQL_DELETE_BY_TYPE_AND_FILENAME, new Object[] { type,
-				fileName }) > 0);
+		return update(SQL_DELETE_BY_TYPE_AND_FILENAME, new Object[] { type,
+				fileName }) > 0;
+	}
+
+	public boolean updateFavoriteById(String id, int favorite) {
+		return update(SQL_UPDATE_FAVORITE_BY_ID, new Object[] { favorite, id }) > 0;
 	}
 
 	public UploadInfo findById(String uploadInfoId) {

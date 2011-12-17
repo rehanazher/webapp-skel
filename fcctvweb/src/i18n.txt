@@ -214,14 +214,27 @@ app.player.favorite.remove=删除收藏
 video.title=Video
 
 video.tab.1=列表
-video.tab.3=我的收藏
-video.tab.5=正在播放
+video.tab.2=我的收藏
+video.tab.3=正在播放
 
-# video list
-video.item.text.create.at=上传时间:
+# video list item text
+video.item.text.length=大小
+video.item.text.create.at=上传时间
 
 # video player
 video.player.no.select=<div style='font-size: 48px'>未选中播放视频</div>
+
+
+# ****************** my video function ***********************
+doc.title=Doc
+
+doc.tab.1=列表
+doc.tab.2=我的收藏
+
+# doc list item text
+doc.item.text.length=大小
+doc.item.text.create.at=上传时间
+
 
 
 # ****************** uploader function ***********************

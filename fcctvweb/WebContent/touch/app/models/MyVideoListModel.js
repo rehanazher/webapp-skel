@@ -10,7 +10,7 @@ Ext.regModel('MyVideoModel', {
 		type : 'string'
 	},{
 		name : 'fileName',
-		type : 'int'
+		type : 'string'
 	},{
 		name : 'type',
 		type : 'int'
@@ -22,6 +22,9 @@ Ext.regModel('MyVideoModel', {
 		type : 'int'
 	},{
 		name : 'creationTime',
+		type : 'string'
+	},{
+		name : 'fullCreationTime',
 		type : 'string'
 	},{
 		name : 'extName',
