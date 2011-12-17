@@ -3,15 +3,19 @@
     
 <%@page import="jp.co.fcctvweb.actions.BasicJsonAction.I18N"%>
 <% I18N i18n = (I18N)pageContext.findAttribute("i18n"); %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Uploader...</title>
+<title><%= i18n.getI18nText("uploader.title") %></title>
 <link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
 <style type="text/css">
 .upload-icon {
     background: url('../images/file_add.png') no-repeat 0 0 !important;
+}
+label.grey div#tips{
+	padding: 10px 20px;
+	color: 'gray';
 }
 </style>
 <script type="text/javascript" src="../jslib/ext-all.js"></script>
@@ -35,7 +39,7 @@ Ext.onReady(function(){
             frame: true,
             floating: true,
             draggable: true,
-            title: 'File Uploader',
+            title: '<%= i18n.getI18nText("uploader.title") %>',
             bodyPadding: '10 10 0',
 
             defaults: {
@@ -83,30 +87,34 @@ Ext.onReady(function(){
                 id: 'filePath',
                 name: 'filePath',
                 value: ''
-            }],
+            },{
+            	xtype: 'label',
+            	cls: 'grey',
+            	html: '<div id="tips" style="color: gray;"><%= i18n.getI18nText("uploader.upload.tips") %></div>'
+    		}],
 
             buttons: [{
-                text: 'Save',
+                text: '<%= i18n.getI18nText("common.button.upload") %>',
                 handler: function(){
                     var form = this.up('form').getForm();
                     Ext.getCmp("filePath").setValue(Ext.getCmp("form-file").getValue());
                     if(form.isValid()){
                         form.submit({
                             url: './uploadFiles.action',
-                            waitMsg: 'Uploading your photo...',
+                            waitMsg: '<%= i18n.getI18nText("uploader.msg.waiting") %>',
                             success: function(fp, o) {
                                 console.log(o);
-                                msg('Success', 'Processed file "' + o.result.file + '" on the server');
+                                msg('<%= i18n.getI18nText("common.dialog.title") %>', o.result.msg);
                             },
                             failure: function(fp, o){
                             	console.log(o);
-                            	msg('Failed', 'Processed file "' + o.result.file + '" on the server');
+                            	msg('<%= i18n.getI18nText("common.dialog.title") %>', o.result.msg);
                             }
                         });
                     }
                 }
             },{
-                text: 'Reset',
+                text: '<%= i18n.getI18nText("common.button.reset") %>',
                 handler: function() {
                     this.up('form').getForm().reset();
                 }
@@ -119,6 +127,5 @@ Ext.onReady(function(){
 </script>
 </head>
 <body>
-
 </body>
 </html>

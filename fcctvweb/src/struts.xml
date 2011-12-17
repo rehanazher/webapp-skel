@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <constant name="struts.objectFactory" value="spring" />
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <constant name="struts.objectFactory.spring.autoWire" value="name" />
     <constant name="struts.multipart.parser" value="jakarta" />
@@ -23,7 +23,7 @@
     <!-- Load custom default resource bundles -->
     <constant name="struts.custom.i18n.resources" value="messages," />
 
-    <package name="default" extends="struts-default">
+    <package name="default" extends="json-default">
 
         <global-results>
             <result name="login">login.jsp</result>
@@ -41,7 +41,7 @@
             <result type="redirect">/uploader/</result>
         </action>
         
-        <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login"><result name="ajax"></result></action>
+        <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login"><result type="json" name="ajax"></result></action>
 
     </package>
     
@@ -49,7 +49,7 @@
         <default-interceptor-ref name="fileUploadStack"/>
         
         <action name="uploadFiles" class="jp.co.fcctvweb.actions.upload.UploadAction">
-            <result name="ajax"></result>
+            <result type="json" name="ajax"></result>
         </action>
     </package>
 

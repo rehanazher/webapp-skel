@@ -8,9 +8,10 @@ FccTVApp = new Ext.Application({
 	launch : function() {
 		document.getElementById("loading_mask").style.display = "none";
 		
-		this.viewcache.MainView = new FccTVApp.views.MainView({title : 'FCC TV'});
-		this.viewcache.LoginView = new this.views.LoginView({title: 'FCC TV'});
-		this.viewcache.TvView = new this.views.TvView({title: 'FCC TV'});
+		this.viewcache.MainView = new FccTVApp.views.MainView();
+		this.viewcache.LoginView = new this.views.LoginView();
+		this.viewcache.TvView = new this.views.TvView();
+		this.viewcache.MyVideoView = new this.views.MyVideoView();
 
 		if (loginFlag){
 			this.views.viewport = this.viewcache.MainView;

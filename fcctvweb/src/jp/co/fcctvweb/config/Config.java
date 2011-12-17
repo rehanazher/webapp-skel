@@ -12,6 +12,11 @@ public class Config {
 	public static JsonConfig JSON_CONFIG;
 	private static ResourceBundle configuration = ResourceBundle
 			.getBundle("config");
+	
+	public static final int MY_FILE_TYPE_VIDEO = 1;
+	public static final int MY_FILE_TYPE_DOC = 2;
+	public static final int MY_FILE_TYPE_MUSIC = 3;
+	public static final int MY_FILE_TYPE_PHOTO = 4;
 
 	static {
 		JSON_CONFIG = defaultJsonConfig();

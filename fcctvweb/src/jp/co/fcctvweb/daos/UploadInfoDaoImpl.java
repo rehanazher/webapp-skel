@@ -5,10 +5,14 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import jp.co.fcctvweb.actions.condition.MyFileCondition;
+import jp.co.fcctvweb.actions.condition.Pagination;
 import jp.co.fcctvweb.po.UploadInfo;
+import jp.co.fcctvweb.utils.Validators;
 import jp.co.fcctvweb.utils.dao.BasicDao;
 import jp.co.fcctvweb.utils.dao.MultiRowMapper;
 import jp.co.fcctvweb.utils.dao.SingleRowMapper;
+import jp.co.fcctvweb.utils.dao.SqlHandler;
 
 public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 		UploadInfoDao {
@@ -16,9 +20,10 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 
 	private static final String SQL_INSERT_UPLOADINFO = "INSERT INTO upload_info(id,name,file_name,"
 			+ "type,creation_time,favorite,size,ext_name) "
-			+ "VALUES(?,?,?,?,?,?,?,?)";
+			+ "VALUES(?,?,?,?,now(),?,?,?)";
 
 	private static final String SQL_DELETE_UPLOADINFO = "DELETE FROM upload_info WHERE id=?";
+	private static final String SQL_DELETE_BY_TYPE_AND_FILENAME = "DELETE FROM upload_info WHERE type=? AND file_name=?";
 
 	private static final String SQL_FIND_UPLOADINFO_BY_ID = "SELECT * FROM upload_info WHERE id=?";
 
@@ -32,7 +37,7 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 			uploadInfo.setType(rs.getInt("type"));
 			uploadInfo.setCreationTime(rs.getTimestamp("creation_time"));
 			uploadInfo.setFavorite(rs.getInt("favorite"));
-			uploadInfo.setSize(rs.getInt("size"));
+			uploadInfo.setSize(rs.getLong("size"));
 			uploadInfo.setExtName(rs.getString("ext_name"));
 			return uploadInfo;
 		}
@@ -49,6 +54,26 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 		return query(SQL_FIND_ALL, new UploadInfoMultiRowMapper());
 	}
 
+	public List<UploadInfo> findByCondition(MyFileCondition condition) {
+		SqlHandler handler = new SqlHandler(SQL_FIND_ALL, false);
+		handler.and("type = ?", condition.getType(), true);
+		handler.and("favorite = ?", condition.getFavorite(),
+				condition.getFavorite() != -1);
+		handler.and("name LIKE ?", "%" + condition.getKey() + "%",
+				!Validators.isEmpty(condition.getKey()));
+		handler.and("file_name ?", "%" + condition.getKey() + "%",
+				!Validators.isEmpty(condition.getKey()));
+
+		String pagingSql = "";
+		if (condition instanceof Pagination) {
+			pagingSql = " LIMIT " + condition.getStart() + ","
+					+ condition.getLimit();
+		}
+
+		return query(handler.getSQL() + " ORDER BY creation_time DESC " + pagingSql,
+				handler.getArgs(), new UploadInfoMultiRowMapper());
+	}
+
 	public String insert(UploadInfo uploadInfo) {
 		uploadInfo.setId(createId());
 		if (update(
@@ -56,12 +81,10 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 				new Object[] { uploadInfo.getId(), uploadInfo.getName(),
 						uploadInfo.getFileName(),
 						new Integer(uploadInfo.getType()),
-						uploadInfo.getCreationTime(),
 						new Integer(uploadInfo.getFavorite()),
-						new Integer(uploadInfo.getSize()),
-						uploadInfo.getExtName() }, new int[] { Types.CHAR,
-						Types.VARCHAR, Types.VARCHAR, Types.INTEGER,
-						Types.TIMESTAMP, Types.INTEGER, Types.INTEGER,
+						new Long(uploadInfo.getSize()), uploadInfo.getExtName() },
+				new int[] { Types.CHAR, Types.VARCHAR, Types.VARCHAR,
+						Types.INTEGER, Types.INTEGER, Types.INTEGER,
 						Types.VARCHAR }) > 0) {
 			return uploadInfo.getId();
 		} else {
@@ -75,6 +98,11 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 		} else {
 			return null;
 		}
+	}
+
+	public boolean deleteByTypeAndFileName(int type, String fileName) {
+		return (update(SQL_DELETE_BY_TYPE_AND_FILENAME, new Object[] { type,
+				fileName }) > 0);
 	}
 
 	public UploadInfo findById(String uploadInfoId) {
