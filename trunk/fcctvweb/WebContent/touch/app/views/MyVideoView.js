@@ -15,8 +15,6 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 		        ptype: 'listpaging',
 		        autoPaging: false,
 		        loadMoreText: bundle.getText('common.paging.load.more')
-		    },{
-		    	ptype: 'pulltorefresh'
 		    }],
 		    itemTpl: new Ext.XTemplate(
 		    		'<img class="querylist-img" src="{posterUrl}"/>',
