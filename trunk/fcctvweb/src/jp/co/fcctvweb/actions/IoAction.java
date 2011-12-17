@@ -40,15 +40,25 @@ public class IoAction extends ActionSupport {
 				inputStream = new FileInputStream(Config.getHddThumbsDir() + fileId + ".jpg");
 				return "jpeg";
 			} else if ("video".equals(type)) {
-//				response.setContentType("video/mp4");
-//				response.setHeader("Accept-Ranges", "bytes");
-//				response.setHeader("Connection", "Keep-Alive");
-//				response.setHeader("Content-Length", "" + f.length());
-
+				f = getFile(type, Config.getUploadVideoDir() + fileId);
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return "video";
 			} else if ("doc".equals(type)) {
-
+				f = getFile(type, Config.getUploadDocDir() + fileId);
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return "doc";
+			}else if ("docx".equals(type)){
+				f = getFile(type, Config.getUploadDocDir() + fileId);
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return type;
 			} else if ("pdf".equals(type)) {
-
+				f = getFile(type, Config.getUploadDocDir() + fileId);
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return "pdf";
 			} else if ("photo".equals(type)) {
 
 			} else if ("music".equals(type)) {

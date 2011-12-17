@@ -12,6 +12,7 @@ FccTVApp = new Ext.Application({
 		this.viewcache.LoginView = new this.views.LoginView();
 		this.viewcache.TvView = new this.views.TvView();
 		this.viewcache.MyVideoView = new this.views.MyVideoView();
+		this.viewcache.MyDocView = new this.views.MyDocView();
 
 		if (loginFlag){
 			this.views.viewport = this.viewcache.MainView;

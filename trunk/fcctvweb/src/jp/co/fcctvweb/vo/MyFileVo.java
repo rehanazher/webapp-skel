@@ -4,6 +4,7 @@ import java.util.Date;
 
 import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.po.UploadInfo;
+import jp.co.fcctvweb.utils.DateUtils;
 
 public class MyFileVo {
 
@@ -17,6 +18,7 @@ public class MyFileVo {
 	private Date creationTime;
 	private String posterUrl;
 	private String videoUrl;
+	private String fullCreationTime;
 	
 	public void setFileInfo(UploadInfo info){
 		this.setId(info.getId());
@@ -27,12 +29,20 @@ public class MyFileVo {
 		this.setLength(info.getSize());
 		this.setExtName(info.getExtName());
 		this.setCreationTime(info.getCreationTime());
+		this.setFullCreationTime(DateUtils.date2StringBySecond(info.getCreationTime()));
 		switch(this.type){
 		case Config.MY_FILE_TYPE_VIDEO:
-			this.setPosterUrl("");
-			this.setVideoUrl("");
+			this.setPosterUrl("./images/video.png");
+			this.setVideoUrl("./watch.action?type=video&fileId=" + info.getFileName());
 			break;
 		case Config.MY_FILE_TYPE_DOC:
+			if ("doc".equalsIgnoreCase(this.extName) || "docx".equalsIgnoreCase(this.extName)){
+				this.setPosterUrl("./images/word.png");
+				this.setVideoUrl("./watch.action?type=" + this.extName + "&fileId=" + info.getFileName());
+			}else if ("pdf".equalsIgnoreCase(this.extName)){
+				this.setPosterUrl("./images/pdf.png");
+				this.setVideoUrl("./watch.action?type=pdf&fileId=" + info.getFileName());
+			}
 			break;
 		}
 	}
@@ -115,6 +125,14 @@ public class MyFileVo {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public String getFullCreationTime() {
+		return fullCreationTime;
+	}
+
+	public void setFullCreationTime(String fullCreationTime) {
+		this.fullCreationTime = fullCreationTime;
 	}
 
 }

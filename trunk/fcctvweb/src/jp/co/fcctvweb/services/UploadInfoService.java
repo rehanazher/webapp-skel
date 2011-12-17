@@ -14,4 +14,8 @@ public interface UploadInfoService {
 
 	List<MyFileVo> getUploadFilesByCondition(MyFileCondition condition);
 
+	boolean addFavorite(String id);
+
+	boolean removeFavorite(String id);
+
 }

@@ -84,9 +84,13 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/stores/DailyStore.js"></script>
         <script type="text/javascript" src="app/stores/TypeStore.js"></script>
         <script type="text/javascript" src="app/stores/MyVideoStore.js"></script>
+        <script type="text/javascript" src="app/stores/MyDocStore.js"></script>
         
         <!-- frames -->
         <script type="text/javascript" src="app/frames/Player.js"></script>
+        <script type="text/javascript" src="app/frames/MyVideoPlayer.js"></script>
+        <script type="text/javascript" src="app/frames/MyVideoFavoriteList.js"></script>
+        <script type="text/javascript" src="app/frames/MyDocFavoriteList.js"></script>
         <script type="text/javascript" src="app/frames/TodayList.js"></script>
         <script type="text/javascript" src="app/frames/FavoriteList.js"></script>
         <script type="text/javascript" src="app/frames/DailyList.js"></script>
@@ -100,5 +104,6 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/views/LoginView.js"></script>
         <script type="text/javascript" src="app/views/TvView.js"></script>
         <script type="text/javascript" src="app/views/MyVideoView.js"></script>
+        <script type="text/javascript" src="app/views/MyDocView.js"></script>
     </body>
 </html>
