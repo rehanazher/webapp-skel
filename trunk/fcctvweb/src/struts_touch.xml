@@ -18,9 +18,11 @@
         	<result name="video" type="stream">
         		<param name="contentType">video/mp4</param>
                 <param name="inputName">inputStream</param>
-                <param name="bufferSize">2048</param>
-                <param name="allowCaching">true</param>
+                <param name="contentDisposition">filename="play.mp4"</param>
         	</result>
+        	<result name="httpheader" type="httpheader">
+        	</result>
+        	
         	<result name="jpeg" type="stream">
         		<param name="contentType">image/jpeg</param>
                 <param name="inputName">inputStream</param>
@@ -43,6 +45,7 @@
                 <param name="bufferSize">2048</param>
                 <param name="allowCaching">true</param>
         	</result>
+        	<result name="json"></result>
         	<interceptor-ref name="defaultStack"/>
        	</action>
         <action name="thumbs" class="jp.co.fcctvweb.actions.IoAction">
