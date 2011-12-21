@@ -29,7 +29,8 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '    <span>' + bundle.getText('main.desc.upload') +'</span>' +
 	    '</a></li>') 
 	    : '') +
-	    '</ol>',
+	    '</ol>' + 
+	    '<a href="test.pdf" target="_blank">pdf</a>',
 	initComponent : function() {
 		FccTVApp.views.MainView.superclass.initComponent.call(this, arguments);
 	}
