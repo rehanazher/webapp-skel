@@ -63,6 +63,13 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         </script>
     </head>
     <body>
+<!--        <embed src="test.pdf" width="100%" height="100000px" type="application/pdf"/>-->
+<!--<div style="position: fixed; top: 0; left: 0; z-index: 100;">Back Button</div>-->
+<!--<iframe style="position: relative; z-index: 50;" src="test.docx" height="4800"  width="100%">-->
+<!--</iframe>-->
+<!--height="229894px"-->
+    
+    
         <div id="loading_mask">
             <span class="title"></span><span class="logo"></span>
         </div>
@@ -77,7 +84,7 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <!-- models -->
         <script type="text/javascript" src="app/models/QueryListModel.js"></script>
         <script type="text/javascript" src="app/models/MyVideoListModel.js"></script>
-        
+<!--        -->
         <!-- stores -->
         <script type="text/javascript" src="app/stores/DailyListStore.js"></script>
         <script type="text/javascript" src="app/stores/QueryListStore.js"></script>
@@ -105,5 +112,8 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/views/TvView.js"></script>
         <script type="text/javascript" src="app/views/MyVideoView.js"></script>
         <script type="text/javascript" src="app/views/MyDocView.js"></script>
+<script type="text/javascript">
+	//document.getElementById("test").focus();    
+</script>
     </body>
 </html>

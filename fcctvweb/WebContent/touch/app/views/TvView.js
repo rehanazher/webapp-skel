@@ -78,17 +78,12 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		iconCls : 'settings',
 		title : bundle.getText('tab.4'),
 		html : 'Pressed Settings'
-	}, {
+	},{
 		iconCls : 'search',
 		title : bundle.getText('tab.5'),
-		scroll : 'vertical',
-		layout : 'card',
-		items : [
-		         {
-		        	 xtype: 'panel',
-		        	 html: ''
-		         }
-		]
+		scroll : 'both',
+		layout : 'vbox',
+		items : []
 	}],
 	dockedItems : [{
 		xtype : 'toolbar',

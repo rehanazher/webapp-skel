@@ -43,14 +43,20 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.TabPanel, {
 		    	}
 		    }
 		})]
-	}
-//	, {
-//		iconCls : 'favorites',
-//		title : bundle.getText('doc.tab.2'),
-//		layout: 'card',
-//		items : [FccTVApp.frames.MyDocFavorite]
-//	}
-	],
+	}, {
+		iconCls : 'search',
+		title : bundle.getText('doc.tab.2'),
+		layout: 'fit',
+		scroll : 'both',
+		items : [{
+			xtype: 'panel',
+			scroll: 'vertical',
+			height: 4800,
+			width: 100,
+			layout: 'vbox',
+			html : ''
+		}]
+	}],
 	dockedItems : [{
 		xtype : 'toolbar',
 		title : bundle.getText('main.desc.video'),
@@ -140,6 +146,11 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.TabPanel, {
 
 			if (children[1] === newCard){
 				Ext.getCmp('docRefreshBtn').show();
+				
+				// FccTVApp.views.viewport.hide();
+				var openWindow = window.open("");
+				var dom = openWindow.document;
+				dom.write('<iframe style="z-index: 50; border: 0; height: 4800px; width: 100%;" src="./test.pdf" height="4800px" width="100%"></iframe>');
 			}
 			
 			var activeItem = newCard.getActiveItem();
