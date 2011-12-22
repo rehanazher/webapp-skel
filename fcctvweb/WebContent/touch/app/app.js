@@ -8,6 +8,31 @@ FccTVApp = new Ext.Application({
 	launch : function() {
 		document.getElementById("loading_mask").style.display = "none";
 		
+		Ext.History.init();
+	    
+	    Ext.History.on('change', function(token) {
+	    	console.log(token);
+//	        if (token) {
+//	            refreshPage(token);
+//	            tree = Ext.getCmp('navigatorTree');
+//	            item = tree.getRootNode().findChildBy(function(n) {
+//	                return token === n.raw.key;
+//	            }, this, true);
+//	            tree.getSelectionModel().select(item);
+//	        }
+	    });
+	    
+	    directPage = function(key){
+	    	refreshPage(key);
+	        
+	    	// history
+	        newToken = key;
+	        oldToken = Ext.History.getToken();
+	        if (oldToken === null || oldToken.search(newToken) === -1) {
+	            Ext.History.add(newToken);
+	        }
+	    };
+		
 		this.viewcache.MainView = new FccTVApp.views.MainView();
 		this.viewcache.LoginView = new this.views.LoginView();
 		this.viewcache.TvView = new this.views.TvView();
