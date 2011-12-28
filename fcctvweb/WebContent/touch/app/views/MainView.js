@@ -3,7 +3,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	hidden: true,
 	layout: 'fit',
 	html: '<ol id="grid">'+
-		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.TvView; FccTVApp.views.viewport.show();">' +
+		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.TvView; FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + \'nav\');FccTVApp.views.viewport.show();">' +
 	    '<img src="./images/tv.png" alt="Video" height="72" width="72">' +
 	    '<span>' + bundle.getText('main.desc.tv') +'</span>' +
 	    '</a></li>' +
