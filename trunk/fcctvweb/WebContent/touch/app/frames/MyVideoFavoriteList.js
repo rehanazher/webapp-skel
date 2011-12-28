@@ -41,8 +41,30 @@ FccTVApp.frames.MyVideoFavorite = new Ext.List({
     		if (tab.query("> ")[2].getActiveItem()){
     			tab.query("> ")[2].getActiveItem().destroy();
     		}
-    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
-    		tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+    		if (Ext.is.Phone){
+    			FccTVApp.loadMask.show();
+    			Ext.Ajax.request({
+    				url: './prepareVideo.action',
+    				params: {
+    					type: 'video',
+    					fileId: record.get('fileName')
+    				},
+    				success: function(response, opts) {
+					  var obj = Ext.decode(response.responseText);
+					  FccTVApp.loadMask.hide();
+					  FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record, 'phoneVideoUrl': obj.msg});
+		    		  tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+		    		  FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref + 'player');
+					},
+					failure: function(response, opts) {
+					  FccTVApp.loadMask.hide();
+					} 
+				});
+    		}else {
+	    		FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref + 'player');
+	    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
+	    		tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+    		}
     	}
     }
 });

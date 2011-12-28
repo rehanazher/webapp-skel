@@ -1,5 +1,6 @@
 FccTVApp.views.MyDocView = Ext.extend(Ext.TabPanel, {
 	showAnimation : 'fade',
+	navigatorPref : 'doc',
 	//html: 'Test Page',
 	title : bundle.getText("doc.title"),
 	fullscreen : true,

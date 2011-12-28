@@ -1,5 +1,7 @@
 FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 	showAnimation : 'fade',
+	id : 'videoview',
+	navigatorPref : 'video',
 	//html: 'Test Page',
 	title : bundle.getText("video.title"),
 	fullscreen : true,
@@ -37,8 +39,30 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 		    		if (tab.query("> ")[2].getActiveItem()){
 		    			tab.query("> ")[2].getActiveItem().destroy();
 		    		}
-		    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
-		    		tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+		    		if (Ext.is.Phone){
+		    			FccTVApp.loadMask.show();
+		    			Ext.Ajax.request({
+		    				url: './prepareVideo.action',
+		    				params: {
+		    					type: 'video',
+		    					fileId: record.get('fileName')
+		    				},
+		    				success: function(response, opts) {
+							  var obj = Ext.decode(response.responseText);
+							  FccTVApp.loadMask.hide();
+							  FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record, 'phoneVideoUrl': obj.msg});
+				    		  tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+				    		  FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref + 'player');
+							},
+							failure: function(response, opts) {
+							  FccTVApp.loadMask.hide();
+							} 
+						});
+		    		}else {
+			    		FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref + 'player');
+			    		FccTVApp.player = new FccTVApp.frames.MyVideoPlayer({'record': record});
+			    		tab.query("> ")[2].setActiveItem(FccTVApp.player, 'fade');
+		    		}
 		    	}
 		    }
 		})]
@@ -155,6 +179,8 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 				var selModel = activeItem.getSelectionModel();
 				Ext.defer(selModel.deselectAll, 500, selModel);
 			}
+			
+			FccTVApp.addHistory(this.retrieveNav());
 		},
 		beforecardswitch : function ( tabPanel, newCard, oldCard, index, animated ){
 			var children = tabPanel.query('> ');
@@ -172,5 +198,15 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 				Ext.getCmp('videoRefreshBtn').hide();
 			}
 		} 
+	},
+	retrieveNav : function(){
+		var children = this.query('> ');
+		if (children[0] == this.getActiveItem()){
+			return FccTVApp.viewcache.MyVideoView.navigatorPref;
+		}else if (children[1] == this.getActiveItem()){
+			return FccTVApp.viewcache.MyVideoView.navigatorPref + "/favorite";
+		}else if (children[2] == this.getActiveItem()){
+			return FccTVApp.viewcache.MyVideoView.navigatorPref + "/player"
+		}
 	}
 });

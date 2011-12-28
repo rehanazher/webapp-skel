@@ -36,53 +36,12 @@ public class IoAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		System.out.println(request);
 
-		boolean byteRange = !Validators.isEmpty(request.getHeader("range"));
 		try {
 			// FileInputStream is = null;
 			File f = null;
 			if ("tv".equals(type)) {
 				f = getFile(type, Config.getHddMp4Dir() + fileId + ".mp4");
 				inputStream = new FileInputStream(f);
-				 response.setHeader("Content-Length", "" + f.length());
-				 response.setHeader("Accept-Ranges", "bytes");
-				 response.setHeader("Connection", "Keep-Alive");
-
-				response.setHeader("Last-Modified",
-						new Date(f.lastModified()).toGMTString());
-				try {
-					MessageDigest md5 = MessageDigest.getInstance("MD5");
-					BASE64Encoder base64en = new BASE64Encoder();
-					String md5String = base64en.encode(md5.digest(request
-							.getRequestURI().getBytes()));
-					response.setHeader("Etag", "\\W" + md5String + f.length());
-				} catch (NoSuchAlgorithmException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				// response.setHeader("buffer", "")
-				System.out.println(request.getHeader("range"));
-				if (byteRange) {
-					response.setContentType("video/mp4");
-//					response.setContentType("multipart/byteranges; boundary=THIS_STRING_SEPARATES");
-//
-//					long start = 0;
-//					long end = 0;
-					response.setHeader("Content-Range", "bytes 0-" + (f.length() - 1)  + "/" + f.length());
-//					response.flushBuffer();
-//					OutputStream os = response.getOutputStream();
-//					byte[] b = new byte[2];
-//					if (inputStream.read(b) != -1) {
-//						os.write(b);
-//						os.flush();
-//					}
-//					inputStream.close();
-//					os.close();
-					response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
-//					response.flushBuffer();
-					return "httpheader";
-				}
-				// header('HTTP/1.1 416 Requested Range Not Satisfiable');
-				// header("Content-Range: bytes $start-$end/$size");
 				return "video";
 			} else if ("pic".equals(type)) {
 				// f = getFile(type, Config.getHddThumbsDir() + fileId +

@@ -14,6 +14,8 @@
         <action name="addMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addMyFileFavorite"><result type="json" name="json"></result></action>
         <action name="removeMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeMyFileFavorite"><result type="json" name="json"></result></action>
         
+        <action name="prepareVideo" class="jp.co.fcctvweb.actions.client.PhoneVideoAction"><result type="json" name="json"></result></action>
+        
         <action name="watch" class="jp.co.fcctvweb.actions.IoAction">
         	<result name="video" type="stream">
         		<param name="contentType">video/mp4</param>
