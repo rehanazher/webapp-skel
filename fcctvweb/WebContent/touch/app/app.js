@@ -63,12 +63,6 @@ FccTVApp.dispatch = function(token){
 		}
 		FccTVApp.views.viewport = this.viewcache.LoginView;
 		FccTVApp.views.viewport.show();
-	}else if (parts[0] == "doc"){
-		if (FccTVApp.views.viewport){
-			FccTVApp.views.viewport.hide();
-		}
-		FccTVApp.views.viewport = this.viewcache.MyDocView;
-		FccTVApp.views.viewport.show();
 	}else if (parts[0] == "tv"){
 		if (FccTVApp.views.viewport != this.viewcache.TvView){
 			if (FccTVApp.views.viewport){
@@ -189,9 +183,34 @@ FccTVApp.dispatch = function(token){
 		}
 
 	}else if (parts[0] == "video"){
-		FccTVApp.views.viewport.hide();
-		FccTVApp.views.viewport = this.viewcache.MyVideoView;
-		FccTVApp.views.viewport.show();
+		if (FccTVApp.views.viewport != this.viewcache.MyVideoView){
+			if (FccTVApp.views.viewport){
+				FccTVApp.views.viewport.hide();
+			}
+			FccTVApp.views.viewport = this.viewcache.MyVideoView;
+			FccTVApp.views.viewport.show();
+		}
+		
+		var videoview = Ext.getCmp('videoview');
+		
+		if (parts[1]){
+			if (parts[1] == "favorite"){
+				videoview.setActiveItem(1);
+			}else if (parts[1] == "player"){
+				videoview.setActiveItem(2);
+			}
+		}else {
+			videoview.setActiveItem(0);
+		}
+	}else if (parts[0] == "doc"){
+		if (FccTVApp.views.viewport != this.viewcache.MyDocView){
+			if (FccTVApp.views.viewport){
+				FccTVApp.views.viewport.hide();
+			}
+			FccTVApp.views.viewport = this.viewcache.MyDocView;
+			FccTVApp.views.viewport.show();
+		}
+
 	}else if (parts[0] == "music"){
 		
 	}else if (parts[0] == "photo"){

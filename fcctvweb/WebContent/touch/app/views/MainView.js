@@ -7,7 +7,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '<img src="./images/tv.png" alt="Video" height="72" width="72">' +
 	    '<span>' + bundle.getText('main.desc.tv') +'</span>' +
 	    '</a></li>' +
-        '<li><a id="video" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyVideoView; FccTVApp.views.viewport.show();">' +
+        '<li><a id="video" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyVideoView; FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref); FccTVApp.views.viewport.show();">' +
         '<img src="./images/video.png" alt="Video" height="72" width="72">' +
         '<span>' + bundle.getText('main.desc.video') +'</span>' +
 	    '</a></li>' +
@@ -29,8 +29,7 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	    '    <span>' + bundle.getText('main.desc.upload') +'</span>' +
 	    '</a></li>') 
 	    : '') +
-	    '</ol>' + 
-	    '<a href="test.pdf" target="_blank">pdf</a>',
+	    '</ol>',
 	initComponent : function() {
 		FccTVApp.views.MainView.superclass.initComponent.call(this, arguments);
 	}

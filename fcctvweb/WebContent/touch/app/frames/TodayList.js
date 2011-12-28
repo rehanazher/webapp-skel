@@ -38,8 +38,30 @@ FccTVApp.frames.Today = new Ext.List({
     		if (tab.query("> ")[4].getActiveItem()){
     			tab.query("> ")[4].getActiveItem().destroy();
     		}
-    		FccTVApp.player = new FccTVApp.frames.Player({'record': record});
-    		tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
+    		if (Ext.is.Phone){
+    			FccTVApp.loadMask.show();
+    			Ext.Ajax.request({
+    				url: './prepareVideo.action',
+    				params: {
+    					type: 'tv',
+    					fileId: record.get('gtvid') + '.mp4'
+    				},
+    				success: function(response, opts) {
+					  var obj = Ext.decode(response.responseText);
+					  FccTVApp.loadMask.hide();
+					  FccTVApp.player = new FccTVApp.frames.Player({'record': record, 'phoneVideoUrl': obj.msg});
+		    		  tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
+		    		  FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'player');
+					},
+					failure: function(response, opts) {
+					  FccTVApp.loadMask.hide();
+					} 
+				});
+    		}else {
+	    		FccTVApp.player = new FccTVApp.frames.Player({'record': record});
+	    		tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
+	    		FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'player');
+    		}
     	}
     }
 });

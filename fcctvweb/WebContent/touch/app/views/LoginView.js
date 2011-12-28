@@ -51,11 +51,11 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 			}
 		}]
 	}],
-//	listeners : {
-//		beforesubmit : function(form, data, options) {
-//			this.customSubmitForm();
-//		}
-//	},
+	listeners : {
+		submit : function(form, data, options) {
+			this.customSubmitForm();
+		}
+	},
 	customSubmitForm: function(){
 //		var loadMask = new Ext.LoadMask(Ext.getBody(), {
 //			msg : bundle.getText('common.mask.loading')
