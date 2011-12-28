@@ -1,4 +1,5 @@
 FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
+	navigatorPref : 'tv/',
 	showAnimation : 'fade',
 	//html: 'Test Page',
 	title : bundle.getText("app.name.mobile"),
@@ -8,6 +9,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		iconCls : 'bookmarks',
 		title : bundle.getText('tab.1'),
 		layout : 'card',
+		nav: 'nav',
 		items : [new Ext.NestedList({
 			id : 'navigatorPanel',
 			store : FccTVApp.stores.NavigationStore,
@@ -22,7 +24,8 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 					var recordNode = list.recordNode;
 					// var parentNode = recordNode ? recordNode.parentNode : null
 					
-					console.log(record);
+					FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + "nav/" + record.get('nav'));
+					
 					var backButton = Ext.getCmp("backButton");
 					if(!record.get("leaf")) {
 						if(recordNode.isRoot) {
@@ -68,18 +71,22 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		title : bundle.getText('tab.2'),
 		scroll : 'vertical',
 		layout: 'card',
+		nav: 'today',
 		items : [FccTVApp.frames.Today]
 	}, {
 		iconCls : 'favorites',
 		title : bundle.getText('tab.3'),
 		layout: 'card',
+		nav: 'favorite',
 		items : [FccTVApp.frames.Favorite]
 	}, {
 		iconCls : 'settings',
+		nav: 'setting',
 		title : bundle.getText('tab.4'),
 		html : 'Pressed Settings'
 	},{
 		iconCls : 'search',
+		nav: 'player',
 		title : bundle.getText('tab.5'),
 		scroll : 'both',
 		layout : 'vbox',
@@ -99,54 +106,61 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 				var activeItem = navPnl.getActiveItem();
 				var recordNode = activeItem.recordNode;
 				var parentNode = recordNode.parentNode;
-
+				
 				// navigation
 				if(this.up('tabpanel').getActiveItem().getActiveItem() != navPnl) {
-					if (FccTVApp.prevCard != navPnl){
+					if (FccTVApp.prevCard === navPnl){
 						this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.prevCard, {
 							type : 'slide',
 							reverse : true
 						});
-						FccTVApp.prevCard = navPnl;
-						backButton.setText(FccTVApp.prevTitle);
-					}else{
-						this.up('tabpanel').getActiveItem().setActiveItem(navPnl, {
+						// backButton.setText(FccTVApp.prevTitle);
+						
+						if (recordNode.isRoot){
+							backButton.setText(bundle.getText("main.title"));
+							FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + "nav");
+						} else {
+							FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + "nav/" + recordNode.attributes.record.data.nav);
+							backButton.setText(recordNode.attributes.record.get("text"));
+						}
+					}else {
+						
+						var prevCard = FccTVApp.prevCard;
+						FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + prevCard.nav);
+						// nav 1:1
+						this.up('tabpanel').getActiveItem().setActiveItem(prevCard, {
 							type : 'slide',
 							reverse : true
 						});
+						backButton.setText(prevCard.parentTitle);
 						
-						console.log(parentNode);
-
-						if(parentNode) {
-							if(parentNode.isRoot) {
-								backButton.setText(parentNode.attributes.record.get("text"));
-							} else {
-								backButton.setText(recordNode.attributes.record.get("text"));
-							}
-						} else {
-							backButton.setText(bundle.getText("main.title"));
-						}
+						FccTVApp.prevCard = navPnl;
 					}
-					
 				} else {
-					navPnl.onBackTap();
-					if(parentNode) {
-						if(parentNode.isRoot) {
-							backButton.setText(bundle.getText("main.title"));
-						} else {
-							backButton.setText(parentNode.attributes.record.get("text"));
-						}
-					} else {
-						backButton.setText(bundle.getText("main.title"));
-					}
 					
 					if (recordNode.isRoot) {
 						if (FccTVApp.player){
 							FccTVApp.player.destroy();
 						}
 						FccTVApp.views.viewport.hide();
+						FccTVApp.addHistory("main");
 						FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
 						FccTVApp.views.viewport.show();
+					}else{
+						var list = navPnl.getSubList(parentNode);
+						list = navPnl.add(list);
+						navPnl.setActiveItem(list, {
+							type : 'slide',
+							reverse : true
+						});
+
+						if(parentNode.isRoot) {
+							backButton.setText(bundle.getText("main.title"));
+							FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + "nav");
+						} else {
+							FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + "nav/" + parentNode.attributes.record.data.nav);
+							backButton.setText(parentNode.attributes.record.get("text"));
+						}
 					}
 				}
 				
@@ -230,6 +244,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 	},
 	listeners: {
 		cardswitch : function( tabPanel, newCard, oldCard, index, animated ){
+			
 			var children = tabPanel.query('> ');
 			if (children[0] === newCard){
 				Ext.getCmp("backButton").show();
@@ -245,15 +260,57 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 				var selModel = activeItem.getSelectionModel();
 				Ext.defer(selModel.deselectAll, 500, selModel);
 			}
+			FccTVApp.addHistory(this.retrieveNav());
 		},
 		beforecardswitch : function ( tabPanel, newCard, oldCard, index, animated ){
 			var children = tabPanel.query('> ');
-			if (tabPanel.child('') !== newCard){
+			if (children[0] !== newCard){
 				Ext.getCmp("backButton").hide();
 			}
 			if (!(children[1] === newCard || children[2] === newCard)){
 				Ext.getCmp('refreshBtn').hide();
 			}
-		} 
+		}
+	},
+	initComponent : function() {
+		FccTVApp.views.TvView.superclass.initComponent.call(this, arguments);
+	},
+	retrieveNav : function(){
+		var children = this.query('> ');
+		if (children[0] == this.getActiveItem()){
+			var navPnl = Ext.getCmp('navigatorPanel');
+			var listActItem = children[0].getActiveItem(); 
+			if ( listActItem === navPnl){
+				var activeItem = navPnl.getActiveItem();
+				var recordNode = activeItem.recordNode;
+				if (recordNode.isRoot){
+					return FccTVApp.viewcache.TvView.navigatorPref + 'nav';
+				}else{
+					return FccTVApp.viewcache.TvView.navigatorPref + 'nav/' + recordNode.attributes.record.get('nav');
+				}
+			}else{
+				if (listActItem === FccTVApp.frames.DailyList){
+					return FccTVApp.viewcache.TvView.navigatorPref + 'nav/1';
+				}else if (listActItem === FccTVApp.frames.QueryList){
+					if (FccTVApp.frames.QueryList.store.proxy.extraParams.date){
+						return FccTVApp.viewcache.TvView.navigatorPref + 'daily/' + FccTVApp.frames.QueryList.store.proxy.extraParams.date;
+					}else if (FccTVApp.frames.QueryList.store.proxy.extraParams.type){
+						var activeNode = navPnl.store.getRootNode().findChildBy(function(n){
+							return n.attributes.record.get('key') === FccTVApp.frames.QueryList.store.proxy.extraParams.type;
+						}, true, true);
+						return FccTVApp.viewcache.TvView.navigatorPref + 'nav/' + activeNode.attributes.record.get('nav');
+					}
+				}
+			}
+		}else if (children[4] == this.getActiveItem()){
+			return FccTVApp.viewcache.TvView.navigatorPref + 'player';
+		}else if (children[1] == this.getActiveItem()){
+			return FccTVApp.viewcache.TvView.navigatorPref + 'today';
+		}else if (children[2] == this.getActiveItem()){
+			return FccTVApp.viewcache.TvView.navigatorPref + 'favorite';
+		}else if (children[3] == this.getActiveItem()){
+			return FccTVApp.viewcache.TvView.navigatorPref + 'setting';
+		}
 	}
+
 });

@@ -1,5 +1,7 @@
 FccTVApp.frames.DailyList = new Ext.List({
 	fullSreen : true,
+	nav: 'nav/1',
+	parentTitle: bundle.getText('menu.1'),
 	itemTpl : '{value}',
 	grouped : true,
 	store : FccTVApp.stores.DailyListStore,
@@ -7,7 +9,6 @@ FccTVApp.frames.DailyList = new Ext.List({
 		itemtap: function(list, index, el, e){
 			var record = list.getStore().getAt(index);
 			var date = record.get('date');
-			console.log(record);
 			FccTVApp.stores.DailyStore.setProxy({
 				type: 'ajax',
 				url: './queryVideo.action',
@@ -24,7 +25,7 @@ FccTVApp.frames.DailyList = new Ext.List({
 			var backBtn = Ext.getCmp("backButton");
 			backBtn.setText(record.get('value'));
 			this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
-			
+			FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'daily/' + date);
 		}
 	}
 });

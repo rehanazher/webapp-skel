@@ -27,6 +27,8 @@ FccTVApp.frames.QueryList = new Ext.List({
     		}
     		FccTVApp.player = new FccTVApp.frames.Player({'record': record});
     		tab.query("> ")[4].setActiveItem(FccTVApp.player, 'fade');
+    		
+    		FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'player');
     	}
     }
 });
