@@ -64,7 +64,7 @@
         
         
         <action name="queryMyFile" class="jp.co.fcctvweb.actions.QueryMyFileAction" method="query" ><result type="json" name="json"></result></action>
-        
+        <action name="retrieveDocTree" class="jp.co.fcctvweb.actions.MyDocAction" method="retrieveDocTree" ><result type="json" name="json"></result></action>
 <!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->
     </package>
 </struts>

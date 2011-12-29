@@ -1,5 +1,6 @@
 package jp.co.fcctvweb.services;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,14 +34,9 @@ public class MyDocServiceImpl implements MyDocService {
 	}
 
 	public MyDocNode retrieveDocTree() {
-		Map<Integer, FakeFolder> folderMap = getFolderMap();
 		List<FakeFile> fileList = fileDao.findAll();
-
-		Map<Integer, FakeFile> folderFileMap = new HashMap<Integer, FakeFile>();
-		for (FakeFile f : fileList) {
-			folderFileMap.put(f.getFolderId(), f);
-		}
-
+		List<FakeFolder> folderList = folderDao.findAll();
+		
 		List<FakeFolder> rootList = folderDao.findByParentId(0);
 		if (rootList.isEmpty()) {
 			FakeFolder r = new FakeFolder();
@@ -52,13 +48,31 @@ public class MyDocServiceImpl implements MyDocService {
 		}
 
 		MyDocNode root = new MyDocNode(rootList.get(0));
-		for (Entry<Integer, FakeFolder> entry : folderMap.entrySet()) {
-			if (entry.getValue().getId() == root.getKey()) {
-				
+		root.setRoot(true);
+		subListFilter(root, folderList, fileList);
+		return root;
+	}
+	
+	private void subListFilter(MyDocNode node, List<FakeFolder> folderList, List<FakeFile> fileList){
+		FakeFolder refFolder = null;
+		for (FakeFolder f : folderList){
+			if (f.getId() == node.getKey()){
+				refFolder = f;
+			}
+			if (f.getParentId() == node.getKey()){
+				MyDocNode child = new MyDocNode(f);
+				node.addChild(child);
+				subListFilter(child, folderList, fileList);
 			}
 		}
-
-		return null;
+		
+		for (FakeFile f : fileList){
+			if (f.getFolderId() == node.getKey()){
+				node.addChild(new MyDocNode(f, refFolder));
+			}
+		}
+		
+		Collections.sort(node.getChildren(), node);
 	}
 
 	public Map<Integer, FakeFolder> getFolderMap() {
