@@ -1,13 +1,14 @@
 package jp.co.fcctvweb.vo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.po.FakeFile;
 import jp.co.fcctvweb.po.FakeFolder;
 
-public class MyDocNode {
+public class MyDocNode implements Comparator<MyDocNode> {
 
 	private boolean root = false;
 	private boolean leaf = true;
@@ -17,6 +18,7 @@ public class MyDocNode {
 	private String fileName;
 	private String folderName;
 	private String position;
+	private int parentId;
 	private String type = "folder";
 
 	public MyDocNode() {
@@ -28,14 +30,16 @@ public class MyDocNode {
 		this.name = folder.getFolderName();
 		this.folderName = folder.getFolderName();
 		this.position = folder.getPosition();
+		this.parentId = folder.getParentId();
 	}
 
 	public MyDocNode(FakeFile file, FakeFolder parentFolder) {
 		this.type = "file";
 		this.key = file.getId();
-		this.name = file.getFileName().replaceFirst(
+		this.name = file.getFileName().replace(
 				parentFolder.getPosition() + Config.DOC_NAME_SEP, "");
 		this.fileName = file.getFileName();
+		this.parentId = file.getFolderId();
 		this.leaf = true;
 	}
 
@@ -117,4 +121,24 @@ public class MyDocNode {
 	public void setKey(int key) {
 		this.key = key;
 	}
+
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
+	@Override
+	public int compare(MyDocNode o1, MyDocNode o2) {
+		if (o1.getType() == "folder" && o2.getType() == "file") {
+			return -1;
+		} else if (o1.getType() == "file" && o2.getType() == "folder") {
+			return 1;
+		} else {
+			return o1.getName().compareToIgnoreCase(o2.getName());
+		}
+	}
+
 }

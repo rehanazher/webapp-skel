@@ -664,7 +664,6 @@ public class DaoCodeUtils {
 	public static void main(String[] args) {
 		DaoCodeUtils builder = new DaoCodeUtils("file_tbl", "FakeFile");
 		builder.printCode();
-		
 //		try {
 //			BufferedReader br = new BufferedReader(new FileReader("e:/xiaoshuo.txt"));
 //			String line = br.readLine();
