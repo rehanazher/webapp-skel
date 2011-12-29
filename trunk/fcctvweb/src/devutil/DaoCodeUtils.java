@@ -1,5 +1,9 @@
 package devutil;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -658,8 +662,24 @@ public class DaoCodeUtils {
 	}
 
 	public static void main(String[] args) {
-		DaoCodeUtils builder = new DaoCodeUtils("upload_info", "UploadInfo");
+		DaoCodeUtils builder = new DaoCodeUtils("file_tbl", "FakeFile");
 		builder.printCode();
+		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader("e:/xiaoshuo.txt"));
+//			String line = br.readLine();
+//			//while(line != null){
+//				System.out.println(line);
+////				line = br.readLine();
+////			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 	}
 
 }
