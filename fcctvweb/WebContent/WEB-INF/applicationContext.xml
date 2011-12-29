@@ -162,6 +162,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="uploadInfoService" class="jp.co.fcctvweb.services.UploadInfoServiceImpl" >
 		<property name="uploadInfoDao" ref="uploadInfoDao" />
 	</bean>
+    <bean id="myDocService" class="jp.co.fcctvweb.services.MyDocServiceImpl" >
+        <property name="fileDao" ref="fileDao" />
+        <property name="folderDao" ref="folderDao" />
+    </bean>
     
 
 	<!-- Daos -->
@@ -178,6 +182,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="uploadInfoDao" class="jp.co.fcctvweb.daos.UploadInfoDaoImpl">
 		<property name="dataSource" ref="c3p0DS" />
 	</bean>
+    <bean id="fileDao" class="jp.co.fcctvweb.daos.FileDaoImpl">
+        <property name="dataSource" ref="c3p0DS" />
+    </bean>
+    <bean id="folderDao" class="jp.co.fcctvweb.daos.FolderDaoImpl">
+        <property name="dataSource" ref="c3p0DS" />
+    </bean>
 	
 </beans>
 
