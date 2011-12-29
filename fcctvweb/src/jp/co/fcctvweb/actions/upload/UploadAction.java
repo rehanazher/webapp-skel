@@ -8,7 +8,9 @@ import java.io.IOException;
 
 import jp.co.fcctvweb.actions.BasicJsonAction;
 import jp.co.fcctvweb.config.Config;
+import jp.co.fcctvweb.po.FakeFile;
 import jp.co.fcctvweb.po.UploadInfo;
+import jp.co.fcctvweb.services.MyDocService;
 import jp.co.fcctvweb.services.UploadInfoService;
 import jp.co.fcctvweb.utils.Validators;
 
@@ -20,8 +22,9 @@ public class UploadAction extends BasicJsonAction {
 	private String filePath;
 	private int type;
 	private File uploadedFile;
-	
+
 	private UploadInfoService uploadInfoService;
+	private MyDocService myDocService;
 
 	public String execute() {
 
@@ -35,9 +38,9 @@ public class UploadAction extends BasicJsonAction {
 		} else {
 			fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
 		}
-		
+
 		String extName = "";
-		if (filePath.lastIndexOf(".") != -1){
+		if (filePath.lastIndexOf(".") != -1) {
 			extName = filePath.substring(filePath.lastIndexOf(".") + 1);
 		}
 
@@ -92,34 +95,51 @@ public class UploadAction extends BasicJsonAction {
 			default:
 				break;
 			}
-			
+
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
 
 			FileInputStream fis = new FileInputStream(uploadedFile);
-			FileOutputStream fos = new FileOutputStream(dir.getAbsolutePath() + "/"
-					+ fileName);
-			byte[] b = new byte[4096];
+
+			String realName = fileName;
+			switch (type) {
+			case Config.MY_FILE_TYPE_DOC:
+				realName = "1" + Config.DOC_NAME_SEP + realName;
+				break;
+			}
+			FileOutputStream fos = new FileOutputStream(dir.getAbsolutePath()
+					+ "/" + realName);
+			byte[] b = new byte[65536];
 			while (fis.read(b) != -1) {
 				fos.write(b);
 			}
 			fos.flush();
 			fis.close();
 			fos.close();
-			
+
 			UploadInfo info = new UploadInfo();
 			info.setName(name);
 			info.setFileName(fileName);
 			info.setExtName(extName);
 			info.setSize(uploadedFile.length());
 			info.setType(type);
-			
+
 			uploadInfoService.removeIfExists(type, fileName);
-			
+
 			uploadInfoService.addUploadInfo(info);
-			
-			setMsg(getText("uploader.msg.upload.success", new String[]{fileName}));
+
+			switch (type) {
+			case Config.MY_FILE_TYPE_DOC:
+				FakeFile ff = new FakeFile();
+				ff.setUploadId(info.getId());
+				ff.setFileName(realName);
+				myDocService.addFileToRoot(ff);
+				break;
+			}
+
+			setMsg(getText("uploader.msg.upload.success",
+					new String[] { fileName }));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -167,5 +187,9 @@ public class UploadAction extends BasicJsonAction {
 
 	public void setUploadInfoService(UploadInfoService uploadInfoService) {
 		this.uploadInfoService = uploadInfoService;
+	}
+
+	public void setMyDocService(MyDocService myDocService) {
+		this.myDocService = myDocService;
 	}
 }

@@ -18,6 +18,8 @@ public class Config {
 	public static final int MY_FILE_TYPE_MUSIC = 3;
 	public static final int MY_FILE_TYPE_PHOTO = 4;
 	
+	public static final String DOC_NAME_SEP = "$";
+	
 	public static final String TMP_VIDEO_DIR = "/tmp/video/";
 
 	static {

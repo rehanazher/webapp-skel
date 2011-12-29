@@ -28,7 +28,7 @@ public class PhoneVideoAction extends BasicJsonAction {
 		if (!f.exists()) {
 			f.mkdirs();
 		}
-
+		
 		File video = new File(realPath + Config.TMP_VIDEO_DIR + fileId);
 		if (!video.exists()) {
 			try {
