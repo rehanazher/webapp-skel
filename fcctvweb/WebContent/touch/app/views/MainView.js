@@ -3,15 +3,15 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
 	hidden: true,
 	layout: 'fit',
 	html: '<ol id="grid">'+
-		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.TvView; FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + \'nav\');FccTVApp.views.viewport.show();">' +
+		'<li><a id="tv" href="javascript:void(0)" onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + \'nav\'); FccTVApp.dispatch(FccTVApp.viewcache.TvView.navigatorPref + \'nav\'); ">' +
 	    '<img src="./images/tv.png" alt="Video" height="72" width="72">' +
 	    '<span>' + bundle.getText('main.desc.tv') +'</span>' +
 	    '</a></li>' +
-        '<li><a id="video" href="javascript:void(0)" onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyVideoView; FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref); FccTVApp.views.viewport.show();">' +
+        '<li><a id="video" href="javascript:void(0)" onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyVideoView.navigatorPref); FccTVApp.dispatch(FccTVApp.viewcache.MyVideoView.navigatorPref);">' +
         '<img src="./images/video.png" alt="Video" height="72" width="72">' +
         '<span>' + bundle.getText('main.desc.video') +'</span>' +
 	    '</a></li>' +
-	    '<li><a id="file" href="javascript:void(0)"  onclick="javascript: FccTVApp.views.viewport = FccTVApp.viewcache.MyDocView; FccTVApp.views.viewport.show();"> ' +
+	    '<li><a id="file" href="javascript:void(0)"  onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\'); FccTVApp.dispatch(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\');"> ' +
 	    '    <img src="./images/file.png" alt="File" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.doc') +'</span>' +
 	    '</a></li>' +

@@ -46,7 +46,7 @@ FccTVApp.loadMask = new Ext.LoadMask(Ext.getBody(), {
 	msg : bundle.getText('common.mask.loading')
 });
 
-FccTVApp.dispatch = function(token){
+FccTVApp.dispatch = function(token, reverse){
 	var parts = token.split("/");
 	var length = parts.length;
 	if (parts[0] == "main"){
@@ -209,6 +209,30 @@ FccTVApp.dispatch = function(token){
 			}
 			FccTVApp.views.viewport = this.viewcache.MyDocView;
 			FccTVApp.views.viewport.show();
+		}
+		
+		var docview = Ext.getCmp('docview');
+		
+		if (parts[1]){
+			var rootNode = FccTVApp.stores.MyDocTreeStore.getRootNode();
+			var node = rootNode.findChildBy(function(n) {
+                return n.attributes.record.raw.type == "folder" && parts[1] === n.attributes.record.raw.position;
+            }, this, true);
+			
+			var record = node.attributes.record;
+			var itemId = 'MYDOC' + record.get('position');
+			var	card = docview.add(this.viewcache.MyDocView.getListConfig(itemId, node));
+			
+			docview.setActiveItem(card, reverse? {type: 'slide', reverse: true}: 'slide');
+			docview.dockedItems.items[0].setTitle(record.get('name'));
+			var backBtn = Ext.getCmp('docBackButton');
+			if (node.parentNode){
+				if (node.parentNode.isRoot){
+					backBtn.setText(bundle.getText('main.title'));
+				}else{
+					backBtn.setText(node.parentNode.attributes.record.get('name'));
+				}
+			}
 		}
 
 	}else if (parts[0] == "music"){

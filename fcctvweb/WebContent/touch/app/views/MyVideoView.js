@@ -96,6 +96,8 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 				if (FccTVApp.player){
 					FccTVApp.player.destroy();
 				}
+				
+				FccTVApp.addHistory("main");
 				FccTVApp.views.viewport.hide();
 				FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
 				FccTVApp.views.viewport.show();
