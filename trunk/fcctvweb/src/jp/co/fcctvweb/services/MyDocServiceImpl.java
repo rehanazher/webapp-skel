@@ -36,7 +36,7 @@ public class MyDocServiceImpl implements MyDocService {
 	public MyDocNode retrieveDocTree() {
 		List<FakeFile> fileList = fileDao.findAll();
 		List<FakeFolder> folderList = folderDao.findAll();
-		
+
 		List<FakeFolder> rootList = folderDao.findByParentId(0);
 		if (rootList.isEmpty()) {
 			FakeFolder r = new FakeFolder();
@@ -52,26 +52,27 @@ public class MyDocServiceImpl implements MyDocService {
 		subListFilter(root, folderList, fileList);
 		return root;
 	}
-	
-	private void subListFilter(MyDocNode node, List<FakeFolder> folderList, List<FakeFile> fileList){
+
+	private void subListFilter(MyDocNode node, List<FakeFolder> folderList,
+			List<FakeFile> fileList) {
 		FakeFolder refFolder = null;
-		for (FakeFolder f : folderList){
-			if (f.getId() == node.getKey()){
+		for (FakeFolder f : folderList) {
+			if (f.getId() == node.getKey()) {
 				refFolder = f;
 			}
-			if (f.getParentId() == node.getKey()){
+			if (f.getParentId() == node.getKey()) {
 				MyDocNode child = new MyDocNode(f);
 				node.addChild(child);
 				subListFilter(child, folderList, fileList);
 			}
 		}
-		
-		for (FakeFile f : fileList){
-			if (f.getFolderId() == node.getKey()){
+
+		for (FakeFile f : fileList) {
+			if (f.getFolderId() == node.getKey()) {
 				node.addChild(new MyDocNode(f, refFolder));
 			}
 		}
-		
+
 		Collections.sort(node.getChildren(), node);
 	}
 
@@ -91,6 +92,11 @@ public class MyDocServiceImpl implements MyDocService {
 			map.put(f.getId(), f);
 		}
 		return map;
+	}
+
+	@Override
+	public FakeFile getFileById(int fileId) {
+		return fileDao.findById(fileId);
 	}
 
 	public void setFileDao(FileDao fileDao) {

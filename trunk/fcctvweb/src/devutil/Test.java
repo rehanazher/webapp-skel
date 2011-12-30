@@ -11,13 +11,13 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 public class Test {
 	public static void main(String[] args) throws Exception {
 		
-		WordExtractor ex = new WordExtractor(new FileInputStream("e:/test.doc"));
-		SummaryInformation sum = ex.getSummaryInformation();
-		System.out.println(sum.getPageCount());
-		
-		XWPFDocument docx = new XWPFDocument(POIXMLDocument.openPackage("e:/test.docx")); 
-		int pages = docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
-		System.out.println(pages);
+//		WordExtractor ex = new WordExtractor(new FileInputStream("e:/test.doc"));
+//		SummaryInformation sum = ex.getSummaryInformation();
+//		System.out.println(sum.getPageCount());
+//		
+//		XWPFDocument docx = new XWPFDocument(POIXMLDocument.openPackage("e:/test.docx")); 
+//		int pages = docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
+//		System.out.println(pages);
 		
 //		PdfReader reader = new PdfReader(new FileInputStream("e:/test.pdf"));
 //		System.out.println(reader.getNumberOfPages());

@@ -4,20 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.co.fcctvweb.config.Config;
-import jp.co.fcctvweb.utils.Validators;
+import jp.co.fcctvweb.po.FakeFile;
+import jp.co.fcctvweb.services.MyDocService;
 
 import org.apache.struts2.ServletActionContext;
-
-import sun.misc.BASE64Encoder;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,6 +24,8 @@ public class IoAction extends ActionSupport {
 	private String fileId;
 
 	private InputStream inputStream;
+	
+	private MyDocService myDocService;
 
 	public String execute() {
 
@@ -48,7 +45,6 @@ public class IoAction extends ActionSupport {
 				// ".jpg");
 				inputStream = new FileInputStream(Config.getHddThumbsDir()
 						+ fileId + ".jpg");
-				System.out.println(request.getHeader("range"));
 				return "jpeg";
 			} else if ("video".equals(type)) {
 				f = getFile(type, Config.getUploadVideoDir() + fileId);
@@ -58,17 +54,20 @@ public class IoAction extends ActionSupport {
 				response.setHeader("Connection", "Keep-Alive");
 				return "video";
 			} else if ("doc".equals(type)) {
-				f = getFile(type, Config.getUploadDocDir() + fileId);
+				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
+				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
 				inputStream = new FileInputStream(f);
 				response.setHeader("Content-Length", "" + f.length());
 				return "doc";
 			} else if ("docx".equals(type)) {
-				f = getFile(type, Config.getUploadDocDir() + fileId);
+				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
+				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
 				inputStream = new FileInputStream(f);
 				response.setHeader("Content-Length", "" + f.length());
 				return type;
 			} else if ("pdf".equals(type)) {
-				f = getFile(type, Config.getUploadDocDir() + fileId);
+				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
+				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
 				inputStream = new FileInputStream(f);
 				response.setHeader("Content-Length", "" + f.length());
 				return "pdf";
@@ -119,5 +118,9 @@ public class IoAction extends ActionSupport {
 
 	public InputStream getInputStream() {
 		return inputStream;
+	}
+
+	public void setMyDocService(MyDocService myDocService) {
+		this.myDocService = myDocService;
 	}
 }

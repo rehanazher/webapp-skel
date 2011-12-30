@@ -16,4 +16,5 @@ public interface MyDocService {
 
 	Map<Integer, FakeFolder> getFolderMap();
 
+	FakeFile getFileById(int fileId);
 }
