@@ -18,6 +18,7 @@ public class MyDocNode implements Comparator<MyDocNode> {
 	private String fileName;
 	private String folderName;
 	private String position;
+	private String extName;
 	private int parentId;
 	private String type = "folder";
 
@@ -31,6 +32,7 @@ public class MyDocNode implements Comparator<MyDocNode> {
 		this.folderName = folder.getFolderName();
 		this.position = folder.getPosition();
 		this.parentId = folder.getParentId();
+		this.leaf = false;
 	}
 
 	public MyDocNode(FakeFile file, FakeFolder parentFolder) {
@@ -38,6 +40,7 @@ public class MyDocNode implements Comparator<MyDocNode> {
 		this.key = file.getId();
 		this.name = file.getFileName().replace(
 				parentFolder.getPosition() + Config.DOC_NAME_SEP, "");
+		this.extName = file.getFileName().substring(file.getFileName().lastIndexOf(".") + 1);
 		this.fileName = file.getFileName();
 		this.parentId = file.getFolderId();
 		this.leaf = true;
@@ -141,4 +144,11 @@ public class MyDocNode implements Comparator<MyDocNode> {
 		}
 	}
 
+	public String getExtName() {
+		return extName;
+	}
+
+	public void setExtName(String extName) {
+		this.extName = extName;
+	}
 }

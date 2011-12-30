@@ -1,6 +1,7 @@
 package jp.co.fcctvweb.actions;
 
 import jp.co.fcctvweb.services.MyDocService;
+import jp.co.fcctvweb.vo.MyDocNode;
 
 
 public class MyDocAction extends BasicJsonAction {
@@ -10,7 +11,11 @@ public class MyDocAction extends BasicJsonAction {
 	private MyDocService myDocService;
 
 	public String retrieveDocTree(){
-		setJsonObj(myDocService.retrieveDocTree());
+		MyDocNode docTree = myDocService.retrieveDocTree();
+		MyDocNode fakeRoot = new MyDocNode();
+		fakeRoot.addChild(docTree);
+		setJsonObj(fakeRoot);
+		
 		return jsonReturn();
 	}
 
