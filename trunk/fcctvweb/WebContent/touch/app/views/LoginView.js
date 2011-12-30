@@ -51,11 +51,6 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 			}
 		}]
 	}],
-	listeners : {
-		submit : function(form, data, options) {
-			this.customSubmitForm();
-		}
-	},
 	customSubmitForm: function(){
 //		var loadMask = new Ext.LoadMask(Ext.getBody(), {
 //			msg : bundle.getText('common.mask.loading')
@@ -68,6 +63,7 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 			 success : function(form, action) {
 				 FccTVApp.loadMask.hide();
 				 this.hide();
+				 FccTVApp.addHistory("main");
 			 	 FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
 				 FccTVApp.views.viewport.show();
 			 },
