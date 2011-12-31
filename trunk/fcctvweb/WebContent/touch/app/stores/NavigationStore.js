@@ -914,32 +914,50 @@ FccTVApp.stores.Structure = [{
     	key: '3',
     	leaf: true,
     	card: FccTVApp.frames.ChannelList
-    }
-//    ,{
-//    	text: bundle.getText('menu.4'),
-//    	nav: 'favorite',
-//    	url: 'nav/favorite',
-//    	key: '3',
-//    	leaf: true,
-//    }
-    ,{
+    },{
+    	text: bundle.getText('menu.4'),
+    	nav: '4',
+    	url: 'url 3',
+    	key: '3'
+    },{
     	text: bundle.getText('menu.5'),
     	nav: '5',
     	url: 'url 3',
-    	key: '3'
+    	key: '3',
+    	items: [{
+    		text: bundle.getText('menu.5.1'),
+    		nav: '5:1',
+    		url: '',
+    		key: '0'
+    	},{
+    		text: bundle.getText('menu.5.2'),
+    		nav: '5:2',
+    		url: '',
+    		key: '0'
+    	},{
+    		text: bundle.getText('menu.5.3'),
+    		nav: '5:3',
+    		url: '',
+    		key: '0'
+    	},{
+    		text: bundle.getText('menu.5.4'),
+    		nav: '5:4',
+    		url: '',
+    		key: '0'
+    	},{
+    		text: bundle.getText('menu.5.5'),
+    		nav: '5:5',
+    		url: '',
+    		key: '0'
+    	},{
+    		text: bundle.getText('menu.5.6'),
+    		nav: '5:6',
+    		url: '',
+    		key: '0'
+    	}]
     },{
     	text: bundle.getText('menu.6'),
     	nav: '6',
-    	url: 'url 3',
-    	key: '3'
-    },{
-    	text: bundle.getText('menu.7'),
-    	nav: '7',
-    	url: 'url 3',
-    	key: '3'
-    },{
-    	text: bundle.getText('menu.8'),
-    	nav: '8',
     	url: 'url 3',
     	key: '3'
     }];
