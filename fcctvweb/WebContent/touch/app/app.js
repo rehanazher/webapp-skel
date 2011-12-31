@@ -21,6 +21,8 @@ FccTVApp = new Ext.Application({
 		this.viewcache.TvView = new this.views.TvView({id: 'tvview'});
 		this.viewcache.MyVideoView = new this.views.MyVideoView();
 		this.viewcache.MyDocView = new this.views.MyDocView();
+		this.viewcache.MyMusicView = new this.views.MyMusicView();
+		this.viewcache.MyPhotoView = new this.views.MyPhotoView();
 
 		var token = window.location.href.substr(window.location.href.indexOf("#") + 1);
 		var newToken = "";
@@ -47,6 +49,7 @@ FccTVApp.loadMask = new Ext.LoadMask(Ext.getBody(), {
 });
 
 FccTVApp.dispatch = function(token, reverse){
+	FccTVApp.loadMask.hide();
 	var parts = token.split("/");
 	var length = parts.length;
 	if (parts[0] == "main"){
@@ -83,6 +86,11 @@ FccTVApp.dispatch = function(token, reverse){
 					item = navigator.store.getRootNode().findChildBy(function(n) {
 		                return parts[2] === n.attributes.record.raw.nav;
 		            }, this, true);
+					
+					if (!item){
+						FccTVApp.dispatch("main");
+						return;
+					}
 					
 					var parentNode = item.parentNode;
 					if (item.leaf){
@@ -161,13 +169,43 @@ FccTVApp.dispatch = function(token, reverse){
 					FccTVApp.loadMask.show();
 					FccTVApp.stores.DailyStore.load(function(){
 						FccTVApp.loadMask.hide();
+						FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
+						FccTVApp.prevCard = FccTVApp.frames.DailyList;
+						
+						tvview.setActiveItem(0);
+						tvview.getActiveItem().setActiveItem(FccTVApp.frames.QueryList);
 					});
-					FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
-					FccTVApp.prevCard = FccTVApp.frames.DailyList;
-					
-					tvview.setActiveItem(0);
-					tvview.getActiveItem().setActiveItem(FccTVApp.frames.QueryList);
 				}
+			}else if (parts[1] == "channel"){
+				console.log("there is in channel");
+				var backBtn = Ext.getCmp("backButton");
+				var ch = parts[2];
+				
+				var chItem = FccTVApp.stores.ChannelStore.queryBy(function(record, id){
+					return record.get('ch') == ch;
+				});
+				if (chItem.length == 1){
+					var chNode = chItem.items[0];
+					backBtn.setText(chNode.get('chName'));
+					
+					FccTVApp.stores.DailyStore.setProxy({
+						type: 'ajax',
+						url: './queryVideo.action',
+						extraParams: {
+							ch: ch
+						}
+					});
+					FccTVApp.loadMask.show();
+					FccTVApp.stores.DailyStore.load(function(){
+						FccTVApp.loadMask.hide();
+						FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
+						FccTVApp.prevCard = FccTVApp.frames.ChannelList;
+						
+						tvview.setActiveItem(0);
+						tvview.getActiveItem().setActiveItem(FccTVApp.frames.QueryList);
+					});
+				}
+				
 			}else if (parts[1] == "player"){
 				tvview.setActiveItem(4);
 			}else if (parts[1] == "today"){
@@ -236,9 +274,32 @@ FccTVApp.dispatch = function(token, reverse){
 		}
 
 	}else if (parts[0] == "music"){
+		if (FccTVApp.views.viewport != this.viewcache.MyMusicView){
+			if (FccTVApp.views.viewport){
+				FccTVApp.views.viewport.hide();
+			}
+			FccTVApp.views.viewport = this.viewcache.MyMusicView;
+			FccTVApp.views.viewport.show();
+		}
 		
+//		var musicview = Ext.getCmp('musicview');
+//		if (parts[1] && parts[1] == 'favorite'){
+//			musicview.setActiveItem(1);
+//		}else{
+//			musicview.setActiveItem(0);
+//		}
 	}else if (parts[0] == "photo"){
-		
+		if (FccTVApp.views.viewport != this.viewcache.MyPhotoView){
+			if (FccTVApp.views.viewport){
+				FccTVApp.views.viewport.hide();
+			}
+			
+			FccTVApp.views.viewport = this.viewcache.MyPhotoView;
+			if (!Ext.get('photoCarousel')){
+				FccTVApp.views.viewport.addCarousel();
+			}
+			FccTVApp.views.viewport.show();
+		}
 	}
 	
 		
@@ -246,7 +307,8 @@ FccTVApp.dispatch = function(token, reverse){
 
 FccTVApp.addHistory = function(newToken){
 	oldToken = Ext.History.getToken();
-    if (oldToken === null || oldToken != newToken) {
+    if (newToken && oldToken != newToken) {
+    	console.log("new token: " + newToken);
         Ext.History.add(newToken);
     }
 };

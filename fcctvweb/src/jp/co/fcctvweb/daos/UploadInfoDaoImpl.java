@@ -29,6 +29,10 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 
 	private static final String SQL_UPDATE_FAVORITE_BY_ID = "UPDATE upload_info SET favorite=? WHERE id=?";
 
+	private static final String SQL_COUNT_BY_TYPE = "SELECT COUNT(1) FROM upload_info WHERE type=?";
+
+	private static final String SQL_FIND_BY_TYPE_AND_INDEX = "SELECT * FROM upload_info WHERE type=? LIMIT ?, 1";
+
 	private static class UploadInfoMultiRowMapper implements
 			MultiRowMapper<UploadInfo> {
 		public UploadInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -112,8 +116,18 @@ public class UploadInfoDaoImpl extends BasicDao<UploadInfo> implements
 	}
 
 	public UploadInfo findById(String uploadInfoId) {
-		return (UploadInfo) query(SQL_FIND_UPLOADINFO_BY_ID, uploadInfoId,
+		return query(SQL_FIND_UPLOADINFO_BY_ID, uploadInfoId,
 				new UploadInfoSingleRowMapper());
 	}
 
+	@Override
+	public int findAmountByType(int type) {
+		return queryForInt(SQL_COUNT_BY_TYPE, new Object[] { type });
+	}
+
+	@Override
+	public UploadInfo findByTypeAndIndex(int type, int index) {
+		return query(SQL_FIND_BY_TYPE_AND_INDEX, new Object[] { type, index },
+				new UploadInfoSingleRowMapper());
+	}
 }

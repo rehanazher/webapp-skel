@@ -1,7 +1,7 @@
 FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 	showAnimation : 'fade',
 	id : 'videoview',
-	navigatorPref : 'video',
+	navigatorPref : 'video/',
 	//html: 'Test Page',
 	title : bundle.getText("video.title"),
 	fullscreen : true,
@@ -134,6 +134,15 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 					});
 				}
 			}
+		},{
+			xtype : 'button',
+			id : 'videoPlayerBack',
+			text : bundle.getText("common.button.back"),
+			ui : 'back',
+			hidden: true,
+			handler:function(){
+				history.back(-1);
+			}
 		}, {
 			xtype : 'spacer'
 		}, {
@@ -176,6 +185,10 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 				Ext.getCmp('videoRefreshBtn').show();
 			}
 			
+			if (children[2] === newCard){
+				Ext.getCmp("videoPlayerBack").show();
+			}
+			
 			var activeItem = newCard.getActiveItem();
 			if (activeItem && activeItem.getSelectionModel){
 				var selModel = activeItem.getSelectionModel();
@@ -188,16 +201,11 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 			var children = tabPanel.query('> ');
 			if (tabPanel.child('') !== newCard){
 				Ext.getCmp("videoBackButton").hide();
-				// var navPnl = Ext.getCmp("navigatorPanel");
-				// var activeItem = navPnl.getActiveItem();
-				// var recordNode = activeItem.recordNode;
-				// var parentNode = recordNode.parentNode;
-				// if (parentNode){
-					// Ext.getCmp("backButton").show();
-				// }
+				Ext.getCmp("videoPlayerBack").hide();
 			}
 			if (!(children[1] === newCard)){
 				Ext.getCmp('videoRefreshBtn').hide();
+				Ext.getCmp("videoPlayerBack").hide();
 			}
 		} 
 	},

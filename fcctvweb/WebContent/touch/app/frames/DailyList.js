@@ -16,16 +16,19 @@ FccTVApp.frames.DailyList = new Ext.List({
 					date: date
 				}
 			});
+			
+			var tabpanel = this.up('tabpanel');
+			var prevCard = this;
 			FccTVApp.loadMask.show();
 			FccTVApp.stores.DailyStore.load(function(){
 				FccTVApp.loadMask.hide();
+				FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
+				FccTVApp.prevCard = prevCard;
+				var backBtn = Ext.getCmp("backButton");
+				backBtn.setText(record.get('value'));
+				tabpanel.getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
+				FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'daily/' + date);
 			});
-			FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.DailyStore);
-			FccTVApp.prevCard = this;
-			var backBtn = Ext.getCmp("backButton");
-			backBtn.setText(record.get('value'));
-			this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
-			FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'daily/' + date);
 		}
 	}
 });

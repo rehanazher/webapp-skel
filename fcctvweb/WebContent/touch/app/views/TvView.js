@@ -216,6 +216,15 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 					});
 				}
 			}
+		},{
+			xtype : 'button',
+			id : 'playerBack',
+			text : bundle.getText("common.button.back"),
+			ui : 'back',
+			hidden: true,
+			handler:function(){
+				history.back(-1);
+			}
 		}, {
 			xtype : 'spacer'
 		}, {
@@ -248,11 +257,14 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 			var children = tabPanel.query('> ');
 			if (children[0] === newCard){
 				Ext.getCmp("backButton").show();
-				
 			}
 
 			if (children[1] === newCard || children[2] === newCard){
 				Ext.getCmp('refreshBtn').show();
+			}
+			
+			if (children[4] == newCard){
+				Ext.getCmp("playerBack").show();
 			}
 			
 			var activeItem = newCard.getActiveItem();
@@ -266,9 +278,11 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 			var children = tabPanel.query('> ');
 			if (children[0] !== newCard){
 				Ext.getCmp("backButton").hide();
+				Ext.getCmp("playerBack").hide();
 			}
 			if (!(children[1] === newCard || children[2] === newCard)){
 				Ext.getCmp('refreshBtn').hide();
+				Ext.getCmp("playerBack").hide();
 			}
 		}
 	},

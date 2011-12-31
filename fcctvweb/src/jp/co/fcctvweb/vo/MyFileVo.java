@@ -33,7 +33,7 @@ public class MyFileVo {
 		switch(this.type){
 		case Config.MY_FILE_TYPE_VIDEO:
 			this.setPosterUrl("./images/video.png");
-			this.setVideoUrl("./watch.action?type=video&fileId=" + info.getFileName());
+			this.setVideoUrl("./watch.action?type=video&fileId=" + info.getId());
 			break;
 		case Config.MY_FILE_TYPE_DOC:
 			if ("doc".equalsIgnoreCase(this.extName) || "docx".equalsIgnoreCase(this.extName)){
@@ -43,6 +43,9 @@ public class MyFileVo {
 				this.setPosterUrl("./images/pdf.png");
 				this.setVideoUrl("./watch.action?type=pdf&fileId=" + info.getFileName());
 			}
+			break;
+		case Config.MY_FILE_TYPE_MUSIC:
+			this.setVideoUrl("./watch.action?type=music&fileId=" + info.getId());
 			break;
 		}
 	}

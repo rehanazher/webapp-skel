@@ -58,8 +58,7 @@ public class UploadAction extends BasicJsonAction {
 			}
 			break;
 		case 3: // music
-			if (!("mp3".equalsIgnoreCase(extName) || "ogg"
-					.equalsIgnoreCase(extName))) {
+			if (!"mp3".equalsIgnoreCase(extName)) {
 				setMsg(getText("uploader.msg.type.not.support.music"));
 			}
 			break;
@@ -125,7 +124,9 @@ public class UploadAction extends BasicJsonAction {
 			info.setSize(uploadedFile.length());
 			info.setType(type);
 
-			uploadInfoService.removeIfExists(type, fileName);
+			if (type != Config.MY_FILE_TYPE_DOC){
+				uploadInfoService.removeIfExists(type, fileName);
+			}
 
 			uploadInfoService.addUploadInfo(info);
 
