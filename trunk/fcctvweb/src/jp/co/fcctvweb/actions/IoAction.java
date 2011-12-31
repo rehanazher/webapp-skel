@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.po.FakeFile;
 import jp.co.fcctvweb.services.MyDocService;
+import jp.co.fcctvweb.services.UploadInfoService;
+import jp.co.fcctvweb.vo.MyFileVo;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -22,10 +24,12 @@ public class IoAction extends ActionSupport {
 
 	private String type;
 	private String fileId;
+	private int index;
 
 	private InputStream inputStream;
 	
 	private MyDocService myDocService;
+	private UploadInfoService uploadInfoService;
 
 	public String execute() {
 
@@ -35,6 +39,7 @@ public class IoAction extends ActionSupport {
 
 		try {
 			// FileInputStream is = null;
+			
 			File f = null;
 			if ("tv".equals(type)) {
 				f = getFile(type, Config.getHddMp4Dir() + fileId + ".mp4");
@@ -47,7 +52,8 @@ public class IoAction extends ActionSupport {
 						+ fileId + ".jpg");
 				return "jpeg";
 			} else if ("video".equals(type)) {
-				f = getFile(type, Config.getUploadVideoDir() + fileId);
+				MyFileVo uploadFile = uploadInfoService.getFileById(fileId);
+				f = getFile(type, Config.getUploadVideoDir() + uploadFile.getFileName());
 				inputStream = new FileInputStream(f);
 				response.setHeader("Content-Length", "" + f.length());
 				response.setHeader("Accept-Ranges", "bytes");
@@ -72,9 +78,23 @@ public class IoAction extends ActionSupport {
 				response.setHeader("Content-Length", "" + f.length());
 				return "pdf";
 			} else if ("photo".equals(type)) {
-
+				MyFileVo uploadFile = uploadInfoService.getPhotoByIndex(index);
+				if (uploadFile == null){
+//					String path = ServletActionContext.getRequest().getContextPath();
+					String realPath = ServletActionContext.getRequest().getRealPath("/");
+					f = new File(realPath + "/touch/images/photo.png");
+				}else{
+					f = getFile(type, Config.getUploadPhotoDir() + uploadFile.getFileName());
+				}
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return "jpeg";
 			} else if ("music".equals(type)) {
-
+				MyFileVo uploadFile = uploadInfoService.getFileById(fileId);
+				f = getFile(type, Config.getUploadMusicDir() + uploadFile.getFileName());
+				inputStream = new FileInputStream(f);
+				response.setHeader("Content-Length", "" + f.length());
+				return "mp3";
 			}
 
 			// OutputStream os = response.getOutputStream();
@@ -115,6 +135,14 @@ public class IoAction extends ActionSupport {
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
 	public InputStream getInputStream() {
 		return inputStream;
@@ -122,5 +150,9 @@ public class IoAction extends ActionSupport {
 
 	public void setMyDocService(MyDocService myDocService) {
 		this.myDocService = myDocService;
+	}
+
+	public void setUploadInfoService(UploadInfoService uploadInfoService) {
+		this.uploadInfoService = uploadInfoService;
 	}
 }

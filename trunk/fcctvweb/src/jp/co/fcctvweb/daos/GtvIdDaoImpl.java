@@ -72,7 +72,7 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 		}
 		handler.and("favorite = ?", condition.getFavorite(),
 				condition.getFavorite() != -1);
-		handler.and("ch = ?", condition.getCh(), condition.getCh() != 0);
+		handler.and("ch = ?", condition.getCh(), condition.getCh() != -1);
 		handler.and("genre LIKE ?", "%" + condition.getType() + "%",
 				!Validators.isEmpty(condition.getType()));
 

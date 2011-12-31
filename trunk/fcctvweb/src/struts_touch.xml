@@ -22,9 +22,10 @@
                 <param name="inputName">inputStream</param>
                 <param name="contentDisposition">filename="play.mp4"</param>
         	</result>
-        	<result name="httpheader" type="httpheader">
+        	<result name="mp3" type="stream">
+        		<param name="contentType">audio/mp3</param>
+                <param name="inputName">inputStream</param>
         	</result>
-        	
         	<result name="jpeg" type="stream">
         		<param name="contentType">image/jpeg</param>
                 <param name="inputName">inputStream</param>
@@ -67,6 +68,10 @@
         <action name="retrieveDocTree" class="jp.co.fcctvweb.actions.MyDocAction" method="retrieveDocTree" ><result type="json" name="json"></result></action>
         <action name="docAnalyze" class="jp.co.fcctvweb.actions.client.DocAnalyzeAction"><result type="json" name="json"></result></action>
         <action name="docPrev" class="jp.co.fcctvweb.actions.DocPreviewAction"><result name="success">doc_prev.jsp</result></action>
+        
+        <action name="photoAmount" class="jp.co.fcctvweb.actions.MyPhotoAction" method="photoAmount"><result name="json" type="json"></result></action>
+        
+        <action name="retrieveChannels" class="jp.co.fcctvweb.actions.ChannelAction"><result name="json" type="json"></result></action>
         
 <!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->
     </package>

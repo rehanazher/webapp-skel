@@ -39,6 +39,10 @@ public class GtvServiceImpl implements GtvService {
 		return resultList;
 	}
 
+	public List<Channel> getAllChannels() {
+		return channelDao.findAll();
+	}
+
 	@Override
 	public boolean addFavorite(String gtvid) {
 		return gtvIdDao.updateFavoriteByGtvid(gtvid, 1);

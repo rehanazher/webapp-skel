@@ -11,15 +11,15 @@ FccTVApp.views.MainView = Ext.extend(Ext.Panel, {
         '<img src="./images/video.png" alt="Video" height="72" width="72">' +
         '<span>' + bundle.getText('main.desc.video') +'</span>' +
 	    '</a></li>' +
-	    '<li><a id="file" href="javascript:void(0)"  onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\'); FccTVApp.dispatch(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\');"> ' +
+	    '<li><a id="file" href="javascript:void(0)" onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\'); FccTVApp.dispatch(FccTVApp.viewcache.MyDocView.navigatorPref + \'/1\');"> ' +
 	    '    <img src="./images/file.png" alt="File" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.doc') +'</span>' +
 	    '</a></li>' +
-	    '<li><a id="music" href="javascript:void(0)">' +
+	    '<li><a id="music" href="javascript:void(0)" onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyMusicView.navigatorPref); FccTVApp.dispatch(FccTVApp.viewcache.MyMusicView.navigatorPref);">' +
 	    '    <img src="./images/music.png" alt="Music" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.music') +'</span>' +
 	    '</a></li>' +
-	    '<li><a id="photo" href="javascript:void(0)">' +
+	    '<li><a id="photo" href="javascript:void(0)" onclick="javascript: FccTVApp.addHistory(FccTVApp.viewcache.MyPhotoView.navigatorPref); FccTVApp.dispatch(FccTVApp.viewcache.MyPhotoView.navigatorPref);">' +
 	    '    <img src="images/photo.png" alt="Photo" height="72" width="72">' +
 	    '    <span>' + bundle.getText('main.desc.photo') +'</span>' +
 	    '</a></li>' +

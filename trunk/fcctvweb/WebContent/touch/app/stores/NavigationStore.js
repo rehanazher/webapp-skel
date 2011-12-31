@@ -913,13 +913,16 @@ FccTVApp.stores.Structure = [{
     	url: 'url 3',
     	key: '3',
     	leaf: true,
-    	card: FccTVApp.frames.QueryList
-    },{
-    	text: bundle.getText('menu.4'),
-    	nav: '4',
-    	url: 'url 3',
-    	key: '3'
-    },{
+    	card: FccTVApp.frames.ChannelList
+    }
+//    ,{
+//    	text: bundle.getText('menu.4'),
+//    	nav: 'favorite',
+//    	url: 'nav/favorite',
+//    	key: '3',
+//    	leaf: true,
+//    }
+    ,{
     	text: bundle.getText('menu.5'),
     	nav: '5',
     	url: 'url 3',

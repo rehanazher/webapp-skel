@@ -18,4 +18,13 @@ public interface UploadInfoService {
 
 	boolean removeFavorite(String id);
 
+	MyFileVo getFileById(String id);
+	
+	int getPhotoAmount();
+	
+	int getVideoAmount();
+	
+	int getMusicAmount();
+
+	MyFileVo getPhotoByIndex(int index);
 }

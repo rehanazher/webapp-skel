@@ -4,6 +4,7 @@ import java.util.List;
 
 import jp.co.fcctvweb.actions.condition.MyFileCondition;
 import jp.co.fcctvweb.po.UploadInfo;
+import jp.co.fcctvweb.vo.MyFileVo;
 
 public interface UploadInfoDao {
 
@@ -21,4 +22,7 @@ public interface UploadInfoDao {
 
 	boolean updateFavoriteById(String id, int favorite);
 
+	int findAmountByType(int type);
+
+	UploadInfo findByTypeAndIndex(int myFileTypePhoto, int index);
 }

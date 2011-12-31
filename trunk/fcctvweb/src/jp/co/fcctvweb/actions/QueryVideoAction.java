@@ -12,7 +12,7 @@ public class QueryVideoAction extends BasicJsonAction {
 	private String date;
 	private String type;
 	private int favorite = -1;
-	private String ch;
+	private int ch = -1;
 	
 	// pagination
 	private int start;
@@ -26,6 +26,7 @@ public class QueryVideoAction extends BasicJsonAction {
 		condition.setPage(page);
 		condition.setLimit(limit);
 		condition.setFavorite(favorite);
+		condition.setCh(ch);
 		setJsonObj(gtvService.getGtvIdByCondition(condition));
 		return jsonReturn();
 	}
@@ -82,11 +83,11 @@ public class QueryVideoAction extends BasicJsonAction {
 		this.favorite = favorite;
 	}
 
-	public String getCh() {
+	public int getCh() {
 		return ch;
 	}
 
-	public void setCh(String ch) {
+	public void setCh(int ch) {
 		this.ch = ch;
 	}
 	

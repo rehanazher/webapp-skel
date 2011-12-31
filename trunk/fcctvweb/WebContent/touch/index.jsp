@@ -94,6 +94,8 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/stores/MyVideoStore.js"></script>
         <script type="text/javascript" src="app/stores/MyDocStore.js"></script>
         <script type="text/javascript" src="app/stores/MyDocTreeStore.js"></script>
+        <script type="text/javascript" src="app/stores/MyMusicStore.js"></script>
+        <script type="text/javascript" src="app/stores/ChannelStore.js"></script>
         
         <!-- frames -->
         <script type="text/javascript" src="app/frames/Player.js"></script>
@@ -104,6 +106,8 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/frames/FavoriteList.js"></script>
         <script type="text/javascript" src="app/frames/DailyList.js"></script>
         <script type="text/javascript" src="app/frames/QueryList.js"></script>
+        <script type="text/javascript" src="app/frames/MyMusicFavorite.js"></script>
+        <script type="text/javascript" src="app/frames/ChannelList.js"></script>
         
         <!-- navigation store, depends on all utils, stores and frames -->
         <script type="text/javascript" src="app/stores/NavigationStore.js"></script>
@@ -114,8 +118,7 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/views/TvView.js"></script>
         <script type="text/javascript" src="app/views/MyVideoView.js"></script>
         <script type="text/javascript" src="app/views/MyDocView.js"></script>
-<script type="text/javascript">
-	//document.getElementById("test").focus();    
-</script>
+        <script type="text/javascript" src="app/views/MyMusicView.js"></script>
+        <script type="text/javascript" src="app/views/MyPhotoView.js"></script>
     </body>
 </html>

@@ -1,8 +1,10 @@
 package jp.co.fcctvweb.actions.client;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigInteger;
 
 import jp.co.fcctvweb.actions.BasicJsonAction;
 import jp.co.fcctvweb.config.Config;
@@ -12,7 +14,9 @@ import jp.co.fcctvweb.services.MyDocService;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hwpf.extractor.WordExtractor;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfReader;
@@ -31,8 +35,6 @@ public class DocAnalyzeAction extends BasicJsonAction {
 	private MyDocService myDocService;
 
 	public String execute() {
-		System.out.println("type: " + type);
-		System.out.println("file id: " + fileId);
 
 		FakeFile file = myDocService.getFileById(fileId);
 		if (file == null) {
@@ -52,18 +54,15 @@ public class DocAnalyzeAction extends BasicJsonAction {
 				getReply().setValue(new Rect(height, width));
 
 			} else if ("docx".equalsIgnoreCase(type)) {
-				XWPFDocument docx = new XWPFDocument(
-						POIXMLDocument.openPackage("e:/test.docx"));
-				int pages = docx.getProperties().getExtendedProperties()
-						.getUnderlyingProperties().getPages();
-				int height = pages * PAGE_HEIGHT;
-				int width = PAGE_WIDTH;
+				WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new File(Config.getUploadDocDir()
+						+ file.getFileName()));
+				int height = PAGE_HEIGHT * wordMLPackage.getDocPropsExtendedPart().getJaxbElement().getPages();
+				int width = 900;
 				getReply().setValue(new Rect(height, width));
 			} else if ("pdf".equalsIgnoreCase(type)) {
 				PdfReader reader = new PdfReader(new FileInputStream(
 						Config.getUploadDocDir() + file.getFileName()));
 
-				System.out.println(reader.getNumberOfPages());
 				if (-1 != reader.getCryptoMode()) {
 					// encryped
 					// can not parse
@@ -87,6 +86,10 @@ public class DocAnalyzeAction extends BasicJsonAction {
 			makeFailure();
 			e.printStackTrace();
 		} catch (IOException e) {
+			makeFailure();
+			e.printStackTrace();
+		} catch (Docx4JException e) {
+			// TODO Auto-generated catch block
 			makeFailure();
 			e.printStackTrace();
 		}
