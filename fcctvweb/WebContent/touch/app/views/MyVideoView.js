@@ -214,9 +214,9 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 		if (children[0] == this.getActiveItem()){
 			return FccTVApp.viewcache.MyVideoView.navigatorPref;
 		}else if (children[1] == this.getActiveItem()){
-			return FccTVApp.viewcache.MyVideoView.navigatorPref + "/favorite";
+			return FccTVApp.viewcache.MyVideoView.navigatorPref + "favorite";
 		}else if (children[2] == this.getActiveItem()){
-			return FccTVApp.viewcache.MyVideoView.navigatorPref + "/player"
+			return FccTVApp.viewcache.MyVideoView.navigatorPref + "player"
 		}
 	}
 });

@@ -7,6 +7,14 @@ FccTVApp.stores.MyDocTreeStore = new Ext.data.TreeStore({
             type: 'tree',
             root: 'children'
         }
+    },
+    listeners:{
+    	load: function(store, records, isSuccess ){
+    		console.log('tree loaded!');
+    	},
+    	update: function(){
+    		console.log('tree updated!');
+    	}
     }
 });
 
