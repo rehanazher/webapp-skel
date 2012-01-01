@@ -88,15 +88,6 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 		  					  var obj = Ext.decode(response.responseText);
 		  					  FccTVApp.loadMask.hide();
 		  					  location.href='./docPrev.action?fileId=' + record.get('key') + '&type=' + record.get('extName') + '&height=' + obj.value.height + '&width=' + obj.value.width;
-		  					  
-//		  					  var win = window.open('test.html');
-//		  					  var dom = win.document;
-//		  					  console.log(obj);
-//		  					  dom.write('<div style="position: fixed; top:0; left:0;-webkit-box-orient: horizontal; -webkit-box-direction: normal; -webkit-box-pack: start; -webkit-box-align: center; min-width: 1434px; height: 46px; ">');
-//		  					  dom.write('<div style="background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #466890), color-stop(2%, #1f2f41), color-stop(100%, #080c11));background-image: -webkit-linear-gradient(#466890,#1f2f41 2%,#080c11);background-image: linear-gradient(#466890,#1f2f41 2%,#080c11);" class=" x-button x-button-back">');
-//		  					  dom.write('<span class="x-button-label" id="ext-gen1167">Main</span></div>');
-//		  					  dom.write('<div id="ext-comp-1047" class=" x-component" style="-webkit-box-flex: 1; width: 1366px; "></div></div>');
-//		  					  dom.write('<iframe src="./watch.action?type=' + record.get('extName') + '&fileId=' + record.get('fileName') + '" style="border: 0;height: ' + obj.value.height + '; width: ' + obj.value.width + ';"></iframe>');
 		  					},
 		  					failure: function(response, opts) {
 		  					  FccTVApp.loadMask.hide();
@@ -105,11 +96,65 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 	        		}
 	        	},
 	        	itemswipe : function(list, index, el, e) {
-	        		console.log('swipe:' + index);
-	        		
-	        		
+	        		var record = list.getStore().getAt(index);
+	        		var panel = this.up('panel');
+	        		panel.overlay.fileId = record.get('key');
+	        		panel.overlay.show();
 	        	}
 	        }
 		};
-    }
+    },
+    overlay : new Ext.Panel({
+		id : 'docOverlay',
+        floating: true,
+//        modal: true,
+        centered: true,
+        fileId: null,
+        width: Ext.is.Phone ? 280 : 440,
+        height: Ext.is.Phone ? 240 : 440,
+        styleHtmlContent: true,
+        layout: 'fit',
+        scroll: 'vertical',
+        storeLoadCallBack:  function(){
+        	console.log('callback: ' + Ext.History.getToken());
+			FccTVApp.dispatch(Ext.History.getToken());
+        },
+        items:[{
+        	xtype: 'list',
+        	autoDestroy: true,
+        	disableSelection: true,
+	        store: FccTVApp.stores.MyDocFlatStore,
+	        itemTpl: new Ext.XTemplate('{folderName}'),
+        	listeners:{
+        		itemtap: function(list, index, el, e){
+        			FccTVApp.loadMask.show();
+        			var record = list.getStore().getAt(index);
+        			overlay = Ext.getCmp('docOverlay');
+        			
+        			
+        			Ext.Ajax.request({
+        				url: './changeDocDir.action',
+        				params: {
+        					fileId : overlay.fileId,
+        					toDirId: record.get('key')
+        				},
+	        			success: function(response, opts) {
+	        				FccTVApp.stores.MyDocTreeStore.load();
+	        				Ext.defer(function(){
+		        					FccTVApp.dispatch(Ext.History.getToken());
+		        					FccTVApp.loadMask.hide();
+			        				overlay.hide();
+	        					}, 1000);
+	  					},
+	  					failure: function(response, opts) {
+		  					FccTVApp.loadMask.hide();
+		  					console.log(overlay);
+		  					overlay.hide();
+	  					},
+	  					scope: overlay
+        			});
+        		}
+        	}
+        }]
+    })
 });

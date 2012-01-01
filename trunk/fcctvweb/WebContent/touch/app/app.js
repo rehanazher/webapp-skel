@@ -177,7 +177,6 @@ FccTVApp.dispatch = function(token, reverse){
 					});
 				}
 			}else if (parts[1] == "channel"){
-				console.log("there is in channel");
 				var backBtn = Ext.getCmp("backButton");
 				var ch = parts[2];
 				
