@@ -96,6 +96,8 @@ var configuredPageSize = <%= configurations.getPageSize() %>;
         <script type="text/javascript" src="app/stores/MyDocTreeStore.js"></script>
         <script type="text/javascript" src="app/stores/MyMusicStore.js"></script>
         <script type="text/javascript" src="app/stores/ChannelStore.js"></script>
+        <script type="text/javascript" src="app/stores/MyDocFlatStore.js"></script>
+        
         
         <!-- frames -->
         <script type="text/javascript" src="app/frames/Player.js"></script>
