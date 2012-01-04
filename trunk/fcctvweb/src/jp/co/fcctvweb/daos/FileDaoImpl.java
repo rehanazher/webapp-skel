@@ -21,7 +21,12 @@ public class FileDaoImpl extends BasicDao<FakeFile> implements FileDao {
 	private static final String SQL_UPDATE_FAKEFILE = "UPDATE file_tbl SET file_name=?,upload_id=?,"
 			+ "folder_id=? WHERE id=?";
 
+	private static final String SQL_UPDATE_FOLDER_ID = "UPDATE file_tbl SET folder_id=? WHERE id=?";
+	private static final String SQL_UPDATE_FILE_NAME = "UPDATE file_tbl SET file_name=? WHERE id=?";
+
 	private static final String SQL_FIND_FAKEFILE_BY_ID = "SELECT * FROM file_tbl WHERE id=?";
+	
+	
 
 	private static class FakeFileMultiRowMapper implements
 			MultiRowMapper<FakeFile> {
@@ -72,5 +77,15 @@ public class FileDaoImpl extends BasicDao<FakeFile> implements FileDao {
 	public FakeFile findById(int fakeFileId) {
 		return query(SQL_FIND_FAKEFILE_BY_ID, new Object[] { fakeFileId },
 				new FakeFileSingleRowMapper());
+	}
+
+	@Override
+	public boolean updateFolderId(int fileId, int folderId) {
+		return update(SQL_UPDATE_FOLDER_ID, new Object[] { folderId, fileId }) > 0;
+	}
+	
+	@Override
+	public boolean updateFileName(int fileId, String fileName) {
+		return update(SQL_UPDATE_FILE_NAME, new Object[]{fileName, fileId}) > 0;
 	}
 }

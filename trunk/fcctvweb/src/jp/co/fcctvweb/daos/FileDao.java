@@ -16,4 +16,7 @@ public interface FileDao {
 
 	FakeFile findById(int fakeFileId);
 
+	boolean updateFolderId(int fileId, int folderId);
+	
+	boolean updateFileName(int fileId, String fileName);
 }
