@@ -27,6 +27,7 @@ public class QueryVideoAction extends BasicJsonAction {
 		condition.setLimit(limit);
 		condition.setFavorite(favorite);
 		condition.setCh(ch);
+		condition.setType(type);
 		setJsonObj(gtvService.getGtvIdByCondition(condition));
 		return jsonReturn();
 	}
