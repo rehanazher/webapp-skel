@@ -59,24 +59,24 @@ public class IoAction extends ActionSupport {
 				response.setHeader("Accept-Ranges", "bytes");
 				response.setHeader("Connection", "Keep-Alive");
 				return "video";
-			} else if ("doc".equals(type)) {
-				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
-				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
-				inputStream = new FileInputStream(f);
-				response.setHeader("Content-Length", "" + f.length());
-				return "doc";
-			} else if ("docx".equals(type)) {
+			} else if ("doc".equals(type) || "docx".equals(type) || "pdf".equals(type) || "xls".equals(type) || "xlsx".equals(type) || "txt".equals(type)) {
 				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
 				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
 				inputStream = new FileInputStream(f);
 				response.setHeader("Content-Length", "" + f.length());
 				return type;
-			} else if ("pdf".equals(type)) {
-				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
-				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
-				inputStream = new FileInputStream(f);
-				response.setHeader("Content-Length", "" + f.length());
-				return "pdf";
+//			} else if ("docx".equals(type)) {
+//				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
+//				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
+//				inputStream = new FileInputStream(f);
+//				response.setHeader("Content-Length", "" + f.length());
+//				return type;
+//			} else if ("pdf".equals(type)) {
+//				FakeFile file = myDocService.getFileById(Integer.parseInt(fileId));
+//				f = getFile(type, Config.getUploadDocDir() + file.getFileName());
+//				inputStream = new FileInputStream(f);
+//				response.setHeader("Content-Length", "" + f.length());
+//				return "pdf";
 			} else if ("photo".equals(type)) {
 				MyFileVo uploadFile = uploadInfoService.getPhotoByIndex(index);
 				if (uploadFile == null){
