@@ -48,6 +48,19 @@
                 <param name="bufferSize">2048</param>
                 <param name="allowCaching">true</param>
         	</result>
+            <result name="txt" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="xlsx" type="stream">
+                <param name="contentType">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="xls" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            
         	<result name="json"></result>
         	<interceptor-ref name="defaultStack"/>
        	</action>
