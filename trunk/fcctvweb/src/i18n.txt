@@ -254,7 +254,7 @@ uploader.label.name=保存名称
 uploader.label.type=类型
 uploader.label.file=文件
 uploader.label.file.empty.tips=请选择文件
-uploader.upload.tips=支持格式：<br/> 视频: *.mp4 <br/> 文档: *.doc/*.docx/*.pdf <br/> 音频: *.mp3 <br/> 图片: *.jpg 
+uploader.upload.tips=支持格式：<br/> 视频: *.mp4 <br/> 文档: *.doc/*.docx/*.pdf/*.xls/*.xlsx/*.txt <br/> 音频: *.mp3 <br/> 图片: *.jpg 
 
 uploader.type.video=视频
 uploader.type.photo=图片
@@ -267,5 +267,5 @@ uploader.msg.upload.failed=异常
 uploader.msg.type.not.support.video=只支持 .mp4 视频上传
 uploader.msg.type.not.support.photo=只支持 .jpg 图片上传
 uploader.msg.type.not.support.video=只支持 .mp3 音频上传
-uploader.msg.type.not.support.doc=只支持 .doc/.docx/.pdf 文档上传
+uploader.msg.type.not.support.doc=只支持 .doc/.docx/.pdf/.xls/.xlsx/.txt 文档上传
 
