@@ -87,7 +87,8 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 		        			success: function(response, opts) {
 		  					  var obj = Ext.decode(response.responseText);
 		  					  FccTVApp.loadMask.hide();
-		  					  location.href='./docPrev.action?fileId=' + record.get('key') + '&type=' + record.get('extName') + '&height=' + obj.value.height + '&width=' + obj.value.width;
+		  					  location.href='./watch.action?fileId=' + record.get('key') + '&type=' + record.get('extName');
+		  					  // location.href='./docPrev.action?fileId=' + record.get('key') + '&type=' + record.get('extName') + '&height=' + obj.value.height + '&width=' + obj.value.width;
 		  					},
 		  					failure: function(response, opts) {
 		  					  FccTVApp.loadMask.hide();
