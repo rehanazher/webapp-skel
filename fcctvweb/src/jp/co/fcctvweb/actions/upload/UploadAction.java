@@ -52,7 +52,10 @@ public class UploadAction extends BasicJsonAction {
 			break;
 		case 2: // doc
 			if (!("doc".equalsIgnoreCase(extName)
-					|| "docx".equalsIgnoreCase(extName) || "pdf"
+					|| "docx".equalsIgnoreCase(extName)
+					|| "pdf".equalsIgnoreCase(extName)
+					|| "xls".equalsIgnoreCase(extName)
+					|| "xlsx".equalsIgnoreCase(extName) || "txt"
 					.equalsIgnoreCase(extName))) {
 				setMsg(getText("uploader.msg.type.not.support.doc"));
 			}
@@ -124,7 +127,7 @@ public class UploadAction extends BasicJsonAction {
 			info.setSize(uploadedFile.length());
 			info.setType(type);
 
-			if (type != Config.MY_FILE_TYPE_DOC){
+			if (type != Config.MY_FILE_TYPE_DOC) {
 				uploadInfoService.removeIfExists(type, fileName);
 			}
 
