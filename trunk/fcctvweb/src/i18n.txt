@@ -213,6 +213,15 @@ app.player.no.select=<div style='font-size: 48px'>未选中播放视频</div>
 app.player.favorite.add=添加收藏
 app.player.favorite.remove=删除收藏
 
+# device page
+app.device.hdd.title=硬盘信息
+app.device.hdd.free=空闲
+app.device.hdd.full=总容量
+app.device.hdd.usage=使用率
+
+app.device.bc.title=录像用电视台
+
+
 
 # ****************** my video function ***********************
 video.title=Video
