@@ -1,3 +1,75 @@
+channelItems = (function(){
+	var result = [];
+	
+	var index = 0;
+	for (var i = 0; i < chNames.length; i++){
+		record = chNames[i];
+		result[i] = {
+				xtype: 'textfield',
+	        	id: 'deviceBc' + i,
+	            name: 'deviceBc' + i,
+	            label: record,
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	            	};
+	}
+	return result;
+})();
+
+hardwareCard = new Ext.Panel({
+	scroll: 'vertical',
+	items:[{
+		xtype: 'form',
+		items: [{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.device.hdd.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: [{
+	        	xtype: 'textfield',
+	        	id: 'deviceHddFree',
+	            name: 'deviceHddFree',
+	            label: bundle.getText('app.device.hdd.free'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceHddTotal',
+	            name: 'deviceHddTotal',
+	            label: bundle.getText('app.device.hdd.full'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceHddUsage',
+	            name: 'deviceHddUsage',
+	            label: bundle.getText('app.device.hdd.usage'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        }]
+		},{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.device.bc.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: channelItems
+		}]
+	}], 
+	listeners:{
+		show: function(){
+			console.log('showing...');
+			// Ext.getCmp('testName').setValue('text');
+		}
+	}
+});
 
 FccTVApp.stores.Structure = [{
     	text: bundle.getText('menu.1'),
@@ -924,6 +996,8 @@ FccTVApp.stores.Structure = [{
     	nav: '5',
     	url: 'url 3',
     	key: '3',
+    	leaf: true,
+    	card: hardwareCard,
     	items: [{
     		text: bundle.getText('menu.5.1'),
     		nav: '5:1',
