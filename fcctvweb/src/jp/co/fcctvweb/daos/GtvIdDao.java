@@ -12,4 +12,5 @@ public interface GtvIdDao {
 	List<GtvId> findByCondition(GtvCondition condition);
 	
 	boolean updateFavoriteByGtvid(String gtvid, int favoriteFlag);
+	
 }

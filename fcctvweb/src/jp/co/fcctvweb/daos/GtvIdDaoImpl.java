@@ -20,7 +20,7 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 	private static final String SQL_FIND_ALL = "SELECT * FROM gtvid_tbl";
 
 	private static final String SQL_UPDATE_FAVORITE_BY_GTVID = "UPDATE gtvid_tbl SET favorite=? WHERE gtvid=?";
-
+	
 	private static class GtvIdMultiRowMapper implements MultiRowMapper<GtvId> {
 		public GtvId mapRow(ResultSet rs, int rowNum) throws SQLException {
 			GtvId gtvId = new GtvId();
@@ -91,4 +91,5 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 		return update(SQL_UPDATE_FAVORITE_BY_GTVID, new Object[] {
 				favoriteFlag, gtvid }) > 0;
 	}
+	
 }

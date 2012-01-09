@@ -158,6 +158,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="gtvService" class="jp.co.fcctvweb.services.GtvServiceImpl" >
 		<property name="gtvIdDao" ref="gtvIdDao" />
 		<property name="channelDao" ref="channelDao" />
+		<property name="statisticDao" ref="statisticDao" />
 	</bean>
 	<bean id="uploadInfoService" class="jp.co.fcctvweb.services.UploadInfoServiceImpl" >
 		<property name="uploadInfoDao" ref="uploadInfoDao" />
@@ -166,6 +167,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="fileDao" ref="fileDao" />
         <property name="folderDao" ref="folderDao" />
     </bean>
+    <bean id="sysStatausServiceImpl" class="jp.co.fcctvweb.services.SysStatausServiceImpl" >
+        <property name="sysStatusDao" ref="sysStatusDao" />
+    </bean>
+    
     
 
 	<!-- Daos -->
@@ -186,6 +191,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="dataSource" ref="c3p0DS" />
     </bean>
     <bean id="folderDao" class="jp.co.fcctvweb.daos.FolderDaoImpl">
+        <property name="dataSource" ref="c3p0DS" />
+    </bean>
+    <bean id="statisticDao" class="jp.co.fcctvweb.daos.StatisticDaoImpl">
+        <property name="dataSource" ref="c3p0DS" />
+    </bean>
+    <bean id="sysStatusDao" class="jp.co.fcctvweb.daos.SysStatusDaoImpl">
         <property name="dataSource" ref="c3p0DS" />
     </bean>
 	

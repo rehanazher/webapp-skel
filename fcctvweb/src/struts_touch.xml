@@ -88,6 +88,13 @@
         
         <action name="retrieveChannels" class="jp.co.fcctvweb.actions.ChannelAction"><result name="json" type="json"></result></action>
         
+        <action name="getHddInfo" class="jp.co.fcctvweb.actions.HardwareAction" method="getHddInfo"><result name="json" type="json"></result></action>
+        <action name="getChannelInfo" class="jp.co.fcctvweb.actions.ChannelAction" method="getChannelInfo"><result name="json" type="json"></result></action>
+        <action name="getTunners" class="jp.co.fcctvweb.actions.HardwareAction" method="getTunners"><result name="json" type="json"></result></action>
+        <action name="getTvTerminalId" class="jp.co.fcctvweb.actions.HardwareAction" method="getTvTerminalId"><result name="json" type="json"></result></action>
+        <action name="getSoftwareId" class="jp.co.fcctvweb.actions.HardwareAction" method="getSoftwareId"><result name="json" type="json"></result></action>
+        
+        
 <!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->
     </package>
 </struts>
