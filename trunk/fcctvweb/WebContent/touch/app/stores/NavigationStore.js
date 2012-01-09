@@ -1,7 +1,6 @@
 channelItems = (function(){
 	var result = [];
 	
-	var index = 0;
 	for (var i = 0; i < chNames.length; i++){
 		record = chNames[i];
 		result[i] = {
@@ -61,12 +60,179 @@ hardwareCard = new Ext.Panel({
 	            labelWidth: '35%'
 	        },
 	        items: channelItems
+		},{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.device.tunner.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: [{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner0',
+	            name: 'deviceTunner0',
+	            label: bundle.getText('app.device.tunner.0'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner1',
+	            name: 'deviceTunner1',
+	            label: bundle.getText('app.device.tunner.1'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner2',
+	            name: 'deviceTunner2',
+	            label: bundle.getText('app.device.tunner.2'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner3',
+	            name: 'deviceTunner3',
+	            label: bundle.getText('app.device.tunner.3'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner4',
+	            name: 'deviceTunner4',
+	            label: bundle.getText('app.device.tunner.4'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner5',
+	            name: 'deviceTunner5',
+	            label: bundle.getText('app.device.tunner.5'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        },{
+	        	xtype: 'textfield',
+	        	id: 'deviceTunner6',
+	            name: 'deviceTunner6',
+	            label: bundle.getText('app.device.tunner.6'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        }]
+		},{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.device.tv.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: [{
+	        	xtype: 'textfield',
+	        	id: 'deviceTvId',
+	            name: 'deviceTvId',
+	            label: bundle.getText('app.device.tv.label'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        }]
+		},{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.device.software.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: [{
+	        	xtype: 'textfield',
+	        	id: 'deviceSoftwareId',
+	            name: 'deviceSoftwareId',
+	            label: bundle.getText('app.device.software.label'),
+	            disabled: true,
+	            disabledCls: 'basicInfo',
+	            placeHolder: '-'
+	        }]
 		}]
 	}], 
 	listeners:{
 		show: function(){
 			console.log('showing...');
-			// Ext.getCmp('testName').setValue('text');
+			Ext.Ajax.request({
+				url: './getHddInfo.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					Ext.getCmp('deviceHddFree').setValue(obj.value.freeSpace);
+					Ext.getCmp('deviceHddTotal').setValue(obj.value.fullSpace);
+					Ext.getCmp('deviceHddUsage').setValue(obj.value.usage);
+				},
+				failure: function(){
+					
+				}
+			});
+			
+			Ext.Ajax.request({
+				url: './getChannelInfo.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					console.log(obj);
+					var list = obj.value;
+					for (var i = 0; i < chNames.length; i++){
+						var name = chNames[i];
+						for (var k = 0; k < list.length; k++){
+							if (list[k].chName == name){
+								Ext.getCmp('deviceBc' + i).setValue(list[k].amount + " " + bundle.getText('app.device.bc.unit'));
+								break;
+							}
+						}
+					}
+				},
+				failure: function(){
+					
+				}
+			});
+			
+			Ext.Ajax.request({
+				url: './getTunners.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					Ext.getCmp('deviceTunner0').setValue(obj.value.ant0Level);
+					Ext.getCmp('deviceTunner1').setValue(obj.value.ant1Level);
+					Ext.getCmp('deviceTunner2').setValue(obj.value.ant2Level);
+					Ext.getCmp('deviceTunner3').setValue(obj.value.ant3Level);
+					Ext.getCmp('deviceTunner4').setValue(obj.value.ant4Level);
+					Ext.getCmp('deviceTunner5').setValue(obj.value.ant5Level);
+					Ext.getCmp('deviceTunner6').setValue(obj.value.ant6Level);
+				},
+				failure: function(){
+					
+				}
+			});
+			
+			Ext.Ajax.request({
+				url: './getSoftwareId.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					Ext.getCmp('deviceSoftwareId').setValue(obj.value);
+				},
+				failure: function(){
+					
+				}
+			});
+			
+			Ext.Ajax.request({
+				url: './getTvTerminalId.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					Ext.getCmp('deviceTvId').setValue(obj.value);
+				},
+				failure: function(){
+					
+				}
+			});
 		}
 	}
 });
@@ -997,38 +1163,7 @@ FccTVApp.stores.Structure = [{
     	url: 'url 3',
     	key: '3',
     	leaf: true,
-    	card: hardwareCard,
-    	items: [{
-    		text: bundle.getText('menu.5.1'),
-    		nav: '5:1',
-    		url: '',
-    		key: '0'
-    	},{
-    		text: bundle.getText('menu.5.2'),
-    		nav: '5:2',
-    		url: '',
-    		key: '0'
-    	},{
-    		text: bundle.getText('menu.5.3'),
-    		nav: '5:3',
-    		url: '',
-    		key: '0'
-    	},{
-    		text: bundle.getText('menu.5.4'),
-    		nav: '5:4',
-    		url: '',
-    		key: '0'
-    	},{
-    		text: bundle.getText('menu.5.5'),
-    		nav: '5:5',
-    		url: '',
-    		key: '0'
-    	},{
-    		text: bundle.getText('menu.5.6'),
-    		nav: '5:6',
-    		url: '',
-    		key: '0'
-    	}]
+    	card: hardwareCard
     },{
     	text: bundle.getText('menu.6'),
     	nav: '6',

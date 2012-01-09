@@ -16,6 +16,11 @@ public class ChannelAction extends BasicJsonAction {
 		setJsonObj(channelList);
 		return jsonReturn();
 	}
+	
+	public String getChannelInfo(){
+		getReply().setValue(gtvService.getChannelStatistic());
+		return ajaxReturn();
+	}
 
 	public void setGtvService(GtvService gtvService) {
 		this.gtvService = gtvService;
