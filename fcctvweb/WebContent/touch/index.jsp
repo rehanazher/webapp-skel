@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="jp.co.fcctvweb.config.Config"%>
 <%@page import="jp.co.fcctvweb.actions.BasicJsonAction.I18N"%>
 <%@page import="java.util.Calendar"%>
@@ -8,6 +9,7 @@
 <% I18N i18n = (I18N)pageContext.findAttribute("i18n"); %>
 <% Calendar serverTime = (Calendar)pageContext.findAttribute("serverTime"); %>
 <% Config configurations = (Config)pageContext.findAttribute("configurations"); %>
+<% List<String> chNames = (List<String>)pageContext.findAttribute("chNames"); %>
 
 
 <!DOCTYPE html>
@@ -60,6 +62,9 @@ bundle.getText = function(key){
 
 var loginFlag = <%= pageContext.findAttribute("loginFlag") %>;
 var configuredPageSize = <%= configurations.getPageSize() %>;
+
+var chNames = [];
+<% int index=0; for (String chName: chNames){%> chNames[<%= index %>]="<%= chName %>"; <% index++; } %>
         </script>
     </head>
     <body>

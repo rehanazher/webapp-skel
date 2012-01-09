@@ -110,3 +110,7 @@ ol#grid li a span {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	white-space: nowrap;
 }
+
+.basicInfo{
+    color: #ffffff;	
+}
