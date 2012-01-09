@@ -1,9 +1,13 @@
 package jp.co.fcctvweb.actions;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import jp.co.fcctvweb.config.Config;
+import jp.co.fcctvweb.po.Channel;
 import jp.co.fcctvweb.po.User;
+import jp.co.fcctvweb.services.GtvService;
 import jp.co.fcctvweb.services.UserService;
 
 import org.apache.struts2.ServletActionContext;
@@ -20,12 +24,21 @@ public class UserAction extends BasicJsonAction {
 	private boolean loginFlag;
 	private Calendar serverTime = Calendar.getInstance();
 	private Config configurations;
-	
+
+	private List<String> chNames = new ArrayList<String>();
+
+	private GtvService gtvService;
+
 	public String retrieveLogin() {
 		String remoteIp = ServletActionContext.getRequest().getRemoteAddr();
 		User user = userService.userLogin("", "", remoteIp);
 		if (user != null) {
 			loginFlag = true;
+		}
+
+		List<Channel> chList = gtvService.getAllChannels();
+		for (Channel ch : chList) {
+			chNames.add(ch.getChName());
 		}
 		return SUCCESS;
 	}
@@ -74,5 +87,13 @@ public class UserAction extends BasicJsonAction {
 
 	public Config getConfigurations() {
 		return configurations;
+	}
+
+	public List<String> getChNames() {
+		return chNames;
+	}
+
+	public void setGtvService(GtvService gtvService) {
+		this.gtvService = gtvService;
 	}
 }
