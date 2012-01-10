@@ -236,6 +236,70 @@ hardwareCard = new Ext.Panel({
 	}
 });
 
+searchCard = new Ext.Panel({
+	scroll: 'vertical',
+	items: [{
+		xtype: 'form',
+		url: '',
+		items: [{
+			xtype: 'fieldset',
+	        title: bundle.getText('app.search.title'),
+	        // instructions: 'Please enter the information above.',
+	        defaults: {
+	            labelWidth: '35%'
+	        },
+	        items: [{
+	        	xtype: 'textfield',
+	        	name: 'searchtext',
+	        	label: bundle.getText('app.search.text.label')
+	        },{
+	        	xtype: 'selectfield',
+	        	name: 'searchtype',
+	        	label: bundle.getText('app.search.type.label'),
+	        	options: [
+	        	          {text: bundle.getText('app.search.type.genre'),  value: '0'},
+	        	          {text: bundle.getText('app.search.type.sub'), value: '1'}
+	        	          ]
+	        }]
+		}],
+		dockedItems : [{
+			xtype : 'toolbar',
+			dock : 'bottom',
+			items : [{
+				xtype : 'spacer'
+			}, {
+				text : bundle.getText('common.button.reset'),
+				handler : function() {
+					this.up('form').reset();
+				}
+			}, {
+				text : bundle.getText('common.button.submit'),
+				ui : 'confirm',
+				handler : function() {
+					console.log();
+					
+					FccTVApp.stores.TypeStore.setProxy({
+						type: 'ajax',
+						url: './queryVideo.action',
+						extraParams: this.up('form').getValues()
+					});
+					FccTVApp.loadMask.show();
+					FccTVApp.stores.TypeStore.load(function(){
+						FccTVApp.loadMask.hide();
+					});
+					FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.TypeStore);
+					
+					// FccTVApp.prevCard = Ext.getCmp("navigatorPanel");
+					// FccTVApp.prevTitle = record.get('text');
+					this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
+					
+					// this.up('form').customSubmitForm();
+				}
+			}]
+		}]
+	}]
+});
+
 FccTVApp.stores.Structure = [{
     	text: bundle.getText('menu.1'),
     	nav: '1',
@@ -1155,7 +1219,9 @@ FccTVApp.stores.Structure = [{
     	text: bundle.getText('menu.4'),
     	nav: '4',
     	url: 'url 3',
-    	key: '3'
+    	key: '3',
+    	leaf: true,
+    	card: searchCard
     },{
     	text: bundle.getText('menu.5'),
     	nav: '5',
@@ -1166,8 +1232,9 @@ FccTVApp.stores.Structure = [{
     },{
     	text: bundle.getText('menu.6'),
     	nav: '6',
-    	url: 'url 3',
-    	key: '3'
+    	url: 'logout',
+    	key: '3',
+    	leaf: true
     }];
 
 
