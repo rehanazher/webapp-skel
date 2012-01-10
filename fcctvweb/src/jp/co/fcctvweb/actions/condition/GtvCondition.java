@@ -5,6 +5,9 @@ public class GtvCondition extends Pagination {
 	private String type;
 	private int ch;
 	private int favorite;
+	
+	private String searchText;
+	private int searchType;
 
 	public String getDate() {
 		return date;
@@ -36,5 +39,21 @@ public class GtvCondition extends Pagination {
 
 	public void setCh(int ch) {
 		this.ch = ch;
+	}
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
+	public int getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(int searchType) {
+		this.searchType = searchType;
 	}
 }

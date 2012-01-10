@@ -7,6 +7,11 @@
         <action name="touch" class="jp.co.fcctvweb.actions.BasicJsonAction">
             <result>index.jsp</result>
         </action>
+        
+        <action name="detect" class="jp.co.fcctvweb.actions.client.RequestDetectAction">
+            <result type="json" name="json"></result>
+        </action>
+        
         <action name="queryEmpty" class="jp.co.fcctvweb.actions.BasicJsonAction" method="emptyJson"><result type="json" name="json"/></action>
         <action name="queryVideo" class="jp.co.fcctvweb.actions.QueryVideoAction" method="query" ><result type="json" name="json"></result></action>
         <action name="addFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addFavorite"><result type="json" name="json"></result></action>

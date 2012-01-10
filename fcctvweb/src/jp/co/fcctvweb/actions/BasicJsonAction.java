@@ -194,29 +194,29 @@ public class BasicJsonAction extends ActionSupport {
 
 	private I18N i18n = new I18N();
 
-	public static void main(String[] args) {
-		Runtime run = Runtime.getRuntime();
-		try {
-			Process p = run.exec("ping www.baidu.com");
-			BufferedInputStream in = new BufferedInputStream(p.getInputStream());
-			BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
-			String lineStr;
-			while ((lineStr = inBr.readLine()) != null)
-				System.out.println(lineStr);// ���杈��淇℃�
-			if (p.waitFor() != 0) {
-				if (p.exitValue() == 1)// p.exitValue()==0琛ㄧず姝ｅ父缁��锛�锛��姝ｅ父缁��
-					System.err.println("�戒护�ц�澶辫触!");
-			}
-			inBr.close();
-			in.close();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+//	public static void main(String[] args) {
+//		Runtime run = Runtime.getRuntime();
+//		try {
+//			Process p = run.exec("ping www.baidu.com");
+//			BufferedInputStream in = new BufferedInputStream(p.getInputStream());
+//			BufferedReader inBr = new BufferedReader(new InputStreamReader(in));
+//			String lineStr;
+//			while ((lineStr = inBr.readLine()) != null)
+//				System.out.println(lineStr);// ���杈��淇℃�
+//			if (p.waitFor() != 0) {
+//				if (p.exitValue() == 1)// p.exitValue()==0琛ㄧず姝ｅ父缁��锛�锛��姝ｅ父缁��
+//					System.err.println("�戒护�ц�澶辫触!");
+//			}
+//			inBr.close();
+//			in.close();
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//	}
 }

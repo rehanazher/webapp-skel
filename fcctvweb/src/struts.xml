@@ -25,6 +25,15 @@
     <constant name="struts.custom.i18n.resources" value="messages," />
 
     <package name="default" extends="json-default">
+    	<interceptors>
+    		<interceptor name="auth" class="jp.co.fcctvweb.interceptors.AuthInterceptor" />
+    		
+    		<interceptor-stack name="authStack">
+                <interceptor-ref name="basicStack"/>
+            </interceptor-stack>
+    	</interceptors>
+
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
 
         <global-results>
             <result name="login">login.jsp</result>

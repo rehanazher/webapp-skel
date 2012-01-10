@@ -241,6 +241,12 @@ app.setting.device.reset.label=拨动重启
 app.setting.device.shutdown.title=设备关闭
 app.setting.device.shutdown.label=拨动关闭
 
+# search page
+app.search.title=检索
+app.search.text.label=查询内容
+app.search.type.label=类型
+app.search.type.genre=情报检索
+app.search.type.sub=字幕检索
 
 # ****************** my video function ***********************
 video.title=Video

@@ -20,7 +20,7 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 	private static final String SQL_FIND_ALL = "SELECT * FROM gtvid_tbl";
 
 	private static final String SQL_UPDATE_FAVORITE_BY_GTVID = "UPDATE gtvid_tbl SET favorite=? WHERE gtvid=?";
-	
+
 	private static class GtvIdMultiRowMapper implements MultiRowMapper<GtvId> {
 		public GtvId mapRow(ResultSet rs, int rowNum) throws SQLException {
 			GtvId gtvId = new GtvId();
@@ -75,6 +75,15 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 		handler.and("ch = ?", condition.getCh(), condition.getCh() != -1);
 		handler.and("genre LIKE ?", "%" + condition.getType() + "%",
 				!Validators.isEmpty(condition.getType()));
+		if (condition.getSearchType() == 1) {
+			handler.and("contentname LIKE ?", "%" + condition.getSearchText()
+					+ "%", !Validators.isEmpty(condition.getSearchText()));
+		} else if (condition.getSearchType() == 0) {
+			handler.and(
+					" gtvid IN (SELECT gtvid FROM jimaku_tbl WHERE mojitext LIKE ?)",
+					"%" + condition.getSearchText() + "%",
+					!Validators.isEmpty(condition.getSearchText()));
+		}
 
 		String pagingSql = "";
 		if (condition instanceof Pagination) {
@@ -91,5 +100,5 @@ public class GtvIdDaoImpl extends BasicDao<GtvId> implements GtvIdDao {
 		return update(SQL_UPDATE_FAVORITE_BY_GTVID, new Object[] {
 				favoriteFlag, gtvid }) > 0;
 	}
-	
+
 }
