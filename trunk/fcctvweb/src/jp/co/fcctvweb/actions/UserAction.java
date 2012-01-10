@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.po.Channel;
 import jp.co.fcctvweb.po.User;
@@ -15,6 +17,8 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction extends BasicJsonAction {
 
 	private static final long serialVersionUID = -8054682999648658581L;
+	
+	public static final String STORAGE_KEY = "jp.co.fcctvweb.User";
 
 	private UserService userService;
 
@@ -34,7 +38,10 @@ public class UserAction extends BasicJsonAction {
 		User user = userService.userLogin("", "", remoteIp);
 		if (user != null) {
 			loginFlag = true;
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute(STORAGE_KEY, user);
 		}
+		
 
 		List<Channel> chList = gtvService.getAllChannels();
 		for (Channel ch : chList) {
@@ -49,6 +56,8 @@ public class UserAction extends BasicJsonAction {
 		if (user == null) {
 			makeFailure();
 			setMsg(getText("app.login.msg.invalid"));
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute(STORAGE_KEY, user);
 		}
 		return ajaxReturn();
 	}

@@ -14,6 +14,9 @@ public class QueryVideoAction extends BasicJsonAction {
 	private int favorite = -1;
 	private int ch = -1;
 	
+	private String searchtext;
+	private int searchtype = -1;
+	
 	// pagination
 	private int start;
 	private int page;
@@ -28,6 +31,8 @@ public class QueryVideoAction extends BasicJsonAction {
 		condition.setFavorite(favorite);
 		condition.setCh(ch);
 		condition.setType(type);
+		condition.setSearchText(searchtext);
+		condition.setSearchType(searchtype);
 		setJsonObj(gtvService.getGtvIdByCondition(condition));
 		return jsonReturn();
 	}
@@ -91,5 +96,20 @@ public class QueryVideoAction extends BasicJsonAction {
 	public void setCh(int ch) {
 		this.ch = ch;
 	}
-	
+
+	public String getSearchtext() {
+		return searchtext;
+	}
+
+	public void setSearchtext(String searchtext) {
+		this.searchtext = searchtext;
+	}
+
+	public int getSearchtype() {
+		return searchtype;
+	}
+
+	public void setSearchtype(int searchtype) {
+		this.searchtype = searchtype;
+	}
 }
