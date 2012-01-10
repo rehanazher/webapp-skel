@@ -37,7 +37,7 @@ FccTVApp.frames.Settings = new Ext.Panel({
 	            		Ext.Ajax.request({
 	            			url: './changeMovieExpire.action',
 	            			params: {
-	            				expiredDate: newValue
+	            				expiredDate: value
 	            			},
 	            			success: function(response, opts) {
 	            				FccTVApp.loadMask.hide();
@@ -136,7 +136,7 @@ FccTVApp.frames.Settings = new Ext.Panel({
 		}]
 	}],
 	listeners: {
-		show: function(){
+		activate: function(cmp){
 			Ext.Ajax.request({
 				url: './getMovieExpire.action',
 				success: function(response, opts) {
