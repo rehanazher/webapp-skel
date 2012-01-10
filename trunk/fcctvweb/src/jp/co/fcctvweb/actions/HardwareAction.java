@@ -57,7 +57,7 @@ public class HardwareAction extends BasicJsonAction {
 	}
 
 	public String changeMovieExpire() {
-
+		System.out.println("expiredDate: " + expiredDate);
 		return ajaxReturn();
 	}
 
