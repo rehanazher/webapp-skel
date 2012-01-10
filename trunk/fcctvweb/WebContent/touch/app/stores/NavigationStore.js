@@ -160,7 +160,6 @@ hardwareCard = new Ext.Panel({
 	}], 
 	listeners:{
 		show: function(){
-			console.log('showing...');
 			Ext.Ajax.request({
 				url: './getHddInfo.action',
 				success: function(response, opts) {

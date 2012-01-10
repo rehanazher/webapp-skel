@@ -115,6 +115,8 @@ var chNames = [];
         <script type="text/javascript" src="app/frames/QueryList.js"></script>
         <script type="text/javascript" src="app/frames/MyMusicFavorite.js"></script>
         <script type="text/javascript" src="app/frames/ChannelList.js"></script>
+        <script type="text/javascript" src="app/frames/Settings.js"></script>
+        
         
         <!-- navigation store, depends on all utils, stores and frames -->
         <script type="text/javascript" src="app/stores/NavigationStore.js"></script>
