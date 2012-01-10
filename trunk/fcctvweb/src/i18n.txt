@@ -231,6 +231,16 @@ app.device.tv.label=电视终端ID
 app.device.software.title=软件版本ID
 app.device.software.label=软件版本
 
+# setting page
+app.setting.expire.title=录像保存时间
+app.setting.expire.label=日数
+app.setting.hdd.format.title=硬盘格式化
+app.setting.hdd.format.label=拨动执行
+app.setting.device.reset.title=设备重启
+app.setting.device.reset.label=拨动重启
+app.setting.device.shutdown.title=设备关闭
+app.setting.device.shutdown.label=拨动关闭
+
 
 # ****************** my video function ***********************
 video.title=Video

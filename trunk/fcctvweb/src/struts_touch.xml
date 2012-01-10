@@ -93,6 +93,13 @@
         <action name="getTunners" class="jp.co.fcctvweb.actions.HardwareAction" method="getTunners"><result name="json" type="json"></result></action>
         <action name="getTvTerminalId" class="jp.co.fcctvweb.actions.HardwareAction" method="getTvTerminalId"><result name="json" type="json"></result></action>
         <action name="getSoftwareId" class="jp.co.fcctvweb.actions.HardwareAction" method="getSoftwareId"><result name="json" type="json"></result></action>
+        <action name="getMovieExpire" class="jp.co.fcctvweb.actions.HardwareAction" method="getMovieExpire"><result name="json" type="json"></result></action>
+        <action name="changeMovieExpire" class="jp.co.fcctvweb.actions.HardwareAction" method="changeMovieExpire"><result name="json" type="json"></result></action>
+        
+        <action name="hddFormat" class="jp.co.fcctvweb.actions.HardwareAction" method="hddFormat"><result name="json" type="json"></result></action>
+        <action name="deviceReset" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceReset"><result name="json" type="json"></result></action>
+        <action name="deviceShutdown" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceShutdown"><result name="json" type="json"></result></action>
+         
         
         
 <!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->

@@ -9,48 +9,84 @@ import jp.co.fcctvweb.services.SysStatausServiceImpl;
 public class HardwareAction extends BasicJsonAction {
 
 	private static final long serialVersionUID = 4971651946041852701L;
-	
+
 	private SysStatausServiceImpl sysStatausServiceImpl;
 
-	public String getHddInfo(){
+	private int expiredDate;
+
+	public String getHddInfo() {
 		long g = 1000000000l;
 		DecimalFormat df = new DecimalFormat("0.00");
 		File f = new File(Config.getUploadDocDir());
-		
+
 		double fsd = (double) f.getFreeSpace() / g;
 		double tsd = (double) f.getTotalSpace() / g;
 		double percent = (tsd - fsd) / tsd * 100;
 		String freeSpace = df.format(fsd) + " G";
 		String fullSpace = df.format(tsd) + " G";
 		String usage = df.format(percent) + " %";
-		
+
 		HddInfo hddInfo = new HddInfo();
 		hddInfo.setFreeSpace(freeSpace);
 		hddInfo.setFullSpace(fullSpace);
 		hddInfo.setUsage(usage);
-		
+
 		getReply().setValue(hddInfo);
-		
+
 		return ajaxReturn();
 	}
-	
-	public String getTunners(){
+
+	public String getTunners() {
 		getReply().setValue(sysStatausServiceImpl.getSysStatus());
 		return ajaxReturn();
 	}
-	
-	public String getTvTerminalId(){
+
+	public String getTvTerminalId() {
 		getReply().setValue("tv id");
 		return ajaxReturn();
 	}
-	
-	public String getSoftwareId(){
+
+	public String getSoftwareId() {
 		getReply().setValue("software id");
 		return ajaxReturn();
 	}
 
-	public void setSysStatausServiceImpl(SysStatausServiceImpl sysStatausServiceImpl) {
+	public String getMovieExpire() {
+		getReply().setValue("7");
+		return ajaxReturn();
+	}
+
+	public String changeMovieExpire() {
+
+		return ajaxReturn();
+	}
+
+	public String hddFormat() {
+		System.out.println("hddFormat");
+		return ajaxReturn();
+	}
+
+	public String deviceReset() {
+		System.out.println("deviceReset");
+		return ajaxReturn();
+	}
+
+	public String deviceShutdown() {
+		System.out.println("deviceShutdown");
+		return ajaxReturn();
+	}
+
+	public void setSysStatausServiceImpl(
+			SysStatausServiceImpl sysStatausServiceImpl) {
 		this.sysStatausServiceImpl = sysStatausServiceImpl;
+	}
+
+	public int getExpiredDate() {
+		return expiredDate;
+	}
+
+	public void setExpiredDate(int expiredDate) {
+		this.expiredDate = expiredDate;
 	}
 
 	public static class HddInfo {
