@@ -61,6 +61,11 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 							this.up('tabpanel').getActiveItem().setActiveItem(card, 'slide');
 							backButton.setText(record.get("text"));
 							backButton.show();
+						}else{
+							if (url == 'logout'){
+								FccTVApp.addHistory('login');
+								FccTVApp.dispatch('login');
+							}
 						}
 					}
 				}
@@ -83,6 +88,7 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 		iconCls : 'settings',
 		nav: 'setting',
 		scroll: 'vertical',
+		layout: 'card',
 		title : bundle.getText('tab.4'),
 		items : [FccTVApp.frames.Settings]
 	},{
