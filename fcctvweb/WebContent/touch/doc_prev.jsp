@@ -5,12 +5,11 @@
 <%@page import="java.util.PropertyResourceBundle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% I18N i18n = (I18N)pageContext.findAttribute("i18n"); %>
-<% int height = (Integer)pageContext.findAttribute("height"); %>
-<% int width = (Integer)pageContext.findAttribute("width"); %>
-<% String type = (String)pageContext.findAttribute("type"); %>
-<% int fileId = (Integer)pageContext.findAttribute("fileId"); %>
-<% String title = (String)pageContext.findAttribute("title"); %>
+<% // I18N i18n = (I18N)pageContext.findAttribute("i18n"); %>
+<%// int height = (Integer)pageContext.findAttribute("height"); %>
+<%// int width = (Integer)pageContext.findAttribute("width"); %>
+<%// String type = (String)pageContext.findAttribute("type"); %>
+<%// int fileId = (Integer)pageContext.findAttribute("fileId"); %>
 
 
 <!DOCTYPE html>
@@ -22,8 +21,7 @@
             #fixedTitle {
                 text-align: center;
                 position:fixed; 
-                min-width: 842px;
-                width: 100%;
+                width: 100%; 
                 height: 46px; 
                 background: url(./images/top-sub-bg.png) repeat-x;
             }
@@ -63,13 +61,11 @@
             }
         </style>
     </head>
-    <body style="padding: 0; margin: 0; width: <%= width %>px;">
-        <div id="fixedTitle" >
-          <input type="button" value=" <%= i18n.getI18nText("common.button.back") %>" class="backLink" onmousedown="this.className='backLinkDown'" onclick="javascript: history.back(-1);" onmouseup="this.className='backLink'"/>
-          <span><%= title %></span>
+    <body style="padding: 0; margin: 0;">
+        <div id="fixedTitle" style="">
+          <input type="button" value=" Back" class="backLink" onmousedown="this.className='backLinkDown'" onclick="javascript: location.history.back();" onmouseup="this.className='backLink'"/>
+          <span class="asdf">My Video</span>
         </div>
-        <embed style="margin-top: 40px;" src="./watch.action?type=<%= type %>&fileId=<%= fileId %>" height="<%= height%>" width="<%= width %>"></embed>
-        
 <!--        <input type="button" value="Back" style="height: 33px; width: 57px; border: 0 solid; background: url(./images/top-sub-btn.png) left top no-repeat;">-->
     </body>
     

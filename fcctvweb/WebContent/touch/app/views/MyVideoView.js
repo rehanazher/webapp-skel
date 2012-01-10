@@ -145,19 +145,21 @@ FccTVApp.views.MyVideoView = Ext.extend(Ext.TabPanel, {
 			}
 		}, {
 			xtype : 'spacer'
-		}, {
-			xtype : 'searchfield',
-			placeHolder : 'Search',
-			name : 'searchfield',
-			width : 100,
-			listeners : {
-				blur : function(text, e) {
-					if(text.getValue()) {
-						Ext.Msg.alert('System Dialog', 'Search key: ' + text.getValue());
-					}
-				}
-			}
-		}]
+		}
+//		, {
+//			xtype : 'searchfield',
+//			placeHolder : 'Search',
+//			name : 'searchfield',
+//			width : 100,
+//			listeners : {
+//				blur : function(text, e) {
+//					if(text.getValue()) {
+//						Ext.Msg.alert('System Dialog', 'Search key: ' + text.getValue());
+//					}
+//				}
+//			}
+//		}
+		]
 	}],
 	tabBar : {
 		dock : 'bottom',

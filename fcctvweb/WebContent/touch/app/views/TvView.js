@@ -82,8 +82,9 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 	}, {
 		iconCls : 'settings',
 		nav: 'setting',
+		scroll: 'vertical',
 		title : bundle.getText('tab.4'),
-		html : 'Pressed Settings'
+		items : [FccTVApp.frames.Settings]
 	},{
 		iconCls : 'search',
 		nav: 'player',
@@ -227,19 +228,21 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 			}
 		}, {
 			xtype : 'spacer'
-		}, {
-			xtype : 'searchfield',
-			placeHolder : 'Search',
-			name : 'searchfield',
-			width : 100,
-			listeners : {
-				blur : function(text, e) {
-					if(text.getValue()) {
-						Ext.Msg.alert('System Dialog', 'Search key: ' + text.getValue());
-					}
-				}
-			}
-		}]
+		}
+//		, {
+//			xtype : 'searchfield',
+//			placeHolder : 'Search',
+//			name : 'searchfield',
+//			width : 100,
+//			listeners : {
+//				blur : function(text, e) {
+//					if(text.getValue()) {
+//						Ext.Msg.alert('System Dialog', 'Search key: ' + text.getValue());
+//					}
+//				}
+//			}
+//		}
+		]
 	}],
 	tabBar : {
 		dock : 'bottom',
