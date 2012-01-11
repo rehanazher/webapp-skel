@@ -17,7 +17,7 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction extends BasicJsonAction {
 
 	private static final long serialVersionUID = -8054682999648658581L;
-	
+
 	public static final String STORAGE_KEY = "jp.co.fcctvweb.User";
 
 	private UserService userService;
@@ -38,10 +38,10 @@ public class UserAction extends BasicJsonAction {
 		User user = userService.userLogin("", "", remoteIp);
 		if (user != null) {
 			loginFlag = true;
-			HttpSession session = ServletActionContext.getRequest().getSession();
+			HttpSession session = ServletActionContext.getRequest()
+					.getSession();
 			session.setAttribute(STORAGE_KEY, user);
 		}
-		
 
 		List<Channel> chList = gtvService.getAllChannels();
 		for (Channel ch : chList) {
@@ -56,8 +56,20 @@ public class UserAction extends BasicJsonAction {
 		if (user == null) {
 			makeFailure();
 			setMsg(getText("app.login.msg.invalid"));
-			HttpSession session = ServletActionContext.getRequest().getSession();
+		} else {
+			HttpSession session = ServletActionContext.getRequest()
+					.getSession();
 			session.setAttribute(STORAGE_KEY, user);
+		}
+		return ajaxReturn();
+	}
+
+	public String logout() {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		User user = (User) session.getAttribute(STORAGE_KEY);
+		if (user != null) {
+			userService.logout(user.getUsername());
+			session.removeAttribute(STORAGE_KEY);
 		}
 		return ajaxReturn();
 	}

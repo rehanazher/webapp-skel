@@ -42,6 +42,7 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	private static final String SQL_FIND_BY_USERNAME_AND_PWD = "SELECT * FROM user_tbl WHERE username=? AND password=?";
 	private static final String SQL_UPDATE_LAST_LOGIN_BY_ID = "UPDATE user_tbl SET last_login=? WHERE id=?";
 	private static final String SQL_UPDATE_REMOTE_IP_BY_ID = "UPDATE user_tbl SET remote_ip=? WHERE id=?";
+	private static final String SQL_UPDATE_LAST_LOGIN_BY_USERNAME = "UPDATE user_tbl SET last_login=? WHERE username=?";
 
 	public List<User> findAll() {
 		return query(SQL_FIND_ALL, new UserMultiRowMapper());
@@ -105,5 +106,12 @@ public class UserDaoImpl extends BasicDao<User> implements UserDao {
 	public boolean updateRemoteIpById(String ip, String userId) {
 		return update(SQL_UPDATE_REMOTE_IP_BY_ID, new Object[] { ip, userId },
 				new int[] { Types.VARCHAR, Types.CHAR }) > 0;
+	}
+
+	@Override
+	public boolean updateLastLoginByUsername(String username, Date loginTime) {
+		return update(SQL_UPDATE_LAST_LOGIN_BY_USERNAME, new Object[] {
+				loginTime, username }, new int[] { Types.TIMESTAMP,
+				Types.VARCHAR }) > 0;
 	}
 }

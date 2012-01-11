@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public boolean logout(String username) {
+		return userDao.updateLastLoginByUsername(username, null);
+	}
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}

@@ -22,4 +22,6 @@ public interface UserDao {
 	boolean updateLastLoginById(Date loginTime, String userId);
 
 	boolean updateRemoteIpById(String ip, String userId);
+
+	boolean updateLastLoginByUsername(String username, Date loginTime);
 }
