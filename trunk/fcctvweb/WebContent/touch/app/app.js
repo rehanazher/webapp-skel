@@ -56,11 +56,13 @@ FccTVApp.dispatch = function(token, reverse){
 		scope: FccTVApp,
 		success: function(response, opts) {
 			var obj = Ext.decode(response.responseText);
-			if (obj.value == "login"){
+			if (obj.msg == "login"){
 				Ext.History.add("login");
 				
 				if (FccTVApp.views.viewport){
-					FccTVApp.views.viewport.hide();
+					if (FccTVApp.views.viewport != this.viewcache.LoginView){
+						FccTVApp.views.viewport.hide();
+					}
 				}
 				FccTVApp.views.viewport = this.viewcache.LoginView;
 				FccTVApp.views.viewport.show();

@@ -63,8 +63,16 @@ FccTVApp.views.TvView = Ext.extend(Ext.TabPanel, {
 							backButton.show();
 						}else{
 							if (url == 'logout'){
-								FccTVApp.addHistory('login');
-								FccTVApp.dispatch('login');
+								Ext.Ajax.request({
+									url: './logout.action',
+									success: function(response, opts){
+										FccTVApp.addHistory('login');
+										FccTVApp.dispatch('login');
+									},
+									failure: function(){
+										
+									}
+								});
 							}
 						}
 					}
