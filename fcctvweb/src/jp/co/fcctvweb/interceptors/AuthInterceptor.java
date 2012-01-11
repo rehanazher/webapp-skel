@@ -49,7 +49,6 @@ public class AuthInterceptor implements Interceptor {
 				reply.setMsg("login");
 				outer.print(JSONObject.fromObject(reply, Config.JSON_CONFIG)
 						.toString());
-				System.out.println("login");
 				outer.flush();
 				outer.close();
 				response.setStatus(HttpServletResponse.SC_OK);
@@ -60,7 +59,7 @@ public class AuthInterceptor implements Interceptor {
 			}
 			return "login";
 		}
-			
+		
 		return invocation.invoke();
 	}
 

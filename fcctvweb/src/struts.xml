@@ -30,6 +30,7 @@
     		
     		<interceptor-stack name="authStack">
                 <interceptor-ref name="basicStack"/>
+                <interceptor-ref name="auth"/>
             </interceptor-stack>
     	</interceptors>
 
@@ -40,6 +41,7 @@
         </global-results>
 
         <action name="index" class="jp.co.fcctvweb.actions.UserAction" method="retrieveLogin">
+            <interceptor-ref name="basicStack" />
             <result>index.jsp</result>
         </action>
         
@@ -51,7 +53,10 @@
             <result type="redirect">/uploader/</result>
         </action>
         
-        <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login"><result type="json" name="ajax"></result></action>
+        <action name="login" class="jp.co.fcctvweb.actions.UserAction" method="login">
+            <interceptor-ref name="basicStack" />
+            <result type="json" name="ajax"></result>
+        </action>
 
     </package>
     

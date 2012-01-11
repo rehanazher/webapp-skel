@@ -13,4 +13,5 @@ public interface UserService {
 	 */
 	User userLogin(String username, String password, String remoteIp);
 
+	boolean logout(String username);
 }

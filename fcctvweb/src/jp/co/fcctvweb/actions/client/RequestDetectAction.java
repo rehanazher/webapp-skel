@@ -21,6 +21,7 @@ public class RequestDetectAction extends BasicJsonAction {
 
 	public String execute(){
 		HttpSession session = ServletActionContext.getRequest().getSession();
+		
 		if (session.getAttribute(UserAction.STORAGE_KEY) == null){
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setIntHeader("Expires", -1);
