@@ -29,6 +29,7 @@
         
 
         <action name="touch" class="jp.co.fcctvweb.actions.BasicJsonAction">
+            <interceptor-ref name="basicStack" />
             <result>index.jsp</result>
         </action>
         

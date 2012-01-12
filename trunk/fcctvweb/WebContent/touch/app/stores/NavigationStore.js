@@ -238,6 +238,8 @@ hardwareCard = new Ext.Panel({
 
 searchCard = new Ext.Panel({
 	scroll: 'vertical',
+	parentTitle: bundle.getText('menu.4'),
+	nav: 'nav/4',
 	items: [{
 		xtype: 'form',
 		url: '',
@@ -289,8 +291,9 @@ searchCard = new Ext.Panel({
 					});
 					FccTVApp.frames.QueryList.bindStore(FccTVApp.stores.TypeStore);
 					
-					// FccTVApp.prevCard = Ext.getCmp("navigatorPanel");
-					// FccTVApp.prevTitle = record.get('text');
+					FccTVApp.prevCard = searchCard;
+					FccTVApp.prevTitle = bundle.getText('menu.4');
+					Ext.getCmp('backButton').setText(bundle.getText('app.search.title'));
 					this.up('tabpanel').getActiveItem().setActiveItem(FccTVApp.frames.QueryList, 'slide');
 					
 					// this.up('form').customSubmitForm();
