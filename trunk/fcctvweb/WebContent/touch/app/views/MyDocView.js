@@ -65,6 +65,9 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 		    		'<tpl if="type == \'file\' && extName == \'doc\'"> src="./images/word.png"</tpl>',
 		    		'<tpl if="type == \'file\' && extName == \'docx\'"> src="./images/word.png"</tpl>',
 		    		'<tpl if="type == \'file\' && extName == \'pdf\'"> src="./images/pdf.png"</tpl>',
+		    		'<tpl if="type == \'file\' && extName == \'xls\'"> src="./images/xls.png"</tpl>',
+		    		'<tpl if="type == \'file\' && extName == \'xlsx\'"> src="./images/xls.png"</tpl>',
+		    		'<tpl if="type == \'file\' && extName == \'txt\'"> src="./images/txt.png"</tpl>',
 		    		'  />',
 					'<h2 style="float:left; padding: 7px 10px;">{name}</h2>'
 		    		),
