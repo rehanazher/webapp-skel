@@ -12,6 +12,7 @@ FccTVApp.frames.MyVideoPlayer = Ext.extend(Ext.Panel, {
 		this.video = new Ext.Video({
 			url : this.phoneVideoUrl? this.phoneVideoUrl : this.record.get("videoUrl"),
 			loop : false,
+			autoResume: true,
 			width : 330,
 			height : 250,
 			posterUrl : this.record.get('posterUrl')
