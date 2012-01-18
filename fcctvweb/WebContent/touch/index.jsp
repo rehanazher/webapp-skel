@@ -97,7 +97,6 @@ var chNames = [];
         <script type="text/javascript" src="app/stores/DailyStore.js"></script>
         <script type="text/javascript" src="app/stores/TypeStore.js"></script>
         <script type="text/javascript" src="app/stores/MyVideoStore.js"></script>
-        <script type="text/javascript" src="app/stores/MyDocStore.js"></script>
         <script type="text/javascript" src="app/stores/MyDocTreeStore.js"></script>
         <script type="text/javascript" src="app/stores/MyMusicStore.js"></script>
         <script type="text/javascript" src="app/stores/ChannelStore.js"></script>
