@@ -267,29 +267,33 @@ FccTVApp.dispatch = function(token, reverse){
 					var docview = Ext.getCmp('docview');
 					
 					if (parts[1]){
-						var rootNode = FccTVApp.stores.MyDocTreeStore.getRootNode();
-						var node = rootNode.findChildBy(function(n) {
-			                return n.attributes.record.raw.type == "folder" && parts[1] === n.attributes.record.raw.position;
-			            }, this, true);
-						
-						if (node){
-							var record = node.attributes.record;
-							var itemId = 'MYDOC' + record.get('position');
-							var	card = docview.add(this.viewcache.MyDocView.getListConfig(itemId, node));
+						FccTVApp.stores.MyDocTreeStore.on('read', function(store, records, isSuccess ){
+							var rootNode = store.getRootNode();
+							var node = rootNode.findChildBy(function(n) {
+				                return n.attributes.record.raw.type == "folder" && parts[1] === n.attributes.record.raw.position;
+				            }, this, true);
 							
-							docview.setActiveItem(card, reverse? {type: 'slide', reverse: true}: 'slide');
-							docview.dockedItems.items[0].setTitle(record.get('name'));
-							var backBtn = Ext.getCmp('docBackButton');
-							if (node.parentNode){
-								if (node.parentNode.isRoot){
-									backBtn.setText(bundle.getText('main.title'));
-								}else{
-									backBtn.setText(node.parentNode.attributes.record.get('name'));
+							if (node){
+								var record = node.attributes.record;
+								var itemId = 'MYDOC' + record.get('position');
+								var	card = docview.add(this.viewcache.MyDocView.getListConfig(itemId, node));
+								
+								docview.setActiveItem(card, reverse? {type: 'slide', reverse: true}: 'slide');
+								docview.dockedItems.items[0].setTitle(record.get('name'));
+								var backBtn = Ext.getCmp('docBackButton');
+								if (node.parentNode){
+									if (node.parentNode.isRoot){
+										backBtn.setText(bundle.getText('main.title'));
+									}else{
+										backBtn.setText(node.parentNode.attributes.record.get('name'));
+									}
 								}
 							}
-						}
+							
+							FccTVApp.stores.MyDocTreeStore.events.read = null;
+				    	}, this);
+						FccTVApp.stores.MyDocTreeStore.load();
 					}
-
 				}else if (parts[0] == "music"){
 					if (FccTVApp.views.viewport != this.viewcache.MyMusicView){
 						if (FccTVApp.views.viewport){
