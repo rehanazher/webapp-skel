@@ -19,21 +19,31 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 				
 				var panel = this.up('panel');
 				var activeItem = panel.getActiveItem();
-				var recordNode = activeItem.recordNode;
-				if (recordNode.parentNode){
-					if (recordNode.parentNode.isRoot){
-						if (FccTVApp.player){
-							FccTVApp.player.destroy();
+				if (activeItem){
+					var recordNode = activeItem.recordNode;
+					if (recordNode.parentNode){
+						if (recordNode.parentNode.isRoot){
+							if (FccTVApp.player){
+								FccTVApp.player.destroy();
+							}
+							FccTVApp.views.viewport.hide();
+							FccTVApp.addHistory("main");
+							FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
+							FccTVApp.views.viewport.show();
+						}else{
+							var nav = panel.navigatorPref + "/" + recordNode.parentNode.attributes.record.get('position');
+							FccTVApp.addHistory(nav);
+							FccTVApp.dispatch(nav, true);
 						}
-						FccTVApp.views.viewport.hide();
-						FccTVApp.addHistory("main");
-						FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
-						FccTVApp.views.viewport.show();
-					}else{
-						var nav = panel.navigatorPref + "/" + recordNode.parentNode.attributes.record.get('position');
-						FccTVApp.addHistory(nav);
-						FccTVApp.dispatch(nav, true);
 					}
+				}else{
+					if (FccTVApp.player){
+						FccTVApp.player.destroy();
+					}
+					FccTVApp.views.viewport.hide();
+					FccTVApp.addHistory("main");
+					FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
+					FccTVApp.views.viewport.show();
 				}
 			}
 		}, {
@@ -81,22 +91,24 @@ FccTVApp.views.MyDocView = Ext.extend(Ext.Panel, {
 						FccTVApp.dispatch(nav);
 	        		}else if(record.get('type') == 'file'){
 	        			FccTVApp.loadMask.show();
-	        			Ext.Ajax.request({
-	        				url: './docAnalyze.action',
-	        				params: {
-	        					fileId : record.get('key'),
-	        					type: record.get('extName')
-	        				},
-		        			success: function(response, opts) {
-		  					  var obj = Ext.decode(response.responseText);
-		  					  FccTVApp.loadMask.hide();
-		  					  location.href='./watch.action?fileId=' + record.get('key') + '&type=' + record.get('extName');
-		  					  // location.href='./docPrev.action?fileId=' + record.get('key') + '&type=' + record.get('extName') + '&height=' + obj.value.height + '&width=' + obj.value.width;
-		  					},
-		  					failure: function(response, opts) {
-		  					  FccTVApp.loadMask.hide();
-		  					} 
-	        			});
+	        			location.href='./watch.action?fileId=' + record.get('key') + '&type=' + record.get('extName');
+	        			FccTVApp.loadMask.hide();
+//	        			Ext.Ajax.request({
+//	        				url: './docAnalyze.action',
+//	        				params: {
+//	        					fileId : record.get('key'),
+//	        					type: record.get('extName')
+//	        				},
+//		        			success: function(response, opts) {
+//		  					  var obj = Ext.decode(response.responseText);
+//		  					  FccTVApp.loadMask.hide();
+//		  					  location.href='./watch.action?fileId=' + record.get('key') + '&type=' + record.get('extName');
+//		  					  // location.href='./docPrev.action?fileId=' + record.get('key') + '&type=' + record.get('extName') + '&height=' + obj.value.height + '&width=' + obj.value.width;
+//		  					},
+//		  					failure: function(response, opts) {
+//		  					  FccTVApp.loadMask.hide();
+//		  					} 
+//	        			});
 	        		}
 	        	},
 	        	itemswipe : function(list, index, el, e) {
