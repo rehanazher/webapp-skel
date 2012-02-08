@@ -1,3 +1,4 @@
+
 FccTVApp.frames.Settings = new Ext.Panel({
 	scroll: 'vertical',
 	items: [{
@@ -57,22 +58,52 @@ FccTVApp.frames.Settings = new Ext.Panel({
 	            labelWidth: '35%'
 	        },
 	        items: [{
+	        	xtype: 'selectfield',
+	        	id: 'settingHddId',
+                name : 'settingHddId',
+                label: bundle.getText('app.setting.hdd.list.label'),
+                valueField : 'key',
+                displayField : 'name',
+                store : new Ext.data.JsonStore({
+                	model: 'HddModel',
+                	proxy: {
+                		type: 'ajax',
+                		url: './hddList.action'
+                	},
+                	autoLoad: true
+                }),
+                listeners:{
+                	change: function(){
+                		Ext.getCmp('settingHddFormat').setValue(0);
+                	}
+                }
+	        },{
 	        	xtype: 'togglefield',
 	        	id: 'settingHddFormat',
 	        	label: bundle.getText('app.setting.hdd.format.label'),
 	            listeners: {
 	            	change : function (cmp, thumb, newValue, oldValue ){
 	            		if(newValue == 1){
-	            			FccTVApp.loadMask.show();
-	            			Ext.Ajax.request({
-		            			url: './hddFormat.action',
-		            			success: function(response, opts) {
-		            				FccTVApp.loadMask.hide();
-		        				},
-		        				failure: function(){
-		        					FccTVApp.loadMask.hide();
-		        				}
-		            		});
+	            			
+            	            Ext.Msg.confirm(bundle.getText('common.dialog.confirm'), bundle.getText('app.setting.hdd.format.confirmation'), function(clickedBtn){
+            	            	if (clickedBtn == "yes"){
+                	            	FccTVApp.loadMask.show();
+        	            			Ext.Ajax.request({
+        		            			url: './hddFormat.action',
+        		            			params: {
+        		            				key: Ext.getCmp('settingHddId').getValue()
+        		            			},
+        		            			success: function(response, opts) {
+        		            				FccTVApp.loadMask.hide();
+        		        				},
+        		        				failure: function(){
+        		        					FccTVApp.loadMask.hide();
+        		        				}
+        		            		});
+            	            	}else{
+            	            		cmp.setValue(0);
+            	            	}
+            	            });
 	            		}
 	            	}
 	            }
@@ -91,16 +122,23 @@ FccTVApp.frames.Settings = new Ext.Panel({
 	            listeners: {
 	            	change : function (cmp, thumb, newValue, oldValue ){
 	            		if(newValue == 1){
-	            			FccTVApp.loadMask.show();
-	            			Ext.Ajax.request({
-		            			url: './deviceReset.action',
-		            			success: function(response, opts) {
-		            				FccTVApp.loadMask.hide();
-		        				},
-		        				failure: function(){
-		        					FccTVApp.loadMask.hide();
-		        				}
-		            		});
+	            			Ext.Msg.confirm(bundle.getText('common.dialog.confirm'), bundle.getText('app.setting.device.reset.confirmation'), function(clickedBtn){
+            	            	if (clickedBtn == "yes"){
+            	            		FccTVApp.loadMask.show();
+        	            			Ext.Ajax.request({
+        		            			url: './deviceReset.action',
+        		            			success: function(response, opts) {
+        		            				FccTVApp.loadMask.hide();
+        		        				},
+        		        				failure: function(){
+        		        					FccTVApp.loadMask.hide();
+        		        				}
+        		            		});
+            	            	}else{
+            	            		cmp.setValue(0);
+            	            	}
+            	            });
+	            			
 	            		}
 	            	}
 	            }
@@ -119,16 +157,22 @@ FccTVApp.frames.Settings = new Ext.Panel({
 	            listeners: {
 	            	change : function (cmp, thumb, newValue, oldValue ){
 	            		if(newValue == 1){
-	            			FccTVApp.loadMask.show();
-	            			Ext.Ajax.request({
-		            			url: './deviceShutdown.action',
-		            			success: function(response, opts) {
-		            				FccTVApp.loadMask.hide();
-		        				},
-		        				failure: function(){
-		        					FccTVApp.loadMask.hide();
-		        				}
-		            		});
+	            			Ext.Msg.confirm(bundle.getText('common.dialog.confirm'), bundle.getText('app.setting.device.shutdown.confirmation'), function(clickedBtn){
+            	            	if (clickedBtn == "yes"){
+            	            		FccTVApp.loadMask.show();
+        	            			Ext.Ajax.request({
+        		            			url: './deviceShutdown.action',
+        		            			success: function(response, opts) {
+        		            				FccTVApp.loadMask.hide();
+        		        				},
+        		        				failure: function(){
+        		        					FccTVApp.loadMask.hide();
+        		        				}
+        		            		});
+            	            	}else{
+            	            		cmp.setValue(0);
+            	            	}
+            	            });
 	            		}
 	            	}
 	            }
@@ -137,6 +181,17 @@ FccTVApp.frames.Settings = new Ext.Panel({
 	}],
 	listeners: {
 		activate: function(cmp){
+			Ext.Ajax.request({
+				url: './getMovieExpire.action',
+				success: function(response, opts) {
+					var obj = Ext.decode(response.responseText);
+					Ext.getCmp('settingExpireDate').setValue(obj.value);
+				},
+				failure: function(){
+					
+				}
+			});
+			
 			Ext.Ajax.request({
 				url: './getMovieExpire.action',
 				success: function(response, opts) {

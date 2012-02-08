@@ -127,6 +127,7 @@
         <action name="changeMovieExpire" class="jp.co.fcctvweb.actions.HardwareAction" method="changeMovieExpire"><result name="json" type="json"></result></action>
         
         <action name="hddFormat" class="jp.co.fcctvweb.actions.HardwareAction" method="hddFormat"><result name="json" type="json"></result></action>
+        <action name="hddList" class="jp.co.fcctvweb.actions.HardwareAction" method="hddList"><result name="json" type="json"></result></action>
         <action name="deviceReset" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceReset"><result name="json" type="json"></result></action>
         <action name="deviceShutdown" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceShutdown"><result name="json" type="json"></result></action>
          

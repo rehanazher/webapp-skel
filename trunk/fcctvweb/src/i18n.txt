@@ -6,6 +6,7 @@ common.mask.loading=请稍后...
 common.dialog.title=系统提示
 common.dialog.ok=确 定
 common.dialog.cancel=取 消
+common.dialog.confirm=确认消息
 
 common.button.ok=确 定
 common.button.cancel=取 消
@@ -235,11 +236,15 @@ app.device.software.label=软件版本
 app.setting.expire.title=录像保存时间
 app.setting.expire.label=日数
 app.setting.hdd.format.title=硬盘格式化
+app.setting.hdd.list.label=硬盘列表
 app.setting.hdd.format.label=拨动执行
+app.setting.hdd.format.confirmation=您确定要格式化此硬盘吗?
 app.setting.device.reset.title=设备重启
 app.setting.device.reset.label=拨动重启
+app.setting.device.reset.confirmation=您确定要重启设备吗?
 app.setting.device.shutdown.title=设备关闭
 app.setting.device.shutdown.label=拨动关闭
+app.setting.device.shutdown.confirmation=您确定要关闭设备吗?
 
 # search page
 app.search.title=检索

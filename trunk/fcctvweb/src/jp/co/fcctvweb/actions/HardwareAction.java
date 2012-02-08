@@ -2,6 +2,8 @@ package jp.co.fcctvweb.actions;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import jp.co.fcctvweb.config.Config;
 import jp.co.fcctvweb.services.SysStatausServiceImpl;
@@ -13,6 +15,7 @@ public class HardwareAction extends BasicJsonAction {
 	private SysStatausServiceImpl sysStatausServiceImpl;
 
 	private int expiredDate;
+	private String key;
 
 	public String getHddInfo() {
 		long g = 1000000000l;
@@ -61,7 +64,18 @@ public class HardwareAction extends BasicJsonAction {
 		return ajaxReturn();
 	}
 
+	public String hddList() {
+		List<HddInfo> hddList = new ArrayList<HddInfo>();
+		HddInfo hi = new HddInfo();
+		hi.setName("test_hdd");
+		hi.setKey("1");
+		hddList.add(hi);
+		setJsonObj(hddList);
+		return jsonReturn();
+	}
+
 	public String hddFormat() {
+		System.out.println("key: " + key);
 		System.out.println("hddFormat");
 		return ajaxReturn();
 	}
@@ -89,7 +103,17 @@ public class HardwareAction extends BasicJsonAction {
 		this.expiredDate = expiredDate;
 	}
 
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	public static class HddInfo {
+		private String key;
+		private String name;
 		private String freeSpace;
 		private String fullSpace;
 		private String usage;
@@ -116,6 +140,22 @@ public class HardwareAction extends BasicJsonAction {
 
 		public void setUsage(String usage) {
 			this.usage = usage;
+		}
+
+		public String getKey() {
+			return key;
+		}
+
+		public void setKey(String key) {
+			this.key = key;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
 		}
 	}
 }

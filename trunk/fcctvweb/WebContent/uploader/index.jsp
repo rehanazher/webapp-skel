@@ -103,11 +103,9 @@ Ext.onReady(function(){
                             url: './uploadFiles.action',
                             waitMsg: '<%= i18n.getI18nText("uploader.msg.waiting") %>',
                             success: function(fp, o) {
-                                console.log(o);
                                 msg('<%= i18n.getI18nText("common.dialog.title") %>', o.result.msg);
                             },
                             failure: function(fp, o){
-                            	console.log(o);
                             	msg('<%= i18n.getI18nText("common.dialog.title") %>', o.result.msg);
                             }
                         });

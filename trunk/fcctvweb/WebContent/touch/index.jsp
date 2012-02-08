@@ -56,8 +56,14 @@ bundle = (function(){
     return resourcesBundle;
 })();
 
-bundle.getText = function(key){
-    return bundle[key] || key;
+bundle.getText = function(key, args){
+    text = bundle[key] || key;
+    if (args){
+        typeof(args);
+        text = text.replace("{0}", args);
+    }
+    
+    return text;
 };
 
 var loginFlag = <%= pageContext.findAttribute("loginFlag") %>;
@@ -90,6 +96,7 @@ var chNames = [];
         <script type="text/javascript" src="app/models/QueryListModel.js"></script>
         <script type="text/javascript" src="app/models/MyVideoListModel.js"></script>
         <script type="text/javascript" src="app/models/MyDocModel.js"></script>
+        <script type="text/javascript" src="app/models/HddModel.js"></script>
 
         <!-- stores -->
         <script type="text/javascript" src="app/stores/DailyListStore.js"></script>
