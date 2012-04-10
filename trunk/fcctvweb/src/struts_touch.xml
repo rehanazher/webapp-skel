@@ -111,7 +111,7 @@
         <action name="retrieveDocFlatDir" class="jp.co.fcctvweb.actions.MyDocAction" method="retrieveDocFlatDir" ><result type="json" name="json"></result></action>
         
         <action name="docAnalyze" class="jp.co.fcctvweb.actions.client.DocAnalyzeAction"><result type="json" name="json"></result></action>
-        <action name="docPrev" class="jp.co.fcctvweb.actions.DocPreviewAction"><result name="success">doc_prev.jsp</result></action>
+        <action name="photoPrev" class="jp.co.fcctvweb.actions.PhotoPreviewAction"><result name="success">photo_prev.jsp</result></action>
         <action name="changeDocDir" class="jp.co.fcctvweb.actions.MyDocAction" method="changeDocDir"><result name="success">doc_prev.jsp</result></action>
         
         <action name="photoAmount" class="jp.co.fcctvweb.actions.MyPhotoAction" method="photoAmount"><result name="json" type="json"></result></action>

@@ -662,7 +662,7 @@ public class DaoCodeUtils {
 	}
 
 	public static void main(String[] args) {
-		DaoCodeUtils builder = new DaoCodeUtils("ch_tbl", "Channel");
+		DaoCodeUtils builder = new DaoCodeUtils("sys_status", "SysStatus");
 		builder.printCode();
 //		try {
 //			BufferedReader br = new BufferedReader(new FileReader("e:/xiaoshuo.txt"));

@@ -1,10 +1,6 @@
 package devutil;
 
-import java.io.FileInputStream;
-
 import org.apache.poi.POIXMLDocument;
-import org.apache.poi.hpsf.SummaryInformation;
-import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 
@@ -15,9 +11,9 @@ public class Test {
 //		SummaryInformation sum = ex.getSummaryInformation();
 //		System.out.println(sum.getPageCount());
 //		
-//		XWPFDocument docx = new XWPFDocument(POIXMLDocument.openPackage("e:/test.docx")); 
-//		int pages = docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
-//		System.out.println(pages);
+		XWPFDocument docx = new XWPFDocument(POIXMLDocument.openPackage("/Users/jamescheung/Documents/src/upload/doc/1$X-Games.docx")); 
+		int pages = docx.getProperties().getExtendedProperties().getUnderlyingProperties().getPages();
+		System.out.println(pages);
 		
 //		PdfReader reader = new PdfReader(new FileInputStream("e:/test.pdf"));
 //		System.out.println(reader.getNumberOfPages());

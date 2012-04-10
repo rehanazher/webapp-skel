@@ -286,6 +286,7 @@ music.tab.2=我的收藏
 # ****************** my photo  function ***********************
 photo.title=Photo
 photo.empty=There are no Photos
+photo.visit.src=View Source
 
 # ****************** uploader function ***********************
 uploader.title=文件上传器
