@@ -28,6 +28,9 @@ FccTVApp.frames.ChannelList = new Ext.List({
 				FccTVApp.addHistory(FccTVApp.viewcache.TvView.navigatorPref + 'channel/' + channel);
 			});
 			
-		}
+		},
+		beforeactivate : function (list){
+			FccTVApp.stores.ChannelStore.load();
+		} 
 	}
 });

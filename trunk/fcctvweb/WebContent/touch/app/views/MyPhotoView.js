@@ -61,7 +61,7 @@ FccTVApp.views.MyPhotoView = Ext.extend(Ext.Panel, {
 			        		if (!newCard.paint){
 			        			var html = '';
 			        			for (var i = 1; i <= 16; i++){
-			        				html += '<img style="float:left height: 72px; width: 72px; margin-left: 5px;" src="./watch.action?type=photo&index=' + (index * 12 + i) + '" onclick="javascript: console.log(1)"/>';
+			        				html += '<img style="float:left height: 72px; width: 72px; margin-left: 5px;" src="./watch.action?type=photo&index=' + (index * 12 + i) + '"/>';
 			        			}
 				        		newCard.update(html);
 				        		newCard.paint = true;
@@ -91,8 +91,8 @@ FccTVApp.views.MyPhotoView = Ext.extend(Ext.Panel, {
 			for (var i = 0; i < 16; i++){
 				var src = './watch.action?type=photo&index=' + (index * 12 + i);
 				var width = (Ext.is.Phone ? 280 : 440) - 44;
-				var height = (Ext.is.Phone ? 240 : 440) - 44;
-				html += '<img style="float:left height: 72px; width: 72px; margin-left: 5px;" src="' + src + '" onclick="javascript: var overlay = Ext.getCmp(\'photoOverlay\'); overlay.update(\'<img src=' + src + ' width='+ width +' height=' + height + ' />\'); overlay.show()"/>';
+				var height = (Ext.is.Phone ? 280 : 440) - 44;
+				html += '<img style="float:left height: 72px; width: 72px; margin-left: 5px;" src="' + src + '" onclick="javascript: var overlay = Ext.getCmp(\'photoOverlay\'); overlay.update(\'<img id=test src=' + src + ' onload=changeSize(this) />\'); overlay.show()"/>';
 			}
 			card.update(html);
 			card.paint = true;
@@ -104,9 +104,38 @@ FccTVApp.views.MyPhotoView = Ext.extend(Ext.Panel, {
         modal: true,
         centered: true,
         width: Ext.is.Phone ? 280 : 440,
-        height: Ext.is.Phone ? 240 : 440,
+        height: Ext.is.Phone ? 320 : 480,
         styleHtmlContent: true,
+        dockedItems : [{
+    		xtype : 'toolbar',
+    		centered: true,
+    		items : [{
+    			xtype : 'button',
+    			text : bundle.getText("photo.visit.src"),
+    			// ui : 'back',
+    			handler : function() {
+    				location.href = './photoPrev.action?imageLink=' + document.getElementById('test').src.replace('&','%26');
+    				Ext.getCmp('photoOverlay').hide();
+    			}
+    		}]
+    	}],
         html: ''
     })
 
 });
+
+changeSize = function(src){
+	
+	var width = Ext.is.Phone ? 280 : 440 - 44;
+	var height = (Ext.is.Phone ? 280 : 440) - 44;
+	
+	if (src.height > src.width){
+		if (src.height > height){
+			src.height = height;
+		}
+	}else{
+		if (src.width > width){
+			src.width = width;
+		}
+	}
+};

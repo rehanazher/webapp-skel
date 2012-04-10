@@ -267,6 +267,7 @@ FccTVApp.dispatch = function(token, reverse){
 					var docview = Ext.getCmp('docview');
 					
 					if (parts[1]){
+						FccTVApp.stores.MyDocTreeStore.load();
 						FccTVApp.stores.MyDocTreeStore.on('read', function(store, records, isSuccess ){
 							var rootNode = store.getRootNode();
 							var node = rootNode.findChildBy(function(n) {
