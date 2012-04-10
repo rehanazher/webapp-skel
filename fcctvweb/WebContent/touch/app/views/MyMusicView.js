@@ -15,7 +15,9 @@ new Ext.List({
         ptype: 'listpaging',
         autoPaging: false,
         loadMoreText: bundle.getText('common.paging.load.more')
-    }],
+    },{
+	    ptype: 'pullrefresh'
+	}],
     itemTpl: new Ext.XTemplate(
     		'<audio name="myaudio-list" src="{videoUrl}" controls="controls" onplay="pauseExceptMe(this)"></audio>',
     		'<h2>{name}({fileName})</h2>'

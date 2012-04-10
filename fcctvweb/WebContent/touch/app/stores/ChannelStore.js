@@ -9,7 +9,7 @@ Ext.regModel('ChannelModel', {
 
 FccTVApp.stores.ChannelStore = new Ext.data.JsonStore({
     model : 'ChannelModel',
-    autoLoad : true,
+    autoLoad : false,
     proxy : {
     	type: 'ajax',
     	url: './retrieveChannels.action'

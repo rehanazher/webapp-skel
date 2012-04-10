@@ -3,6 +3,8 @@ var dayList = (function() {
 	
 	var date = new Date();
 	var dateOfMonth = date.getDate();
+	date.setDate(dateOfMonth + 1);
+	dateOfMonth = date.getDate();
 	
 	for (var i = 0; i < 18; i++){
 		var groupTpl = bundle.getText('dailylist.group.format');

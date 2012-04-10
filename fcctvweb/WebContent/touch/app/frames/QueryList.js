@@ -5,7 +5,9 @@ FccTVApp.frames.QueryList = new Ext.List({
         ptype: 'listpaging',
         autoPaging: false,
         loadMoreText: bundle.getText('common.paging.load.more')
-    }],
+    },{
+	    ptype: 'pullrefresh'
+	}],
     itemTpl: new Ext.XTemplate(
     		'<img class="querylist-img" src="{posterUrl}"/>',
     		'<div class="querylist-anchor"></div>',
