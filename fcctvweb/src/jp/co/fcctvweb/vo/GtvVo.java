@@ -60,7 +60,7 @@ public class GtvVo {
 		this.setFavorite(po.getFavorite());
 		this.setPosterUrl("./thumbs.action?type=pic&fileId=" + po.getGtvid());
 		this.setVideoUrl("./watch.action?type=tv&fileId=" + po.getGtvid());
-		this.setPlayTime(DateUtils.date2String(po.getBstartTime(), "hh:MM:ss"));
+		this.setPlayTime(DateUtils.date2String(po.getBstartTime(), "HH:mm:ss"));
 	}
 	
 	public void setChannelPo(Channel po){

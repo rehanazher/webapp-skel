@@ -3,6 +3,7 @@ package jp.co.fcctvweb.actions;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jp.co.fcctvweb.config.Config;
@@ -157,5 +158,9 @@ public class HardwareAction extends BasicJsonAction {
 		public void setName(String name) {
 			this.name = name;
 		}
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new Date(1330179840000l));
 	}
 }
