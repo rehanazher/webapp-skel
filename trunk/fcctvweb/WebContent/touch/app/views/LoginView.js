@@ -65,6 +65,13 @@ FccTVApp.views.LoginView = Ext.extend(Ext.form.FormPanel, {
 				 this.hide();
 				 FccTVApp.addHistory("main");
 			 	 FccTVApp.views.viewport = FccTVApp.viewcache.MainView;
+			 	 
+			 	 FccTVApp.stores.MyVideoStore.load();
+			 	FccTVApp.stores.MyDocTreeStore.load();
+			 	FccTVApp.stores.MyMusicStore.load();
+			 	FccTVApp.stores.ChannelStore.load();
+			 	FccTVApp.stores.MyDocFlatStore.load();
+			 	
 				 FccTVApp.views.viewport.show();
 			 },
 			 failure : function(form, action) {
